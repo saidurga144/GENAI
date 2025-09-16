@@ -16,8 +16,8 @@ import {
 import { Input } from "@/components/ui/input";
 import { Card, CardContent } from "@/components/ui/card";
 import { useAuth } from "@/hooks/use-auth";
-import { Loader2 } from "lucide-react";
 import { Separator } from "@/components/ui/separator";
+import Image from "next/image";
 
 const GoogleIcon = () => (
   <svg className="h-5 w-5" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -78,7 +78,7 @@ export function LoginForm() {
       <CardContent className="p-6">
         <div className="flex flex-col space-y-4">
           <Button variant="outline" onClick={() => handleSocialLogin("google")} disabled={!!socialLoading}>
-            {socialLoading === 'google' ? <Loader2 className="mr-2 h-4 w-4 animate-spin" /> : <GoogleIcon />}
+            {socialLoading === 'google' ? <Image src="/loader.gif" alt="Loading..." width={24} height={24} unoptimized className="mr-2" /> : <GoogleIcon />}
             Sign in with Google
           </Button>
         </div>
@@ -119,7 +119,7 @@ export function LoginForm() {
             />
             {error && <p className="text-sm text-destructive">{error}</p>}
             <Button type="submit" className="w-full" disabled={loading}>
-              {loading && <Loader2 className="mr-2 h-4 w-4 animate-spin" />}
+              {loading && <Image src="/loader.gif" alt="Loading..." width={24} height={24} unoptimized className="mr-2" />}
               Sign In with Email
             </Button>
           </form>

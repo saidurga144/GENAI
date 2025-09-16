@@ -5,7 +5,7 @@ import Link from "next/link";
 import { useAuth } from "@/hooks/use-auth";
 import { useRouter } from "next/navigation";
 import { useEffect } from "react";
-import { Loader2 } from "lucide-react";
+import Image from "next/image";
 
 export default function LoginPage() {
     const { user, loading } = useAuth();
@@ -19,8 +19,8 @@ export default function LoginPage() {
     
     if (loading || user) {
         return (
-          <div className="flex h-screen items-center justify-center">
-            <Loader2 className="h-12 w-12 animate-spin text-primary" />
+          <div className="flex h-screen items-center justify-center bg-background">
+            <Image src="/loader.gif" alt="Loading..." width={100} height={100} unoptimized />
           </div>
         );
     }

@@ -3,8 +3,8 @@
 import { useEffect } from 'react';
 import { useRouter } from 'next/navigation';
 import { useAuth } from '@/hooks/use-auth';
-import { Loader2 } from 'lucide-react';
 import { Header } from '@/components/futurepath/Header';
+import Image from 'next/image';
 
 export default function AuthedLayout({
   children,
@@ -22,15 +22,15 @@ export default function AuthedLayout({
 
   if (loading || !user) {
     return (
-      <div className="flex h-screen items-center justify-center">
-        <Loader2 className="h-12 w-12 animate-spin text-primary" />
+      <div className="flex h-screen items-center justify-center bg-background">
+        <Image src="/loader.gif" alt="Loading..." width={100} height={100} unoptimized />
       </div>
     );
   }
 
   return (
     <div className="flex flex-col min-h-screen bg-background text-foreground">
-      <Header showResourcesLink={true} />
+      <Header />
         {children}
       <footer className="text-center p-6 text-muted-foreground text-sm no-print border-t">
         <p>FuturePath Navigator &copy; {new Date().getFullYear()}</p>

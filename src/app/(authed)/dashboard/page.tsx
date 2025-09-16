@@ -1,11 +1,11 @@
 "use client";
 
 import { useState } from 'react';
+import Image from 'next/image';
 import { getCareerRecommendations, parseResume } from '@/app/actions';
 import { CareerForm } from '@/components/futurepath/CareerForm';
 import { ResultsDashboard } from '@/components/futurepath/ResultsDashboard';
 import type { DetailedCareerPath, FormInput } from '@/lib/types';
-import { Loader2 } from 'lucide-react';
 import { useToast } from '@/hooks/use-toast';
 import { Button } from '@/components/ui/button';
 
@@ -70,8 +70,8 @@ export default function DashboardPage() {
     if (isLoading) {
       return (
         <div className="flex flex-col items-center justify-center text-center h-full pt-16">
-          <Loader2 className="w-12 h-12 animate-spin text-primary mb-6" />
-          <h2 className="text-2xl font-semibold mb-2 tracking-tight">Crafting Your Career Paths...</h2>
+          <Image src="/loader.gif" alt="Loading..." width={100} height={100} unoptimized />
+          <h2 className="text-2xl font-semibold mb-2 tracking-tight mt-6">Crafting Your Career Paths...</h2>
           <p className="text-muted-foreground max-w-sm">Our AI is analyzing your profile to find the best opportunities. This may take a moment.</p>
         </div>
       );
