@@ -6,12 +6,16 @@ import { parseResume as parseResumeFlow, type ParseResumeInput } from '@/ai/flow
 import type { DetailedCareerPath, FormInput } from '@/lib/types';
 
 export async function getCareerRecommendations(
-  data: FormInput
+  data: FormInput,
+  isResumeUpload: boolean,
 ): Promise<DetailedCareerPath[]> {
   const { skills, academicBackground, interests } = data;
 
-  if (!skills || !academicBackground || !interests) {
-    throw new Error("All form fields are required.");
+  if (!isResumeUpload && (!skills || !academicBackground)) {
+    throw new Error("Skills and Academic Background are required when not uploading a resume.");
+  }
+  if (!interests) {
+    throw new Error("Interests are required.");
   }
 
   const careerPaths = await generatePersonalizedCareerPaths({

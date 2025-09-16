@@ -20,10 +20,11 @@ export default function Home() {
     setIsLoading(true);
     setError(null);
     let submissionData = data;
+    const isResumeUpload = !!resumeText;
 
     try {
-      if (resumeText) {
-        const parsedData = await parseResume({ resumeText });
+      if (isResumeUpload) {
+        const parsedData = await parseResume({ resumeText: resumeText! });
         submissionData = {
           ...data,
           skills: parsedData.skills,
@@ -31,7 +32,7 @@ export default function Home() {
         };
       }
       
-      const recommendations = await getCareerRecommendations(submissionData);
+      const recommendations = await getCareerRecommendations(submissionData, isResumeUpload);
       if (recommendations.length === 0) {
         setError("We couldn't find any career paths that match your profile. Please try adjusting your inputs.");
       } else {
