@@ -1,8 +1,9 @@
 import type { DetailedCareerPath } from "@/lib/types";
 import { Badge } from "@/components/ui/badge";
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
+import { Card, CardContent, CardDescription, CardHeader, CardTitle, CardFooter } from "@/components/ui/card";
 import { Progress } from "@/components/ui/progress";
-import { Briefcase, HeartPulse, Code, Landmark, Atom, Palette, Mic, Leaf, LucideProps } from 'lucide-react';
+import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
+import { Briefcase, HeartPulse, Code, Landmark, Atom, Palette, Mic, Leaf, LucideProps, GraduationCap, BookOpen, CheckCircle } from 'lucide-react';
 import { ForwardRefExoticComponent, RefAttributes } from "react";
 
 const getIconForIndustry = (industry: string): ForwardRefExoticComponent<Omit<LucideProps, "ref"> & RefAttributes<SVGSVGElement>> => {
@@ -45,10 +46,34 @@ export function CareerCard({ careerPath }: CareerCardProps) {
           <Progress value={confidencePercent} aria-label={`${confidencePercent}% suitability`} />
         </div>
         <div className="space-y-2">
-          <h4 className="text-sm font-medium text-muted-foreground">Your Skill Alignment</h4>
+          <h4 className="text-sm font-medium text-muted-foreground flex items-center gap-2"><GraduationCap className="w-4 h-4"/>Your Skill Alignment</h4>
           <p className="text-sm text-foreground/80 leading-relaxed">{careerPath.summary}</p>
         </div>
       </CardContent>
+      <CardFooter className="p-0">
+        <Accordion type="single" collapsible className="w-full px-6 pb-6">
+          <AccordionItem value="next-steps">
+            <AccordionTrigger className="text-sm font-medium text-muted-foreground hover:no-underline">
+              <div className="flex items-center gap-2"><CheckCircle className="w-4 h-4" />Actionable Next Steps</div>
+            </AccordionTrigger>
+            <AccordionContent>
+              <ul className="list-disc pl-5 space-y-2 text-sm text-foreground/80 pt-2">
+                {careerPath.nextSteps.map((step, index) => <li key={index}>{step}</li>)}
+              </ul>
+            </AccordionContent>
+          </AccordionItem>
+          <AccordionItem value="learning-resources" className="border-b-0">
+            <AccordionTrigger className="text-sm font-medium text-muted-foreground hover:no-underline">
+              <div className="flex items-center gap-2"><BookOpen className="w-4 h-4" />Learning Resources</div>
+            </AccordionTrigger>
+            <AccordionContent>
+              <ul className="list-disc pl-5 space-y-2 text-sm text-foreground/80 pt-2">
+                {careerPath.learningResources.map((resource, index) => <li key={index}>{resource}</li>)}
+              </ul>
+            </AccordionContent>
+          </AccordionItem>
+        </Accordion>
+      </CardFooter>
     </Card>
   );
 }

@@ -2,6 +2,8 @@ export type CareerPath = {
   jobTitle: string;
   industry: string;
   confidenceScore: number;
+  nextSteps: string[];
+  learningResources: string[];
 };
 
 export type DetailedCareerPath = CareerPath & {

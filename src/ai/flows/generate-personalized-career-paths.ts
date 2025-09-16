@@ -29,6 +29,8 @@ const CareerPathRecommendationSchema = z.object({
     .describe(
       'A score between 0 and 1 indicating the suitability of the recommendation.'
     ),
+  nextSteps: z.array(z.string()).describe('A list of actionable next steps for the user to pursue this career path.'),
+  learningResources: z.array(z.string()).describe('A list of books or online resources to learn more about this career path.'),
 });
 
 const GeneratePersonalizedCareerPathsOutputSchema = z.array(
@@ -48,7 +50,11 @@ const prompt = ai.definePrompt({
   name: 'generatePersonalizedCareerPathsPrompt',
   input: {schema: GeneratePersonalizedCareerPathsInputSchema},
   output: {schema: GeneratePersonalizedCareerPathsOutputSchema},
-  prompt: `You are a career path recommendation expert. Given the following information about a student, generate personalized career path recommendations, including potential job titles and industries that align with their profile. Include a confidence score for each recommendation to gauge suitability. The confidence score should be between 0 and 1.
+  prompt: `You are a career path recommendation expert. Given the following information about a student, generate personalized career path recommendations. For each recommendation, include:
+1. The job title and industry.
+2. A confidence score between 0 and 1 for suitability.
+3. A list of 2-3 actionable next steps (e.g., 'Take a course on...', 'Build a project that...').
+4. A list of 2-3 specific books or online resources for learning.
 
 Skills: {{{skills}}}
 Academic Background: {{{academicBackground}}}
