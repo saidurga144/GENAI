@@ -21,7 +21,7 @@ export function RoadmapTimeline({ roadmap }: RoadmapTimelineProps) {
     }
 
     return (
-        <div className="relative pl-8">
+        <div className="relative pl-8 max-w-3xl mx-auto">
              <div className="absolute left-4 top-2 bottom-2 w-0.5 bg-border -translate-x-1/2"></div>
             {roadmap.map((stage, index) => (
                 <div key={index} className="relative pb-10 last:pb-0">
