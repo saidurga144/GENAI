@@ -2,7 +2,7 @@ import { Header } from "@/components/futurepath/Header";
 import { PageHeader } from "@/components/futurepath/PageHeader";
 import { Card, CardHeader, CardTitle, CardDescription, CardContent } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
-import { ArrowRight } from "lucide-react";
+import { ArrowLeft, ArrowRight } from "lucide-react";
 import Link from "next/link";
 
 const channels = [
@@ -21,8 +21,16 @@ const channels = [
 export default function ResourcesPage() {
     return (
         <div className="flex flex-col min-h-screen bg-background text-foreground">
-            <Header />
+            <Header showResourcesLink={false} />
             <main className="flex-grow container mx-auto px-4 py-12 md:py-20">
+                <div className="flex justify-start mb-8">
+                     <Button asChild variant="outline">
+                        <Link href="/">
+                            <ArrowLeft />
+                            Back to Home
+                        </Link>
+                    </Button>
+                </div>
                 <PageHeader
                     title="Helpful Resources"
                     description="A curated list of excellent YouTube channels for learning and career exploration."

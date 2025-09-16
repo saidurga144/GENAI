@@ -97,7 +97,7 @@ export default function Home() {
 
   return (
     <div className="flex flex-col min-h-screen bg-background text-foreground">
-      <Header />
+      <Header showResourcesLink={true} />
       <main className="flex-grow container mx-auto px-4 py-12 md:py-20">
         {renderContent()}
       </main>
