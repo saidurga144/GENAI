@@ -74,6 +74,7 @@ export function AuthProvider({ children }: { children: ReactNode }) {
         provider.setCustomParameters({
             // Optional: You can specify a tenant here if needed
             // tenant: 'YOUR_TENANT_ID'
+            authDomain: 'studio-4955566456-2a755.firebaseapp.com'
         });
         return signInWithPopup(auth, provider);
     };
