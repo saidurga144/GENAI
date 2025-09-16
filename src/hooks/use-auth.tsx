@@ -63,11 +63,18 @@ export function AuthProvider({ children }: { children: ReactNode }) {
 
     const signInWithGoogle = () => {
         const provider = new GoogleAuthProvider();
+        provider.setCustomParameters({
+            prompt: 'select_account'
+        });
         return signInWithPopup(auth, provider);
     };
 
     const signInWithMicrosoft = () => {
         const provider = new OAuthProvider('microsoft.com');
+        provider.setCustomParameters({
+            // Optional: You can specify a tenant here if needed
+            // tenant: 'YOUR_TENANT_ID'
+        });
         return signInWithPopup(auth, provider);
     };
 
