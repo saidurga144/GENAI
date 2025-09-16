@@ -13,6 +13,9 @@ import {
     signInWithEmailAndPassword, 
     createUserWithEmailAndPassword, 
     signOut as firebaseSignOut,
+    signInWithPopup,
+    GoogleAuthProvider,
+    OAuthProvider,
     User
 } from 'firebase/auth';
 import { app } from '@/lib/firebase';
@@ -24,6 +27,8 @@ interface AuthContextType {
     signIn: (email: string, pass: string) => Promise<any>;
     signUp: (email: string, pass: string) => Promise<any>;
     signOut: () => Promise<any>;
+    signInWithGoogle: () => Promise<any>;
+    signInWithMicrosoft: () => Promise<any>;
 }
 
 const AuthContext = createContext<AuthContextType | undefined>(undefined);
@@ -56,7 +61,17 @@ export function AuthProvider({ children }: { children: ReactNode }) {
         });
     };
 
-    const value = { user, loading, signIn, signUp, signOut };
+    const signInWithGoogle = () => {
+        const provider = new GoogleAuthProvider();
+        return signInWithPopup(auth, provider);
+    };
+
+    const signInWithMicrosoft = () => {
+        const provider = new OAuthProvider('microsoft.com');
+        return signInWithPopup(auth, provider);
+    };
+
+    const value = { user, loading, signIn, signUp, signOut, signInWithGoogle, signInWithMicrosoft };
 
     return <AuthContext.Provider value={value}>{children}</AuthContext.Provider>;
 }
