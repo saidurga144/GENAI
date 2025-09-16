@@ -60,9 +60,9 @@ export default function Home() {
     if (isLoading) {
       return (
         <div className="flex flex-col items-center justify-center text-center h-full pt-16">
-          <Loader2 className="w-12 h-12 animate-spin text-primary mb-4" />
-          <h2 className="text-2xl font-semibold mb-2">Analyzing your profile...</h2>
-          <p className="text-muted-foreground">Our AI is crafting your personalized career paths. This may take a moment.</p>
+          <Loader2 className="w-12 h-12 animate-spin text-primary mb-6" />
+          <h2 className="text-2xl font-semibold mb-2 tracking-tight">Crafting Your Career Paths...</h2>
+          <p className="text-muted-foreground max-w-sm">Our AI is analyzing your profile to find the best opportunities. This may take a moment.</p>
         </div>
       );
     }
@@ -86,10 +86,10 @@ export default function Home() {
   return (
     <div className="flex flex-col min-h-screen bg-background text-foreground">
       <Header />
-      <main className="flex-grow container mx-auto px-4 py-8 md:py-12">
+      <main className="flex-grow container mx-auto px-4 py-12 md:py-20">
         {renderContent()}
       </main>
-      <footer className="text-center p-4 text-muted-foreground text-sm no-print">
+      <footer className="text-center p-6 text-muted-foreground text-sm no-print border-t">
         <p>FuturePath Navigator &copy; {new Date().getFullYear()}</p>
       </footer>
     </div>

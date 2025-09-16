@@ -17,7 +17,6 @@ const getIconForIndustry = (industry: string): ForwardRefExoticComponent<Omit<Lu
   return Briefcase;
 };
 
-
 type CareerCardProps = {
   careerPath: DetailedCareerPath;
 };
@@ -27,27 +26,27 @@ export function CareerCard({ careerPath }: CareerCardProps) {
   const confidencePercent = Math.round(careerPath.confidenceScore * 100);
 
   return (
-    <Card className="flex flex-col h-full hover:shadow-lg transition-shadow duration-300 print-break-inside-avoid">
+    <Card className="flex flex-col h-full hover:shadow-primary/10 hover:border-primary/30 transition-all duration-300 print-break-inside-avoid group">
       <CardHeader>
         <div className="flex items-start justify-between gap-4">
-            <CardTitle className="text-xl">{careerPath.jobTitle}</CardTitle>
-            <div className="p-2 rounded-md bg-accent/20 text-accent flex-shrink-0">
+            <CardTitle className="text-xl font-semibold">{careerPath.jobTitle}</CardTitle>
+            <div className="p-3 rounded-lg bg-secondary flex-shrink-0 group-hover:bg-accent/10 group-hover:text-accent transition-colors duration-300">
                 <Icon className="w-6 h-6" />
             </div>
         </div>
-        <CardDescription><Badge variant="secondary">{careerPath.industry}</Badge></CardDescription>
+        <CardDescription><Badge variant="outline">{careerPath.industry}</Badge></CardDescription>
       </CardHeader>
-      <CardContent className="flex flex-col flex-grow gap-4">
+      <CardContent className="flex flex-col flex-grow gap-6">
         <div className="space-y-2">
-          <h4 className="text-sm font-semibold text-muted-foreground">Suitability Score</h4>
-          <div className="flex items-center gap-2">
-            <Progress value={confidencePercent} aria-label={`${confidencePercent}% suitability`} />
-            <span className="font-bold text-sm text-foreground">{confidencePercent}%</span>
+          <div className="flex justify-between items-center">
+            <h4 className="text-sm font-medium text-muted-foreground">Suitability Score</h4>
+            <span className="font-bold text-primary text-lg">{confidencePercent}%</span>
           </div>
+          <Progress value={confidencePercent} aria-label={`${confidencePercent}% suitability`} />
         </div>
-        <div className="space-y-1">
-          <h4 className="text-sm font-semibold text-muted-foreground">Your Skill Alignment</h4>
-          <p className="text-sm text-card-foreground/80">{careerPath.summary}</p>
+        <div className="space-y-2">
+          <h4 className="text-sm font-medium text-muted-foreground">Your Skill Alignment</h4>
+          <p className="text-sm text-foreground/80 leading-relaxed">{careerPath.summary}</p>
         </div>
       </CardContent>
     </Card>
