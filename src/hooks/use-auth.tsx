@@ -17,7 +17,7 @@ import {
     GoogleAuthProvider,
     User
 } from 'firebase/auth';
-import { app } from '@/lib/firebase';
+import { app, firebaseConfig } from '@/lib/firebase';
 import { useRouter } from 'next/navigation';
 
 interface AuthContextType {
@@ -62,7 +62,8 @@ export function AuthProvider({ children }: { children: ReactNode }) {
     const signInWithGoogle = () => {
         const provider = new GoogleAuthProvider();
         provider.setCustomParameters({
-            prompt: 'select_account'
+            prompt: 'select_account',
+            authDomain: firebaseConfig.authDomain,
         });
         return signInWithPopup(auth, provider);
     };
