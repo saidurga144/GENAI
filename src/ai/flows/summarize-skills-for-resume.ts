@@ -19,7 +19,6 @@ export type SummarizeSkillsForResumeInput = z.infer<typeof SummarizeSkillsForRes
 
 const SummarizeSkillsForResumeOutputSchema = z.object({
   summary: z.string().describe('A summary of the student\'s skills and experiences for the given career path.'),
-  progress: z.string().describe('Shows the progess of the running flow.'),
 });
 export type SummarizeSkillsForResumeOutput = z.infer<typeof SummarizeSkillsForResumeOutputSchema>;
 
@@ -51,9 +50,6 @@ const summarizeSkillsForResumeFlow = ai.defineFlow(
   },
   async input => {
     const {output} = await prompt(input);
-    return {
-      ...output!,
-      progress: 'Skills and experiences have been summarized for the specified career path.',
-    };
+    return output!;
   }
 );
