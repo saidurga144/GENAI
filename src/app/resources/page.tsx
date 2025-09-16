@@ -6,14 +6,14 @@ import { ArrowLeft, ArrowRight } from "lucide-react";
 import Link from "next/link";
 
 const channels = [
-    { name: "Learn Engineering", url: "https://www.youtube.com/@LearnEngineering", description: "Complex engineering concepts made simple through animations." },
-    { name: "Gate Smashers", url: "https://www.youtube.com/@GateSmashers", description: "Computer science and GATE exam preparation resources." },
-    { name: "Neso Academy", url: "https://www.youtube.com/@NesoAcademy", description: "Comprehensive lectures on engineering and computer science subjects." },
-    { name: "Edu9 Career Guidance", url: "https://www.youtube.com/@Edu9CareerGuidance", description: "Career guidance and counseling for students." },
-    { name: "Mark Rober", url: "https://www.youtube.com/@MarkRober", description: "Fun science experiments and engineering projects." },
-    { name: "SmarterEveryDay", url: "https://www.youtube.com/@SmarterEveryDay", description: "Exploring the world of science and engineering through curiosity." },
-    { name: "MinutePhysics", url: "https://www.youtube.com/@MinutePhysics", description: "Quick and easy-to-understand physics explanations." },
-    { name: "Veritasium", url: "https://www.youtube.com/@Veritasium", description: "An element of truth - videos about science, education, and more." },
+    { name: "Learn Engineering", url: "https://www.youtube.com/channel/UCsm2OHyG9Mzf7UtfjUf6QTw", description: "Complex engineering concepts made simple through animations." },
+    { name: "Gate Smashers", url: "https://www.youtube.com/channel/UCJihyK0A38SZ6SdJirEdIOw", description: "Computer science and GATE exam preparation resources." },
+    { name: "Neso Academy", url: "https://www.youtube.com/channel/UCQYMhOMi_Cdj1CEAU-fv80A", description: "Comprehensive lectures on engineering and computer science subjects." },
+    { name: "Edu9 Career Guidance", url: "https://www.youtube.com/channel/UCLx0Y5AJpHhoh-PjH7EAp1Q", description: "Career guidance and counseling for students." },
+    { name: "Mark Rober", url: "https://www.youtube.com/c/MarkRober/videos", description: "Fun science experiments and engineering projects." },
+    { name: "SmarterEveryDay", url: "https://www.youtube.com/c/smartereveryday/videos", description: "Exploring the world of science and engineering through curiosity." },
+    { name: "MinutePhysics", url: "https://www.youtube.com/user/minutephysics/videos", description: "Quick and easy-to-understand physics explanations." },
+    { name: "Veritasium", url: "https://www.youtube.com/veritasium", description: "An element of truth - videos about science, education, and more." },
     { name: "The Organic Chemistry Tutor", url: "https://www.youtube.com/@TheOrganicChemistryTutor", description: "Tutorials on chemistry, math, and physics." },
     { name: "EEVblog", url: "https://www.youtube.com/@EEVblog", description: "An electronics engineering video blog for experts and beginners." },
 ];
