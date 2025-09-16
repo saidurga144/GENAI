@@ -40,12 +40,22 @@ export default function Home() {
       }
     } catch (err) {
       const errorMessage = err instanceof Error ? err.message : 'An unexpected error occurred.';
-      setError(`Failed to generate recommendations: ${errorMessage}`);
-      toast({
-        variant: "destructive",
-        title: "Error",
-        description: `An error occurred while generating recommendations. Please try again.`,
-      });
+      
+      if (errorMessage.includes("503 Service Unavailable") || errorMessage.includes("overloaded")) {
+        setError("Our AI is currently experiencing high demand. Please wait a moment and try again.");
+         toast({
+          variant: "destructive",
+          title: "Service Temporarily Unavailable",
+          description: "The career recommendation service is currently overloaded. Please try again in a few moments.",
+        });
+      } else {
+        setError(`Failed to generate recommendations: ${errorMessage}`);
+        toast({
+          variant: "destructive",
+          title: "Error",
+          description: `An error occurred while generating recommendations. Please try again.`,
+        });
+      }
       console.error(err);
     } finally {
       setIsLoading(false);
