@@ -15,7 +15,6 @@ import {
     signOut as firebaseSignOut,
     signInWithPopup,
     GoogleAuthProvider,
-    OAuthProvider,
     User
 } from 'firebase/auth';
 import { app } from '@/lib/firebase';
@@ -28,7 +27,6 @@ interface AuthContextType {
     signUp: (email: string, pass: string) => Promise<any>;
     signOut: () => Promise<any>;
     signInWithGoogle: () => Promise<any>;
-    signInWithMicrosoft: () => Promise<any>;
 }
 
 const AuthContext = createContext<AuthContextType | undefined>(undefined);
@@ -69,17 +67,7 @@ export function AuthProvider({ children }: { children: ReactNode }) {
         return signInWithPopup(auth, provider);
     };
 
-    const signInWithMicrosoft = () => {
-        const provider = new OAuthProvider('microsoft.com');
-        provider.setCustomParameters({
-            // Optional: You can specify a tenant here if needed
-            // tenant: 'YOUR_TENANT_ID'
-            authDomain: 'studio-4955566456-2a755.firebaseapp.com'
-        });
-        return signInWithPopup(auth, provider);
-    };
-
-    const value = { user, loading, signIn, signUp, signOut, signInWithGoogle, signInWithMicrosoft };
+    const value = { user, loading, signIn, signUp, signOut, signInWithGoogle };
 
     return <AuthContext.Provider value={value}>{children}</AuthContext.Provider>;
 }

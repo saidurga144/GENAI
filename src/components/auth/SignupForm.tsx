@@ -28,15 +28,6 @@ const GoogleIcon = () => (
   </svg>
 );
 
-const MicrosoftIcon = () => (
-    <svg className="h-5 w-5" viewBox="0 0 21 21" fill="none" xmlns="http://www.w3.org/2000/svg">
-        <path d="M10 10H1V1h9v9z" fill="#F25022"/>
-        <path d="M20 10h-9V1h9v9z" fill="#7FBA00"/>
-        <path d="M10 20H1v-9h9v9z" fill="#00A4EF"/>
-        <path d="M20 20h-9v-9h9v9z" fill="#FFB900"/>
-    </svg>
-);
-
 const formSchema = z.object({
   email: z.string().email({ message: "Please enter a valid email address." }),
   password: z.string().min(6, { message: "Password must be at least 6 characters." }),
@@ -45,8 +36,8 @@ const formSchema = z.object({
 export function SignupForm() {
   const [error, setError] = useState<string | null>(null);
   const [loading, setLoading] = useState(false);
-  const [socialLoading, setSocialLoading] = useState<"google" | "microsoft" | null>(null);
-  const { signUp, signInWithGoogle, signInWithMicrosoft } = useAuth();
+  const [socialLoading, setSocialLoading] = useState<"google" | null>(null);
+  const { signUp, signInWithGoogle } = useAuth();
 
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
@@ -69,14 +60,12 @@ export function SignupForm() {
     }
   };
 
-  const handleSocialLogin = async (provider: "google" | "microsoft") => {
+  const handleSocialLogin = async (provider: "google") => {
     setSocialLoading(provider);
     setError(null);
     try {
       if (provider === "google") {
         await signInWithGoogle();
-      } else {
-        await signInWithMicrosoft();
       }
     } catch (err) {
       setError(err instanceof Error ? err.message : "An unexpected error occurred during social login.");
@@ -92,10 +81,6 @@ export function SignupForm() {
           <Button variant="outline" onClick={() => handleSocialLogin("google")} disabled={!!socialLoading}>
             {socialLoading === 'google' ? <Loader2 className="mr-2 h-4 w-4 animate-spin" /> : <GoogleIcon />}
             Sign up with Google
-          </Button>
-          <Button variant="outline" onClick={() => handleSocialLogin("microsoft")} disabled={!!socialLoading}>
-             {socialLoading === 'microsoft' ? <Loader2 className="mr-2 h-4 w-4 animate-spin" /> : <MicrosoftIcon />}
-            Sign up with Microsoft
           </Button>
         </div>
         
