@@ -5,6 +5,7 @@ import { Progress } from "@/components/ui/progress";
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
 import { Briefcase, HeartPulse, Code, Landmark, Atom, Palette, Mic, Leaf, LucideProps, GraduationCap, BookOpen, CheckCircle } from 'lucide-react';
 import { ForwardRefExoticComponent, RefAttributes } from "react";
+import { RoadmapTimeline } from "./RoadmapTimeline";
 
 const getIconForIndustry = (industry: string): ForwardRefExoticComponent<Omit<LucideProps, "ref"> & RefAttributes<SVGSVGElement>> => {
   const lowerIndustry = industry.toLowerCase();

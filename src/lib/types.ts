@@ -1,3 +1,10 @@
+export type RoadmapStage = {
+  title: string;
+  duration: string;
+  description: string;
+  tasks: string[];
+};
+
 export type CareerPath = {
   jobTitle: string;
   industry: string;
@@ -8,6 +15,7 @@ export type CareerPath = {
 
 export type DetailedCareerPath = CareerPath & {
   summary: string;
+  roadmap: RoadmapStage[];
 };
 
 export type FormInput = {
