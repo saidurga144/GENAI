@@ -3,7 +3,7 @@ import { Badge } from "@/components/ui/badge";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle, CardFooter } from "@/components/ui/card";
 import { Progress } from "@/components/ui/progress";
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
-import { Briefcase, HeartPulse, Code, Landmark, Atom, Palette, Mic, Leaf, LucideProps, GraduationCap, BookOpen, CheckCircle } from 'lucide-react';
+import { Briefcase, HeartPulse, Code, Landmark, Atom, Palette, Mic, Leaf, LucideProps, GraduationCap, BookOpen, CheckCircle, Map } from 'lucide-react';
 import { ForwardRefExoticComponent, RefAttributes } from "react";
 import { RoadmapTimeline } from "./RoadmapTimeline";
 
@@ -61,6 +61,16 @@ export function CareerCard({ careerPath }: CareerCardProps) {
               <ul className="list-disc pl-5 space-y-2 text-sm text-foreground/80 pt-2">
                 {careerPath.nextSteps.map((step, index) => <li key={index}>{step}</li>)}
               </ul>
+            </AccordionContent>
+          </AccordionItem>
+           <AccordionItem value="roadmap">
+            <AccordionTrigger className="text-sm font-medium text-muted-foreground hover:no-underline">
+              <div className="flex items-center gap-2"><Map className="w-4 h-4" />Career Roadmap</div>
+            </AccordionTrigger>
+            <AccordionContent>
+              <div className="pt-2">
+                <RoadmapTimeline roadmap={careerPath.roadmap} />
+              </div>
             </AccordionContent>
           </AccordionItem>
           <AccordionItem value="learning-resources" className="border-b-0">

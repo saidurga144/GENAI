@@ -6,7 +6,6 @@ import { ArrowLeft, Printer } from "lucide-react";
 import { CareerCard } from "./CareerCard";
 import { Target } from 'lucide-react';
 import { RoadmapTimeline } from "./RoadmapTimeline";
-import { Separator } from "../ui/separator";
 
 type ResultsDashboardProps = {
   results: DetailedCareerPath[];
@@ -42,21 +41,6 @@ export function ResultsDashboard({ results, onReset }: ResultsDashboardProps) {
             <CareerCard key={index} careerPath={path} />
           ))}
       </div>
-
-      <Separator className="my-12 no-print" />
-
-      <div className="mt-12 printable-area">
-          <h2 className="text-3xl font-bold mb-8 text-center no-print">Career Roadmaps</h2>
-          {results.map((path, index) => (
-              <div key={index} className="mb-16 print-break-inside-avoid">
-                  <div className="text-center mb-8">
-                    <h3 className="text-2xl font-bold">{path.jobTitle}</h3>
-                    <p className="text-muted-foreground max-w-2xl mx-auto">A visual timeline to guide you toward a career as a {path.jobTitle}.</p>
-                  </div>
-                  <RoadmapTimeline roadmap={path.roadmap} />
-              </div>
-          ))}
-      </div>
       
       {/* Printable-only version */}
       <div className="hidden print:block printable-area">
@@ -68,20 +52,11 @@ export function ResultsDashboard({ results, onReset }: ResultsDashboardProps) {
             <h2 className="text-xl font-semibold">Your Personalized Career Plan</h2>
             <p className="text-sm text-muted-foreground">Generated on {new Date().toLocaleDateString()}</p>
         </div>
-        <h2 className="text-3xl font-bold mb-8">Recommendations</h2>
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+        <h2 className="text-3xl font-bold mb-8">Recommendations & Roadmaps</h2>
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
           {results.map((path, index) => (
             <CareerCard key={index} careerPath={path} />
           ))}
-        </div>
-        <div className="mt-16 pt-12" style={{pageBreakBefore: 'always'}}>
-            <h2 className="text-3xl font-bold mb-12">Career Roadmaps</h2>
-            {results.map((path, index) => (
-                <div key={index} className="mb-12 print-break-inside-avoid">
-                    <h3 className="text-2xl font-bold mb-4">{path.jobTitle}</h3>
-                    <RoadmapTimeline roadmap={path.roadmap} />
-                </div>
-            ))}
         </div>
       </div>
 
