@@ -2,6 +2,7 @@ import type { Metadata } from 'next';
 import './globals.css';
 import { Toaster } from '@/components/ui/toaster';
 import { AuthProvider } from '@/hooks/use-auth';
+import { Header } from '@/components/futurepath/Header';
 
 export const metadata: Metadata = {
   title: 'FuturePath Navigator',
@@ -25,6 +26,7 @@ export default function RootLayout({
       </head>
       <body className="font-body antialiased">
         <AuthProvider>
+          <Header />
           {children}
           <Toaster />
         </AuthProvider>

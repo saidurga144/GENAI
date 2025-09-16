@@ -4,9 +4,13 @@ import { Target, BookOpen, LogOut } from 'lucide-react';
 import Link from 'next/link';
 import { Button } from '@/components/ui/button';
 import { useAuth } from '@/hooks/use-auth';
+import { usePathname } from 'next/navigation';
 
-export function Header({ showResourcesLink = true }: { showResourcesLink?: boolean }) {
+export function Header() {
   const { user, signOut } = useAuth();
+  const pathname = usePathname();
+  
+  const showResourcesLink = user && pathname.startsWith('/dashboard');
 
   return (
     <header className="border-b sticky top-0 bg-background/95 backdrop-blur-sm z-10 no-print">

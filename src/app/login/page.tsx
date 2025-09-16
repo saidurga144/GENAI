@@ -1,7 +1,6 @@
 "use client";
 
 import { LoginForm } from "@/components/auth/LoginForm";
-import { Header } from "@/components/futurepath/Header";
 import Link from "next/link";
 import { useAuth } from "@/hooks/use-auth";
 import { useRouter } from "next/navigation";
@@ -28,7 +27,6 @@ export default function LoginPage() {
 
     return (
         <div className="flex flex-col min-h-screen bg-background text-foreground">
-            <Header showResourcesLink={false} />
             <main className="flex-grow container mx-auto px-4 py-12 md:py-20 flex items-center justify-center">
                 <div className="max-w-md w-full">
                     <div className="text-center mb-8">
