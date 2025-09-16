@@ -5,6 +5,8 @@ import { summarizeSkillsForResume } from '@/ai/flows/summarize-skills-for-resume
 import { parseResume as parseResumeFlow, type ParseResumeInput } from '@/ai/flows/parse-resume';
 import { generateRoadmap } from '@/ai/flows/generate-roadmap';
 import type { DetailedCareerPath, FormInput } from '@/lib/types';
+import { auth } from '@/lib/firebase';
+import { signInWithEmailAndPassword, createUserWithEmailAndPassword } from 'firebase/auth';
 
 export async function getCareerRecommendations(
   data: FormInput,
