@@ -22,9 +22,12 @@ import { Rocket, Upload } from "lucide-react";
 
 const formSchema = z.object({
   email: z.string().email({ message: "Please enter a valid email address." }),
-  academicBackground: z.string().min(20, { message: "Please describe your background in at least 20 characters." }).max(500, { message: "Please keep your background under 500 characters." }),
-  skills: z.string().min(10, { message: "Please list some skills (at least 10 characters)." }).max(500, { message: "Please keep your skills under 500 characters." }),
+  academicBackground: z.string().max(500, { message: "Please keep your background under 500 characters." }).optional(),
+  skills: z.string().max(500, { message: "Please keep your skills under 500 characters." }).optional(),
   interests: z.string().min(10, { message: "Please describe your interests in at least 10 characters." }).max(500, { message: "Please keep your interests under 500 characters." }),
+}).refine(data => !!data.skills || !!data.academicBackground, {
+  message: "Either Skills or Academic Background must be filled in if not uploading a resume.",
+  path: ["skills"], 
 });
 
 type CareerFormProps = {
@@ -53,8 +56,11 @@ export function CareerForm({ onSubmit }: CareerFormProps) {
       reader.onload = (e) => {
         const text = e.target?.result as string;
         setResumeText(text);
+        // Clear existing values and errors for skills and academic background
         form.setValue('skills', 'Extracted from resume.');
         form.setValue('academicBackground', 'Extracted from resume.');
+        form.clearErrors('skills');
+        form.clearErrors('academicBackground');
       };
       reader.readAsText(file);
     }
