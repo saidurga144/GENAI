@@ -9,6 +9,7 @@ import type { DetailedCareerPath, FormInput } from '@/lib/types';
 import { Loader2 } from 'lucide-react';
 import { useToast } from '@/hooks/use-toast';
 import { Button } from '@/components/ui/button';
+import Link from 'next/link';
 
 export default function Home() {
   const [results, setResults] = useState<DetailedCareerPath[] | null>(null);

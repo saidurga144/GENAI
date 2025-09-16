@@ -1,0 +1,54 @@
+import { Header } from "@/components/futurepath/Header";
+import { PageHeader } from "@/components/futurepath/PageHeader";
+import { Card, CardHeader, CardTitle, CardDescription, CardContent } from "@/components/ui/card";
+import { Button } from "@/components/ui/button";
+import { ArrowRight } from "lucide-react";
+import Link from "next/link";
+
+const channels = [
+    { name: "Learn Engineering", url: "https://www.youtube.com/@LearnEngineering", description: "Complex engineering concepts made simple through animations." },
+    { name: "Gate Smashers", url: "https://www.youtube.com/@GateSmashers", description: "Computer science and GATE exam preparation resources." },
+    { name: "Neso Academy", url: "https://www.youtube.com/@NesoAcademy", description: "Comprehensive lectures on engineering and computer science subjects." },
+    { name: "Edu9 Career Guidance", url: "https://www.youtube.com/@Edu9CareerGuidance", description: "Career guidance and counseling for students." },
+    { name: "Mark Rober", url: "https://www.youtube.com/@MarkRober", description: "Fun science experiments and engineering projects." },
+    { name: "SmarterEveryDay", url: "https://www.youtube.com/@SmarterEveryDay", description: "Exploring the world of science and engineering through curiosity." },
+    { name: "MinutePhysics", url: "https://www.youtube.com/@MinutePhysics", description: "Quick and easy-to-understand physics explanations." },
+    { name: "Veritasium", url: "https://www.youtube.com/@Veritasium", description: "An element of truth - videos about science, education, and more." },
+    { name: "The Organic Chemistry Tutor", url: "https://www.youtube.com/@TheOrganicChemistryTutor", description: "Tutorials on chemistry, math, and physics." },
+    { name: "EEVblog", url: "https://www.youtube.com/@EEVblog", description: "An electronics engineering video blog for experts and beginners." },
+];
+
+export default function ResourcesPage() {
+    return (
+        <div className="flex flex-col min-h-screen bg-background text-foreground">
+            <Header />
+            <main className="flex-grow container mx-auto px-4 py-12 md:py-20">
+                <PageHeader
+                    title="Helpful Resources"
+                    description="A curated list of excellent YouTube channels for learning and career exploration."
+                />
+                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                    {channels.map((channel) => (
+                        <Card key={channel.name} className="flex flex-col">
+                            <CardHeader>
+                                <CardTitle>{channel.name}</CardTitle>
+                                <CardDescription>{channel.description}</CardDescription>
+                            </CardHeader>
+                            <CardContent className="flex-grow flex items-end">
+                                <Button asChild className="w-full">
+                                    <Link href={channel.url} target="_blank">
+                                        Visit Channel
+                                        <ArrowRight className="ml-2 w-4 h-4" />
+                                    </Link>
+                                </Button>
+                            </CardContent>
+                        </Card>
+                    ))}
+                </div>
+            </main>
+             <footer className="text-center p-6 text-muted-foreground text-sm border-t">
+                <p>FuturePath Navigator &copy; {new Date().getFullYear()}</p>
+            </footer>
+        </div>
+    );
+}
