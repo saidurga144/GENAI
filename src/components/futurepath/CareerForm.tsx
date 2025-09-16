@@ -1,5 +1,6 @@
 "use client";
 
+import { useState } from "react";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import * as z from "zod";
@@ -17,7 +18,7 @@ import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import type { FormInput } from "@/lib/types";
-import { Rocket } from "lucide-react";
+import { Rocket, Upload } from "lucide-react";
 
 const formSchema = z.object({
   email: z.string().email({ message: "Please enter a valid email address." }),
@@ -27,10 +28,13 @@ const formSchema = z.object({
 });
 
 type CareerFormProps = {
-  onSubmit: (data: FormInput) => void;
+  onSubmit: (data: FormInput, resumeText?: string) => void;
 };
 
 export function CareerForm({ onSubmit }: CareerFormProps) {
+  const [resumeText, setResumeText] = useState<string | undefined>();
+  const [fileName, setFileName] = useState<string | undefined>();
+
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
     defaultValues: {
@@ -41,6 +45,25 @@ export function CareerForm({ onSubmit }: CareerFormProps) {
     },
   });
 
+  const handleFileChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    const file = event.target.files?.[0];
+    if (file) {
+      setFileName(file.name);
+      const reader = new FileReader();
+      reader.onload = (e) => {
+        const text = e.target?.result as string;
+        setResumeText(text);
+        form.setValue('skills', 'Extracted from resume.');
+        form.setValue('academicBackground', 'Extracted from resume.');
+      };
+      reader.readAsText(file);
+    }
+  };
+
+  const handleFormSubmit = (data: FormInput) => {
+    onSubmit(data, resumeText);
+  };
+  
   return (
     <div className="max-w-2xl mx-auto animate-in fade-in-50 duration-500">
       <Card>
@@ -50,7 +73,24 @@ export function CareerForm({ onSubmit }: CareerFormProps) {
         </CardHeader>
         <CardContent>
           <Form {...form}>
-            <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-6">
+            <form onSubmit={form.handleSubmit(handleFormSubmit)} className="space-y-6">
+              <Card className="p-4">
+                <FormLabel htmlFor="resume-upload">Upload Your Resume (optional)</FormLabel>
+                <div className="flex items-center gap-4 mt-2">
+                  <Button asChild variant="outline">
+                    <label htmlFor="resume-upload" className="cursor-pointer">
+                      <Upload className="mr-2 h-4 w-4" />
+                      Choose File
+                    </label>
+                  </Button>
+                  <Input id="resume-upload" type="file" className="hidden" onChange={handleFileChange} accept=".txt,.md" />
+                  {fileName && <p className="text-sm text-muted-foreground">{fileName}</p>}
+                </div>
+                <FormDescription className="mt-2">
+                  Upload a .txt or .md file. This will automatically fill in your skills and background.
+                </FormDescription>
+              </Card>
+
               <FormField
                 control={form.control}
                 name="email"
@@ -74,7 +114,7 @@ export function CareerForm({ onSubmit }: CareerFormProps) {
                   <FormItem>
                     <FormLabel>Academic Background</FormLabel>
                     <FormControl>
-                      <Textarea placeholder="e.g., Bachelor's in Computer Science, focusing on AI and machine learning." {...field} />
+                      <Textarea placeholder="e.g., Bachelor's in Computer Science, focusing on AI and machine learning." {...field} disabled={!!resumeText} />
                     </FormControl>
                      <FormMessage />
                   </FormItem>
@@ -87,7 +127,7 @@ export function CareerForm({ onSubmit }: CareerFormProps) {
                   <FormItem>
                     <FormLabel>Skills</FormLabel>
                     <FormControl>
-                      <Textarea placeholder="e.g., Python, React, data analysis, project management." {...field} />
+                      <Textarea placeholder="e.g., Python, React, data analysis, project management." {...field} disabled={!!resumeText} />
                     </FormControl>
                     <FormMessage />
                   </FormItem>

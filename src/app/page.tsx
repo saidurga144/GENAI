@@ -1,7 +1,7 @@
 "use client";
 
 import { useState } from 'react';
-import { getCareerRecommendations } from './actions';
+import { getCareerRecommendations, parseResume } from './actions';
 import { CareerForm } from '@/components/futurepath/CareerForm';
 import { ResultsDashboard } from '@/components/futurepath/ResultsDashboard';
 import { Header } from '@/components/futurepath/Header';
@@ -16,11 +16,22 @@ export default function Home() {
   const [error, setError] = useState<string | null>(null);
   const { toast } = useToast();
 
-  const handleFormSubmit = async (data: FormInput) => {
+  const handleFormSubmit = async (data: FormInput, resumeText?: string) => {
     setIsLoading(true);
     setError(null);
+    let submissionData = data;
+
     try {
-      const recommendations = await getCareerRecommendations(data);
+      if (resumeText) {
+        const parsedData = await parseResume({ resumeText });
+        submissionData = {
+          ...data,
+          skills: parsedData.skills,
+          academicBackground: parsedData.academicBackground,
+        };
+      }
+      
+      const recommendations = await getCareerRecommendations(submissionData);
       if (recommendations.length === 0) {
         setError("We couldn't find any career paths that match your profile. Please try adjusting your inputs.");
       } else {

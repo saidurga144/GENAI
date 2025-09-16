@@ -2,6 +2,7 @@
 
 import { generatePersonalizedCareerPaths } from '@/ai/flows/generate-personalized-career-paths';
 import { summarizeSkillsForResume } from '@/ai/flows/summarize-skills-for-resume';
+import { parseResume as parseResumeFlow, type ParseResumeInput } from '@/ai/flows/parse-resume';
 import type { DetailedCareerPath, FormInput } from '@/lib/types';
 
 export async function getCareerRecommendations(
@@ -47,4 +48,8 @@ export async function getCareerRecommendations(
   );
 
   return detailedCareerPaths;
+}
+
+export async function parseResume(input: ParseResumeInput) {
+  return await parseResumeFlow(input);
 }
