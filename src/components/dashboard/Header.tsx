@@ -24,7 +24,7 @@ export function Header() {
 
       <nav className="hidden md:flex items-center gap-6 text-sm font-medium">
         <Link
-          href="#"
+          href="/dashboard"
           className="transition-colors hover:text-primary-foreground/80"
         >
           Home
@@ -54,11 +54,6 @@ export function Header() {
           </span>
           <span className="sr-only">Toggle notifications</span>
         </Button>
-        <Avatar className="h-8 w-8 border-2 border-primary-foreground/50">
-          <AvatarImage src="https://github.com/shadcn.png" alt="@shadcn" />
-          <AvatarFallback>CN</AvatarFallback>
-        </Avatar>
-        <span className="hidden md:block text-sm font-medium">mazipan</span>
       </div>
     </header>
   );
