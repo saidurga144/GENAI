@@ -82,10 +82,10 @@ export function LoginForm() {
           </Button>
         </div>
         
-        <div className="my-6 flex items-center">
-            <Separator className="flex-grow" />
-            <span className="mx-4 text-xs text-muted-foreground">OR</span>
-            <Separator className="flex-grow" />
+        <div className="my-6 flex items-center gap-4">
+            <Separator className="flex-1" />
+            <span className="text-xs text-muted-foreground">OR</span>
+            <Separator className="flex-1" />
         </div>
 
         <Form {...form}>
