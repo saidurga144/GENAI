@@ -8,6 +8,9 @@ import { ResultsDashboard } from '@/components/futurepath/ResultsDashboard';
 import type { CareerPath, DetailedCareerPath, FormInput } from '@/lib/types';
 import { useToast } from '@/hooks/use-toast';
 import { Button } from '@/components/ui/button';
+import Link from 'next/link';
+import { Card, CardHeader, CardTitle, CardContent, CardFooter } from '@/components/ui/card';
+import { Code, Shield, CircuitBoard } from 'lucide-react';
 
 export default function DashboardPage() {
   const [results, setResults] = useState<CareerPath[] | null>(null);
@@ -97,6 +100,62 @@ export default function DashboardPage() {
 
     return (
         <>
+            <div className="mb-12">
+                <div className="text-center mb-10">
+                    <h2 className="text-3xl font-bold tracking-tight">Explore Popular Career Paths</h2>
+                    <p className="text-muted-foreground mt-2">Or, start with one of our pre-built guides.</p>
+                </div>
+                <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+                    <Card>
+                        <CardHeader>
+                            <CardTitle className="flex items-center gap-2">
+                                <Code className="w-5 h-5 text-primary" />
+                                Software Engineer
+                            </CardTitle>
+                        </CardHeader>
+                        <CardContent>
+                            <p className="text-sm text-muted-foreground mb-4">The architects of the digital world. Learn to build applications and systems.</p>
+                        </CardContent>
+                        <CardFooter>
+                            <Button asChild className="w-full">
+                                <Link href="/software-engineer">View Roadmap</Link>
+                            </Button>
+                        </CardFooter>
+                    </Card>
+                    <Card>
+                        <CardHeader>
+                            <CardTitle className="flex items-center gap-2">
+                                <Shield className="w-5 h-5 text-primary" />
+                                Cybersecurity Specialist
+                            </CardTitle>
+                        </CardHeader>
+                        <CardContent>
+                            <p className="text-sm text-muted-foreground mb-4">Protect digital assets from threats. A field with high demand and impact.</p>
+                        </CardContent>
+                        <CardFooter>
+                            <Button asChild className="w-full">
+                                <Link href="/cybersecurity-specialist">View Roadmap</Link>
+                            </Button>
+                        </CardFooter>
+                    </Card>
+                    <Card>
+                        <CardHeader>
+                            <CardTitle className="flex items-center gap-2">
+                                <CircuitBoard className="w-5 h-5 text-primary" />
+                                EEE Engineer
+                            </CardTitle>
+                        </CardHeader>
+                        <CardContent>
+                            <p className="text-sm text-muted-foreground mb-4">Design and develop electrical equipment, from microchips to power grids.</p>
+                        </CardContent>
+                        <CardFooter>
+                            <Button asChild className="w-full">
+                                <Link href="/eee-engineer">View Roadmap</Link>
+                            </Button>
+                        </CardFooter>
+                    </Card>
+                </div>
+            </div>
             <CareerForm onSubmit={handleFormSubmit} />
         </>
     );
