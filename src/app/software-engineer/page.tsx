@@ -55,9 +55,9 @@ export default function SoftwareEngineerPage() {
         <main className="flex-grow container mx-auto px-4 py-12 md:py-20">
             <div className="flex justify-start mb-8">
                  <Button asChild variant="outline">
-                    <Link href="/">
+                    <Link href="/dashboard">
                         <ArrowLeft />
-                        Back to Home
+                        Back to Dashboard
                     </Link>
                 </Button>
             </div>
@@ -80,8 +80,7 @@ export default function SoftwareEngineerPage() {
                 {roadmap.map((stage) => (
                     <Card key={stage.title} className="print-break-inside-avoid">
                         <CardHeader>
-                            <CardTitle>{stage.title}</CardTitle>
-                            <CardDescription>{stage.description}</CardDescription>
+                            <CardTitle>{stage.title}</CardTitle>                            <CardDescription>{stage.description}</CardDescription>
                         </CardHeader>
                         <CardContent>
                             <ul className="space-y-3">

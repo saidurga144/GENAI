@@ -8,6 +8,8 @@ import { ResultsDashboard } from '@/components/futurepath/ResultsDashboard';
 import type { CareerPath, FormInput } from '@/lib/types';
 import { useToast } from '@/hooks/use-toast';
 import { Button } from '@/components/ui/button';
+import Link from 'next/link';
+import { ArrowLeft } from 'lucide-react';
 
 export default function GeneratorPage() {
   const [results, setResults] = useState<CareerPath[] | null>(null);
@@ -100,6 +102,14 @@ export default function GeneratorPage() {
 
   return (
     <main className="flex-grow container mx-auto px-4 py-12 md:py-20">
+      <div className="flex justify-start mb-8">
+        <Button asChild variant="outline">
+          <Link href="/dashboard">
+            <ArrowLeft />
+            Back to Dashboard
+          </Link>
+        </Button>
+      </div>
       {renderContent()}
     </main>
   );

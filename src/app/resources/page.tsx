@@ -23,9 +23,9 @@ export default function ResourcesPage() {
             <main className="flex-grow container mx-auto px-4 py-12 md:py-20">
                 <div className="flex justify-start mb-8">
                      <Button asChild variant="outline">
-                        <Link href="/">
+                        <Link href="/dashboard">
                             <ArrowLeft />
-                            Back to Home
+                            Back to Dashboard
                         </Link>
                     </Button>
                 </div>
