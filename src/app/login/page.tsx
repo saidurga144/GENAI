@@ -28,8 +28,8 @@ export default function LoginPage() {
 
     return (
         <div className="flex items-center justify-center min-h-screen bg-secondary/50 p-4">
-            <div className="container w-full max-w-4xl flex-grow flex rounded-xl shadow-2xl overflow-hidden">
-                 <div className="hidden md:block relative flex-1">
+            <div className="container w-full max-w-4xl flex-grow flex rounded-xl shadow-2xl overflow-hidden" style={{ perspective: '1000px' }}>
+                 <div className="hidden md:block relative flex-1 transition-transform duration-500 ease-in-out hover:-rotate-y-2 hover:rotate-x-2 hover:scale-105" style={{ transformStyle: 'preserve-3d' }}>
                     <Image
                         src="https://images.unsplash.com/photo-1556761175-b413da4baf72?q=80&w=2574&auto=format&fit=crop"
                         alt="Welcome to CarrierGuide"
