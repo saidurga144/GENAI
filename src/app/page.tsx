@@ -61,8 +61,8 @@ export default function Home() {
                     </Link>
                   </Button>
                 </div>
-                <div className="relative flex justify-center items-center animate-fade-in-up" style={{ animationDelay: '0.2s' }}>
-                    <div className="bg-secondary/50 rounded-lg p-4 border">
+                <div className="relative flex justify-center items-center animate-fade-in-up" style={{ perspective: '1000px', animationDelay: '0.2s' }}>
+                    <div className="bg-secondary/50 rounded-lg p-4 border transition-transform duration-500 ease-in-out hover:-rotate-y-12 hover:rotate-x-12 hover:scale-105 hover:shadow-2xl" style={{ transformStyle: 'preserve-3d' }}>
                       <Image
                         src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSwH2jAocMzvCUqNMjLz9SfjclgZ7YrmHnPzg&s"
                         alt="Career Navigation"

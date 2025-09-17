@@ -60,8 +60,8 @@ export default function SoftwareEngineerPage() {
                     </Link>
                 </Button>
             </div>
-             <div className="relative flex justify-center items-center mb-8">
-                <div className="bg-secondary/50 rounded-lg p-4 border">
+             <div className="relative flex justify-center items-center mb-8" style={{ perspective: '1000px' }}>
+                <div className="bg-secondary/50 rounded-lg p-4 border transition-transform duration-500 ease-in-out hover:-rotate-y-12 hover:rotate-x-12 hover:scale-105 hover:shadow-2xl" style={{ transformStyle: 'preserve-3d' }}>
                     <Image
                         src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSE3MYeIMZP-ZmYGFjx_V6IHs1nTle81fkT-w&s"
                         alt="Software Engineer"
