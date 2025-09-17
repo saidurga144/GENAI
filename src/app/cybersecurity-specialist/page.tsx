@@ -1,3 +1,4 @@
+
 import { PageHeader } from "@/components/futurepath/PageHeader";
 import { Card, CardHeader, CardTitle, CardDescription, CardContent } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
@@ -63,9 +64,9 @@ export default function CybersecuritySpecialistPage() {
                 <Image
                     src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSuotlKVgciT_n0GSsvQ5RSQnh8B-p_R3aIeQ&s"
                     alt="Cybersecurity"
-                    width={200}
+                    width={600}
                     height={200}
-                    className="object-contain"
+                    className="max-w-md w-full h-auto object-contain"
                 />
             </div>
             <PageHeader

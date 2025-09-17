@@ -1,3 +1,4 @@
+
 import { PageHeader } from "@/components/futurepath/PageHeader";
 import { Card, CardHeader, CardTitle, CardDescription, CardContent } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
@@ -63,9 +64,9 @@ export default function SoftwareEngineerPage() {
                 <Image
                     src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSE3MYeIMZP-ZmYGFjx_V6IHs1nTle81fkT-w&s"
                     alt="Software Engineer"
-                    width={200}
+                    width={600}
                     height={200}
-                    className="object-contain"
+                    className="max-w-md w-full h-auto object-contain"
                 />
             </div>
             <PageHeader
