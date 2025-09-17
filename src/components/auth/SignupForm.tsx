@@ -1,3 +1,4 @@
+
 "use client";
 
 import { useState } from "react";
@@ -75,7 +76,7 @@ export function SignupForm() {
   }
   
   return (
-    <Card>
+    <Card className="transition-transform duration-500 ease-in-out hover:-rotate-y-2 hover:rotate-x-2 hover:scale-105 hover:shadow-2xl" style={{ transformStyle: 'preserve-3d' }}>
       <CardContent className="p-6">
         <div className="flex flex-col space-y-4">
           <Button variant="outline" onClick={() => handleSocialLogin("google")} disabled={!!socialLoading}>

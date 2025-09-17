@@ -1,3 +1,4 @@
+
 "use client";
 
 import Link from 'next/link';
@@ -15,8 +16,8 @@ export default function DashboardPage() {
         </p>
       </div>
 
-      <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-12">
-        <Card>
+      <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-12" style={{ perspective: '1000px' }}>
+        <Card className="transition-transform duration-500 ease-in-out hover:-rotate-y-6 hover:rotate-x-6 hover:scale-105 hover:shadow-2xl" style={{ transformStyle: 'preserve-3d' }}>
           <CardHeader>
             <CardTitle className="flex items-center gap-2">
               <Code className="w-5 h-5 text-primary" />
@@ -32,7 +33,7 @@ export default function DashboardPage() {
             </Button>
           </CardFooter>
         </Card>
-        <Card>
+        <Card className="transition-transform duration-500 ease-in-out hover:-rotate-y-6 hover:rotate-x-6 hover:scale-105 hover:shadow-2xl" style={{ transformStyle: 'preserve-3d' }}>
           <CardHeader>
             <CardTitle className="flex items-center gap-2">
               <Shield className="w-5 h-5 text-primary" />
@@ -48,7 +49,7 @@ export default function DashboardPage() {
             </Button>
           </CardFooter>
         </Card>
-        <Card>
+        <Card className="transition-transform duration-500 ease-in-out hover:-rotate-y-6 hover:rotate-x-6 hover:scale-105 hover:shadow-2xl" style={{ transformStyle: 'preserve-3d' }}>
           <CardHeader>
             <CardTitle className="flex items-center gap-2">
               <CircuitBoard className="w-5 h-5 text-primary" />

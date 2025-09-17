@@ -1,3 +1,4 @@
+
 import { PageHeader } from "@/components/futurepath/PageHeader";
 import { Card, CardHeader, CardTitle, CardDescription, CardContent } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
@@ -33,9 +34,9 @@ export default function ResourcesPage() {
                     title="Helpful Resources"
                     description="A curated list of excellent YouTube channels for learning and career exploration."
                 />
-                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6" style={{ perspective: '1000px' }}>
                     {channels.map((channel) => (
-                        <Card key={channel.name} className="flex flex-col">
+                        <Card key={channel.name} className="flex flex-col transition-transform duration-500 ease-in-out hover:-rotate-y-6 hover:rotate-x-6 hover:scale-105 hover:shadow-2xl" style={{ transformStyle: 'preserve-3d' }}>
                             <CardHeader>
                                 <CardTitle>{channel.name}</CardTitle>
                                 <CardDescription>{channel.description}</CardDescription>

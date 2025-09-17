@@ -1,3 +1,4 @@
+
 "use client";
 
 import { useState, useEffect, useMemo, useCallback } from 'react';
@@ -96,7 +97,7 @@ export function ResultsDashboard({ results, onReset, formInput }: ResultsDashboa
         </div>
       </div>
 
-      <div className="grid md:grid-cols-12 gap-8">
+      <div className="grid md:grid-cols-12 gap-8" style={{ perspective: '1000px' }}>
         {/* Left-side List */}
         <aside className="md:col-span-4 lg:col-span-3 space-y-3 no-print">
           <h3 className="text-lg font-semibold px-2">Recommended Paths</h3>
@@ -104,7 +105,7 @@ export function ResultsDashboard({ results, onReset, formInput }: ResultsDashboa
             <button
               key={index}
               onClick={() => handleSelectPath(path)}
-              className={`w-full text-left p-3 rounded-lg border transition-colors ${selectedPath?.jobTitle === path.jobTitle ? 'bg-primary/10 border-primary' : 'hover:bg-accent'}`}
+              className={`w-full text-left p-3 rounded-lg border transition-all duration-300 ${selectedPath?.jobTitle === path.jobTitle ? 'bg-primary/10 border-primary shadow-lg' : 'hover:bg-accent hover:shadow-md'}`}
             >
               <div className="font-semibold">{path.jobTitle}</div>
               <div className="text-sm text-muted-foreground">{path.industry}</div>
@@ -115,7 +116,7 @@ export function ResultsDashboard({ results, onReset, formInput }: ResultsDashboa
         {/* Right-side Details */}
         <main className="md:col-span-8 lg:col-span-9 printable-area">
           {selectedPath && (
-            <Card>
+            <Card className="transition-transform duration-500 ease-in-out hover:-rotate-y-1 hover:rotate-x-1 hover:scale-105 hover:shadow-2xl" style={{ transformStyle: 'preserve-3d' }}>
               <CardHeader>
                 <CardTitle className="text-2xl">{selectedPath.jobTitle}</CardTitle>
                 <CardDescription>
