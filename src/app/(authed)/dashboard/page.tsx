@@ -1,169 +1,80 @@
 "use client";
 
-import { useState } from 'react';
-import Image from 'next/image';
-import { getCareerRecommendations, getCareerPathDetails, parseResume } from '@/app/actions';
-import { CareerForm } from '@/components/futurepath/CareerForm';
-import { ResultsDashboard } from '@/components/futurepath/ResultsDashboard';
-import type { CareerPath, DetailedCareerPath, FormInput } from '@/lib/types';
-import { useToast } from '@/hooks/use-toast';
-import { Button } from '@/components/ui/button';
 import Link from 'next/link';
 import { Card, CardHeader, CardTitle, CardContent, CardFooter } from '@/components/ui/card';
-import { Code, Shield, CircuitBoard } from 'lucide-react';
+import { Button } from '@/components/ui/button';
+import { Code, Shield, CircuitBoard, ArrowRight } from 'lucide-react';
 
 export default function DashboardPage() {
-  const [results, setResults] = useState<CareerPath[] | null>(null);
-  const [isLoading, setIsLoading] = useState(false);
-  const [error, setError] = useState<string | null>(null);
-  const [formInput, setFormInput] = useState<FormInput | null>(null);
-  const { toast } = useToast();
-
-  const handleFormSubmit = async (data: FormInput, resumeText?: string) => {
-    setIsLoading(true);
-    setError(null);
-    setResults(null);
-    let submissionData = data;
-    const isResumeUpload = !!resumeText;
-
-    try {
-      if (isResumeUpload) {
-        const parsedData = await parseResume({ resumeText: resumeText! });
-        submissionData = {
-          ...data,
-          skills: parsedData.skills,
-          academicBackground: parsedData.academicBackground,
-        };
-      }
-
-      setFormInput(submissionData);
-      
-      const recommendations = await getCareerRecommendations(submissionData, isResumeUpload);
-      if (recommendations.length === 0) {
-        setError("We couldn't find any career paths that match your profile. Please try adjusting your inputs.");
-      } else {
-        setResults(recommendations);
-      }
-    } catch (err) {
-      const errorMessage = err instanceof Error ? err.message : 'An unexpected error occurred.';
-      
-      if (errorMessage.includes("503 Service Unavailable") || errorMessage.includes("overloaded")) {
-        setError("Our AI is currently experiencing high demand. Please wait a moment and try again.");
-         toast({
-          variant: "destructive",
-          title: "Service Temporarily Unavailable",
-          description: "The career recommendation service is currently overloaded. Please try again in a few moments.",
-        });
-      } else {
-        setError(`Failed to generate recommendations: ${errorMessage}`);
-        toast({
-          variant: "destructive",
-          title: "Error",
-          description: `An error occurred while generating recommendations. Please try again.`,
-        });
-      }
-      console.error(err);
-    } finally {
-      setIsLoading(false);
-    }
-  };
-
-  const handleReset = () => {
-    setResults(null);
-    setError(null);
-    setFormInput(null);
-  };
-
-  const renderContent = () => {
-    if (isLoading && !results) {
-      return (
-        <div className="flex flex-col items-center justify-center text-center h-full pt-16">
-          <Image src="/loader.gif" alt="Loading..." width={100} height={100} unoptimized />
-          <h2 className="text-2xl font-semibold mb-2 tracking-tight mt-6">Crafting Your Career Paths...</h2>
-          <p className="text-muted-foreground max-w-sm">Our AI is analyzing your profile to find the best opportunities. This may take a moment.</p>
-        </div>
-      );
-    }
-
-    if (error) {
-      return (
-        <div className="text-center pt-16">
-          <p className="text-lg text-destructive mb-4">{error}</p>
-          <Button onClick={handleReset}>Try Again</Button>
-        </div>
-      );
-    }
-
-    if (results && formInput) {
-      return <ResultsDashboard results={results} onReset={handleReset} formInput={formInput}/>;
-    }
-
-    return (
-        <>
-            <div className="mb-12">
-                <div className="text-center mb-10">
-                    <h2 className="text-3xl font-bold tracking-tight">Explore Popular Career Paths</h2>
-                    <p className="text-muted-foreground mt-2">Or, start with one of our pre-built guides.</p>
-                </div>
-                <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-                    <Card>
-                        <CardHeader>
-                            <CardTitle className="flex items-center gap-2">
-                                <Code className="w-5 h-5 text-primary" />
-                                Software Engineer
-                            </CardTitle>
-                        </CardHeader>
-                        <CardContent>
-                            <p className="text-sm text-muted-foreground mb-4">The architects of the digital world. Learn to build applications and systems.</p>
-                        </CardContent>
-                        <CardFooter>
-                            <Button asChild className="w-full">
-                                <Link href="/software-engineer">View Roadmap</Link>
-                            </Button>
-                        </CardFooter>
-                    </Card>
-                    <Card>
-                        <CardHeader>
-                            <CardTitle className="flex items-center gap-2">
-                                <Shield className="w-5 h-5 text-primary" />
-                                Cybersecurity Specialist
-                            </CardTitle>
-                        </CardHeader>
-                        <CardContent>
-                            <p className="text-sm text-muted-foreground mb-4">Protect digital assets from threats. A field with high demand and impact.</p>
-                        </CardContent>
-                        <CardFooter>
-                            <Button asChild className="w-full">
-                                <Link href="/cybersecurity-specialist">View Roadmap</Link>
-                            </Button>
-                        </CardFooter>
-                    </Card>
-                    <Card>
-                        <CardHeader>
-                            <CardTitle className="flex items-center gap-2">
-                                <CircuitBoard className="w-5 h-5 text-primary" />
-                                EEE Engineer
-                            </CardTitle>
-                        </CardHeader>
-                        <CardContent>
-                            <p className="text-sm text-muted-foreground mb-4">Design and develop electrical equipment, from microchips to power grids.</p>
-                        </CardContent>
-                        <CardFooter>
-                            <Button asChild className="w-full">
-                                <Link href="/eee-engineer">View Roadmap</Link>
-                            </Button>
-                        </CardFooter>
-                    </Card>
-                </div>
-            </div>
-            <CareerForm onSubmit={handleFormSubmit} />
-        </>
-    );
-  }
-
   return (
     <main className="flex-grow container mx-auto px-4 py-12 md:py-20">
-      {renderContent()}
+      <div className="text-center mb-10">
+        <h1 className="text-4xl md:text-5xl font-extrabold tracking-tight mb-4">Welcome to CarrierGuide</h1>
+        <p className="text-lg text-muted-foreground max-w-3xl mx-auto">
+          Start by exploring our popular career roadmaps, or create your own personalized plan with our AI-powered generator.
+        </p>
+      </div>
+
+      <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-12">
+        <Card>
+          <CardHeader>
+            <CardTitle className="flex items-center gap-2">
+              <Code className="w-5 h-5 text-primary" />
+              Software Engineer
+            </CardTitle>
+          </CardHeader>
+          <CardContent>
+            <p className="text-sm text-muted-foreground mb-4">The architects of the digital world. Learn to build applications and systems.</p>
+          </CardContent>
+          <CardFooter>
+            <Button asChild className="w-full">
+              <Link href="/software-engineer">View Roadmap</Link>
+            </Button>
+          </CardFooter>
+        </Card>
+        <Card>
+          <CardHeader>
+            <CardTitle className="flex items-center gap-2">
+              <Shield className="w-5 h-5 text-primary" />
+              Cybersecurity Specialist
+            </CardTitle>
+          </CardHeader>
+          <CardContent>
+            <p className="text-sm text-muted-foreground mb-4">Protect digital assets from threats. A field with high demand and impact.</p>
+          </CardContent>
+          <CardFooter>
+            <Button asChild className="w-full">
+              <Link href="/cybersecurity-specialist">View Roadmap</Link>
+            </Button>
+          </CardFooter>
+        </Card>
+        <Card>
+          <CardHeader>
+            <CardTitle className="flex items-center gap-2">
+              <CircuitBoard className="w-5 h-5 text-primary" />
+              EEE Engineer
+            </CardTitle>
+          </CardHeader>
+          <CardContent>
+            <p className="text-sm text-muted-foreground mb-4">Design and develop electrical equipment, from microchips to power grids.</p>
+          </CardContent>
+          <CardFooter>
+            <Button asChild className="w-full">
+              <Link href="/eee-engineer">View Roadmap</Link>
+            </Button>
+          </CardFooter>
+        </Card>
+      </div>
+
+       <div className="text-center">
+            <h2 className="text-2xl font-bold tracking-tight mb-4">Ready for a Personal Touch?</h2>
+            <p className="text-muted-foreground mb-6">Use our AI generator to create a roadmap tailored specifically to your skills and interests.</p>
+            <Button asChild size="lg">
+                <Link href="/dashboard/generator">
+                    Create Your Own Path <ArrowRight className="ml-2" />
+                </Link>
+            </Button>
+        </div>
     </main>
   );
 }
