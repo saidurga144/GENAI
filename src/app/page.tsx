@@ -7,6 +7,7 @@ import { Button } from '@/components/ui/button';
 import Link from 'next/link';
 import Image from 'next/image';
 import { ArrowRight, CheckCircle, Rocket } from 'lucide-react';
+import { PlaceHolderImages } from '@/lib/placeholder-images';
 
 const FeatureCard = ({ icon, title, description }: { icon: React.ReactNode, title: string, description: string }) => (
   <div className="bg-card p-6 rounded-xl border border-border/10 shadow-sm hover:shadow-primary/10 transition-shadow duration-300">
@@ -24,6 +25,8 @@ const FeatureCard = ({ icon, title, description }: { icon: React.ReactNode, titl
 export default function Home() {
   const { user, loading } = useAuth();
   const router = useRouter();
+  const heroImage = PlaceHolderImages[0];
+
 
   useEffect(() => {
     if (!loading && user) {
@@ -63,13 +66,13 @@ export default function Home() {
                   <div className="absolute w-64 h-64 bg-primary/10 rounded-full blur-3xl -translate-x-12"></div>
                   <div className="absolute w-64 h-64 bg-accent/10 rounded-full blur-3xl translate-x-12"></div>
                    <Image
-                      src="https://picsum.photos/seed/career-path/500/500"
-                      alt="A person looking at a path splitting into multiple directions, symbolizing career choices."
+                      src={heroImage.imageUrl}
+                      alt={heroImage.description}
                       width={500}
                       height={500}
                       className="rounded-lg shadow-2xl z-10"
                       priority
-                      data-ai-hint="career growth professional development"
+                      data-ai-hint={heroImage.imageHint}
                     />
                 </div>
               </div>

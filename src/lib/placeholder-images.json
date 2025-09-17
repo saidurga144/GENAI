@@ -1,3 +1,10 @@
 {
-  "placeholderImages": []
+  "placeholderImages": [
+    {
+      "id": "hero-1",
+      "description": "A person looking at a path splitting into multiple directions, symbolizing career choices.",
+      "imageUrl": "https://picsum.photos/seed/career-path/500/500",
+      "imageHint": "career growth professional development"
+    }
+  ]
 }
