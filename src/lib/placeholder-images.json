@@ -24,6 +24,12 @@
       "description": "A complex circuit board with intricate pathways and components, representing electrical engineering.",
       "imageUrl": "https://picsum.photos/seed/eee-engineer/600/400",
       "imageHint": "electrical engineering circuit"
+    },
+    {
+      "id": "hero-5",
+      "description": "A person using a futuristic interface to build a personalized career plan.",
+      "imageUrl": "https://picsum.photos/seed/future-path/600/400",
+      "imageHint": "career plan interface"
     }
   ]
 }
