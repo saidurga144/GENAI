@@ -62,14 +62,16 @@ export default function Home() {
                   </Button>
                 </div>
                 <div className="relative flex justify-center items-center animate-fade-in">
-                  <Image
-                    src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSwH2jAocMzvCUqNMjLz9SfjclgZ7YrmHnPzg&s"
-                    alt="Career Navigation"
-                    width={600}
-                    height={400}
-                    className="max-w-lg w-full h-auto object-contain"
-                    quality={100}
-                  />
+                    <div className="bg-secondary/50 rounded-lg p-4 border animate-fade-in">
+                      <Image
+                        src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSwH2jAocMzvCUqNMjLz9SfjclgZ7YrmHnPzg&s"
+                        alt="Career Navigation"
+                        width={600}
+                        height={400}
+                        className="max-w-lg w-full h-auto object-contain"
+                        quality={100}
+                      />
+                    </div>
                 </div>
               </div>
             </div>
