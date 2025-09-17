@@ -69,7 +69,7 @@ export default function EeeEngineerPage() {
                             <CardHeader>
                                 <CardTitle>{stage.title}</CardTitle>
                                 <CardDescription>{stage.description}</CardDescription>
-                            </CardHeader>
+                            </Header>
                             <CardContent>
                                 <ul className="space-y-3">
                                     {stage.tasks.map((task, index) => (
