@@ -1,0 +1,77 @@
+
+import { PageHeader } from "@/components/futurepath/PageHeader";
+import { Card, CardHeader, CardTitle, CardDescription, CardContent, CardFooter } from "@/components/ui/card";
+import { Button } from "@/components/ui/button";
+import { ArrowRight, Code, Cpu, Shield } from "lucide-react";
+import Link from "next/link";
+import Image from "next/image";
+
+const roadmaps = [
+    {
+        title: "Software Engineer",
+        description: "A step-by-step guide to becoming a successful Software Engineer, from fundamentals to specialization.",
+        url: "/software-engineer",
+        icon: <Code className="w-8 h-8 text-primary" />,
+        imageUrl: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSE3MYeIMZP-ZmYGFjx_V6IHs1nTle81fkT-w&s",
+    },
+    {
+        title: "Electrical & Electronics Engineer",
+        description: "Your path to becoming a licensed EEE Engineer, covering core concepts, practical skills, and career launch.",
+        url: "/eee-engineer",
+        icon: <Cpu className="w-8 h-8 text-primary" />,
+        imageUrl: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRTuATJDJXKBj9uyX0WIaZrUZ2C-r7GGcLRiQ&s",
+    },
+    {
+        title: "Cybersecurity Specialist",
+        description: "Follow this guide to a career in Cybersecurity, from foundational IT skills to hands-on security tools.",
+        url: "/cybersecurity-specialist",
+        icon: <Shield className="w-8 h-8 text-primary" />,
+        imageUrl: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSuotlKVgciT_n0GSsvQ5RSQnh8B-p_R3aIeQ&s",
+    },
+]
+
+export default function RoadmapsPage() {
+    return (
+        <div className="flex flex-col min-h-screen bg-background text-foreground">
+            <main className="flex-grow container mx-auto px-4 py-12 md:py-20">
+                <PageHeader
+                    title="Sample Career Roadmaps"
+                    description="Explore our expert-curated roadmaps for popular career paths. These step-by-step guides provide a clear framework for your journey."
+                />
+                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8" style={{ perspective: '1000px' }}>
+                    {roadmaps.map((roadmap) => (
+                        <Card key={roadmap.title} className="flex flex-col transition-transform duration-500 ease-in-out hover:-rotate-y-6 hover:rotate-x-6 hover:scale-105 hover:shadow-2xl" style={{ transformStyle: 'preserve-3d' }}>
+                           <CardHeader className="flex-row items-center gap-4">
+                                <div className="p-3 bg-primary/10 rounded-lg">
+                                    {roadmap.icon}
+                                </div>
+                                <div>
+                                    <CardTitle>{roadmap.title}</CardTitle>
+                                </div>
+                            </CardHeader>
+                            <CardContent className="flex-grow">
+                                <div className="aspect-[16/9] relative mb-4 rounded-md overflow-hidden">
+                                     <Image
+                                        src={roadmap.imageUrl}
+                                        alt={roadmap.title}
+                                        fill
+                                        className="object-cover"
+                                    />
+                                </div>
+                                <CardDescription>{roadmap.description}</CardDescription>
+                            </CardContent>
+                            <CardFooter>
+                                <Button asChild className="w-full">
+                                    <Link href={roadmap.url}>
+                                        View Roadmap
+                                        <ArrowRight className="ml-2 w-4 h-4" />
+                                    </Link>
+                                </Button>
+                            </CardFooter>
+                        </Card>
+                    ))}
+                </div>
+            </main>
+        </div>
+    );
+}

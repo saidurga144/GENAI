@@ -11,7 +11,6 @@ import {
   SidebarMenuItem,
   SidebarMenuButton,
   SidebarSeparator,
-  SidebarMenuBadge,
 } from "@/components/ui/sidebar";
 import {
   Collapsible,
@@ -26,9 +25,9 @@ import {
   LogOut,
   Settings,
   Table,
-  BarChart,
   User,
   ChevronDown,
+  Map,
 } from "lucide-react";
 import { useAuth } from "@/hooks/use-auth";
 import Link from "next/link";
@@ -75,21 +74,15 @@ export function SidebarNav() {
                 </SidebarMenuButton>
               </SidebarMenuItem>
               <SidebarMenuItem>
-                <SidebarMenuButton href="#" tooltip="UI Elements">
-                  <Component />
-                  UI Elements
+                <SidebarMenuButton href="/roadmaps" isActive={pathname === '/roadmaps'} tooltip="Sample Roadmaps">
+                  <Map />
+                  Sample Roadmaps
                 </SidebarMenuButton>
               </SidebarMenuItem>
               <SidebarMenuItem>
                 <SidebarMenuButton href="/resources" isActive={pathname === '/resources'} tooltip="Resources">
                   <Table />
                   Resources
-                </SidebarMenuButton>
-              </SidebarMenuItem>
-              <SidebarMenuItem>
-                <SidebarMenuButton href="#" tooltip="Presentations">
-                  <BarChart />
-                  Presentations
                 </SidebarMenuButton>
               </SidebarMenuItem>
             </SidebarMenu>

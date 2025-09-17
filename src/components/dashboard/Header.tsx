@@ -30,10 +30,10 @@ export function Header() {
           Home
         </Link>
         <Link
-          href="#"
+          href="/roadmaps"
           className="transition-colors hover:text-primary-foreground/80"
         >
-          Documentation
+          Roadmaps
         </Link>
       </nav>
 
