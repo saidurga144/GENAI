@@ -11,6 +11,7 @@ import {
   SidebarMenuItem,
   SidebarMenuButton,
   SidebarSeparator,
+  SidebarMenuBadge,
 } from "@/components/ui/sidebar";
 import {
   Component,
