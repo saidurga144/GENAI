@@ -1,9 +1,17 @@
+
 "use client";
 
-import { useEffect } from 'react';
-import { useRouter } from 'next/navigation';
 import { useAuth } from '@/hooks/use-auth';
 import Image from 'next/image';
+import { useRouter } from 'next/navigation';
+import { useEffect } from 'react';
+import { 
+  SidebarProvider, 
+  Sidebar, 
+  SidebarInset,
+} from '@/components/ui/sidebar';
+import { Header } from '@/components/dashboard/Header';
+import { SidebarNav } from '@/components/dashboard/SidebarNav';
 
 export default function AuthedLayout({
   children,
@@ -28,11 +36,21 @@ export default function AuthedLayout({
   }
 
   return (
-    <div className="flex flex-col min-h-screen bg-background text-foreground">
-        {children}
-      <footer className="text-center p-6 text-muted-foreground text-sm no-print border-t">
-        <p>CarrierGuide &copy; {new Date().getFullYear()}</p>
-      </footer>
-    </div>
+    <SidebarProvider>
+      <Sidebar side="left" collapsible="icon" className="bg-muted/40">
+        <SidebarNav />
+      </Sidebar>
+      <SidebarInset>
+        <div className="flex flex-col min-h-screen bg-background text-foreground">
+          <Header />
+          <main className="flex-grow p-4 md:p-8">
+            {children}
+          </main>
+          <footer className="text-center p-6 text-muted-foreground text-sm no-print border-t">
+            <p>CarrierGuide &copy; {new Date().getFullYear()}</p>
+          </footer>
+        </div>
+      </SidebarInset>
+    </SidebarProvider>
   );
 }
