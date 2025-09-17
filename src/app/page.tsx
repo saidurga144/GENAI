@@ -68,6 +68,7 @@ export default function Home() {
                     width={600}
                     height={400}
                     className="max-w-lg w-full h-auto object-contain"
+                    quality={100}
                   />
                 </div>
               </div>

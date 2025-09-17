@@ -67,6 +67,7 @@ export default function SoftwareEngineerPage() {
                     width={600}
                     height={200}
                     className="max-w-md w-full h-auto object-contain"
+                    quality={100}
                 />
             </div>
             <PageHeader
