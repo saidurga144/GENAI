@@ -49,46 +49,41 @@ const roadmap = [
 
 export default function SoftwareEngineerPage() {
     return (
-        <div className="flex flex-col min-h-screen bg-background text-foreground">
-            <main className="flex-grow container mx-auto px-4 py-12 md:py-20">
-                <div className="flex justify-start mb-8">
-                     <Button asChild variant="outline">
-                        <Link href="/">
-                            <ArrowLeft />
-                            Back to Home
-                        </Link>
-                    </Button>
-                </div>
-                <PageHeader
-                    title="Roadmap: Software Engineer"
-                    description="Your step-by-step guide to becoming a successful Software Engineer."
-                />
-                <div className="space-y-8">
-                    {roadmap.map((stage) => (
-                        <Card key={stage.title} className="print-break-inside-avoid">
-                            <CardHeader>
-                                <CardTitle>{stage.title}</CardTitle>
-                                <CardDescription>{stage.description}</CardDescription>
-                            </CardHeader>
-                            <CardContent>
-                                <ul className="space-y-3">
-                                    {stage.tasks.map((task, index) => (
-                                        <li key={index} className="flex items-start gap-3">
-                                            <div className="w-5 h-5 mt-0.5 flex-shrink-0 rounded-full bg-primary/20 flex items-center justify-center">
-                                                 <CheckCircle className="w-3.5 h-3.5 text-primary"/>
-                                            </div>
-                                            <span>{task}</span>
-                                        </li>
-                                    ))}
-                                </ul>
-                            </CardContent>
-                        </Card>
-                    ))}
-                </div>
-            </main>
-             <footer className="text-center p-6 text-muted-foreground text-sm border-t no-print">
-                <p>CarrierGuide &copy; {new Date().getFullYear()}</p>
-            </footer>
-        </div>
+        <main className="flex-grow container mx-auto px-4 py-12 md:py-20">
+            <div className="flex justify-start mb-8">
+                 <Button asChild variant="outline">
+                    <Link href="/dashboard">
+                        <ArrowLeft />
+                        Back to Home
+                    </Link>
+                </Button>
+            </div>
+            <PageHeader
+                title="Roadmap: Software Engineer"
+                description="Your step-by-step guide to becoming a successful Software Engineer."
+            />
+            <div className="space-y-8">
+                {roadmap.map((stage) => (
+                    <Card key={stage.title} className="print-break-inside-avoid">
+                        <CardHeader>
+                            <CardTitle>{stage.title}</CardTitle>
+                            <CardDescription>{stage.description}</CardDescription>
+                        </CardHeader>
+                        <CardContent>
+                            <ul className="space-y-3">
+                                {stage.tasks.map((task, index) => (
+                                    <li key={index} className="flex items-start gap-3">
+                                        <div className="w-5 h-5 mt-0.5 flex-shrink-0 rounded-full bg-primary/20 flex items-center justify-center">
+                                             <CheckCircle className="w-3.5 h-3.5 text-primary"/>
+                                        </div>
+                                        <span>{task}</span>
+                                    </li>
+                                ))}
+                            </ul>
+                        </CardContent>
+                    </Card>
+                ))}
+            </div>
+        </main>
     );
 }

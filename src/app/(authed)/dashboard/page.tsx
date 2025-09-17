@@ -122,7 +122,6 @@ export default function DashboardPage() {
 
     return (
         <>
-            <CareerForm onSubmit={handleFormSubmit} />
             <div className="my-16">
                 <div className="text-center mb-10">
                     <h2 className="text-2xl font-bold tracking-tight text-foreground/80">Or, explore a popular career path</h2>
@@ -151,6 +150,7 @@ export default function DashboardPage() {
                     ))}
                 </div>
             </div>
+            <CareerForm onSubmit={handleFormSubmit} />
         </>
     );
   }
