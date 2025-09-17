@@ -8,6 +8,31 @@ import { ResultsDashboard } from '@/components/futurepath/ResultsDashboard';
 import type { CareerPath, DetailedCareerPath, FormInput } from '@/lib/types';
 import { useToast } from '@/hooks/use-toast';
 import { Button } from '@/components/ui/button';
+import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
+import { ArrowRight, Code, Shield, Atom } from 'lucide-react';
+import Link from 'next/link';
+
+
+const popularPaths = [
+    {
+        title: "Software Engineer",
+        description: "Build applications and systems by writing, testing, and deploying code.",
+        icon: <Code className="w-8 h-8 text-primary" />,
+        href: "/software-engineer",
+    },
+    {
+        title: "Cybersecurity Specialist",
+        description: "Protect computer systems and networks from security breaches and cyber attacks.",
+        icon: <Shield className="w-8 h-8 text-primary" />,
+        href: "/cybersecurity-specialist",
+    },
+    {
+        title: "EEE Engineer",
+        description: "Design, develop, and test electrical equipment and electronic systems.",
+        icon: <Atom className="w-8 h-8 text-primary" />,
+        href: "/eee-engineer",
+    },
+];
 
 export default function DashboardPage() {
   const [results, setResults] = useState<CareerPath[] | null>(null);
@@ -95,7 +120,39 @@ export default function DashboardPage() {
       return <ResultsDashboard results={results} onReset={handleReset} formInput={formInput}/>;
     }
 
-    return <CareerForm onSubmit={handleFormSubmit} />;
+    return (
+        <>
+            <CareerForm onSubmit={handleFormSubmit} />
+            <div className="my-16">
+                <div className="text-center mb-10">
+                    <h2 className="text-2xl font-bold tracking-tight text-foreground/80">Or, explore a popular career path</h2>
+                </div>
+                <div className="grid md:grid-cols-3 gap-6">
+                    {popularPaths.map(path => (
+                         <Card key={path.href} className="flex flex-col">
+                             <CardHeader className="flex-row items-center gap-4">
+                                {path.icon}
+                                <div>
+                                    <CardTitle className="text-xl">{path.title}</CardTitle>
+                                </div>
+                            </CardHeader>
+                            <CardContent className="flex-grow">
+                                <p className="text-muted-foreground">{path.description}</p>
+                            </CardContent>
+                             <CardContent>
+                                 <Button asChild className="w-full">
+                                    <Link href={path.href}>
+                                        View Roadmap
+                                        <ArrowRight className="ml-2" />
+                                    </Link>
+                                </Button>
+                            </CardContent>
+                         </Card>
+                    ))}
+                </div>
+            </div>
+        </>
+    );
   }
 
   return (
