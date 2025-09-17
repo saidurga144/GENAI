@@ -60,8 +60,8 @@ export default function EeeEngineerPage() {
                     </Link>
                 </Button>
             </div>
-            <div className="relative flex justify-center items-center animate-fade-in mb-8">
-                <div className="bg-secondary/50 rounded-lg p-4 border animate-fade-in">
+            <div className="relative flex justify-center items-center mb-8">
+                <div className="bg-secondary/50 rounded-lg p-4 border">
                      <Image
                         src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRTuATJDJXKBj9uyX0WIaZrUZ2C-r7GGcLRiQ&s"
                         alt="EEE Engineer"

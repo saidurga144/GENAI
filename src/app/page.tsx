@@ -61,8 +61,8 @@ export default function Home() {
                     </Link>
                   </Button>
                 </div>
-                <div className="relative flex justify-center items-center animate-fade-in">
-                    <div className="bg-secondary/50 rounded-lg p-4 border animate-fade-in">
+                <div className="relative flex justify-center items-center animate-fade-in-up" style={{ animationDelay: '0.2s' }}>
+                    <div className="bg-secondary/50 rounded-lg p-4 border">
                       <Image
                         src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSwH2jAocMzvCUqNMjLz9SfjclgZ7YrmHnPzg&s"
                         alt="Career Navigation"
