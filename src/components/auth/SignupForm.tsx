@@ -17,8 +17,11 @@ import {
 import { Input } from "@/components/ui/input";
 import { useAuth } from "@/hooks/use-auth";
 import Image from "next/image";
+import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 
-const formSchema = z.object({
+
+// Schema for email/password signup
+const emailFormSchema = z.object({
   email: z.string().email({ message: "Please enter a valid email address." }),
   password: z.string()
     .min(8, { message: "Password must be at least 8 characters." })
@@ -27,21 +30,31 @@ const formSchema = z.object({
     .regex(/[^a-zA-Z0-9]/, { message: "Password must contain at least one special character." }),
 });
 
+// Schema for phone number signup
+const phoneFormSchema = z.object({
+  phone: z.string().min(10, { message: "Please enter a valid phone number." }),
+  otp: z.string().optional(),
+});
+
+
 export function SignupForm() {
   const [error, setError] = useState<string | null>(null);
   const [loading, setLoading] = useState(false);
+  const [otpSent, setOtpSent] = useState(false);
   const [successMessage, setSuccessMessage] = useState<string | null>(null);
-  const { signUp } = useAuth();
+  const { signUp, sendOtp } = useAuth();
 
-  const form = useForm<z.infer<typeof formSchema>>({
-    resolver: zodResolver(formSchema),
-    defaultValues: {
-      email: "",
-      password: "",
-    },
+  const emailForm = useForm<z.infer<typeof emailFormSchema>>({
+    resolver: zodResolver(emailFormSchema),
+    defaultValues: { email: "", password: "" },
   });
 
-  const handleFormSubmit = async (data: z.infer<typeof formSchema>) => {
+  const phoneForm = useForm<z.infer<typeof phoneFormSchema>>({
+    resolver: zodResolver(phoneFormSchema),
+    defaultValues: { phone: "" },
+  });
+
+  const handleEmailSubmit = async (data: z.infer<typeof emailFormSchema>) => {
     setLoading(true);
     setError(null);
     setSuccessMessage(null);
@@ -55,6 +68,37 @@ export function SignupForm() {
       setLoading(false);
     }
   };
+
+  const handlePhoneSubmit = async (data: z.infer<typeof phoneFormSchema>) => {
+    setLoading(true);
+    setError(null);
+    try {
+      await sendOtp(data.phone, data.otp as string);
+       // The onAuthStateChanged listener in useAuth will handle the redirect
+    } catch (err) {
+      setError(err instanceof Error ? err.message : "Failed to sign up with OTP.");
+    } finally {
+      setLoading(false);
+    }
+  };
+  
+  const handleSendOtp = async () => {
+    const phone = phoneForm.getValues("phone");
+    if (phone.length < 10) {
+      phoneForm.setError("phone", { message: "Please enter a valid phone number." });
+      return;
+    }
+    setLoading(true);
+    setError(null);
+    try {
+      await sendOtp(phone);
+      setOtpSent(true);
+    } catch (err) {
+       setError(err instanceof Error ? err.message : "Failed to send OTP. Please check the number or try again.");
+    } finally {
+      setLoading(false);
+    }
+  }
   
   return (
     <div className="w-full">
@@ -64,41 +108,100 @@ export function SignupForm() {
             <p>{successMessage}</p>
           </div>
         ) : (
-          <Form {...form}>
-            <form onSubmit={form.handleSubmit(handleFormSubmit)} className="space-y-6">
-              <FormField
-                control={form.control}
-                name="email"
-                render={({ field }) => (
-                  <FormItem>
-                    <FormLabel>Email</FormLabel>
-                    <FormControl>
-                      <Input placeholder="you@example.com" {...field} />
-                    </FormControl>
-                    <FormMessage />
-                  </FormItem>
-                )}
-              />
-              <FormField
-                control={form.control}
-                name="password"
-                render={({ field }) => (
-                  <FormItem>
-                    <FormLabel>Password</FormLabel>
-                    <FormControl>
-                      <Input type="password" placeholder="••••••••" {...field} />
-                    </FormControl>
-                    <FormMessage />
-                  </FormItem>
-                )}
-              />
-              {error && <p className="text-sm text-destructive">{error}</p>}
-              <Button type="submit" className="w-full" disabled={loading}>
-                {loading && <Image src="/loader.gif" alt="Loading..." width={24} height={24} unoptimized className="mr-2" />}
-                Create Account
-              </Button>
-            </form>
-          </Form>
+          <>
+            <div id="recaptcha-container"></div>
+            <Tabs defaultValue="email" className="w-full">
+              <TabsList className="grid w-full grid-cols-2">
+                <TabsTrigger value="email">Email</TabsTrigger>
+                <TabsTrigger value="phone">Phone</TabsTrigger>
+              </TabsList>
+              <TabsContent value="email">
+                <Form {...emailForm}>
+                  <form onSubmit={emailForm.handleSubmit(handleEmailSubmit)} className="space-y-6 mt-6">
+                    <FormField
+                      control={emailForm.control}
+                      name="email"
+                      render={({ field }) => (
+                        <FormItem>
+                          <FormLabel>Email</FormLabel>
+                          <FormControl>
+                            <Input placeholder="you@example.com" {...field} />
+                          </FormControl>
+                          <FormMessage />
+                        </FormItem>
+                      )}
+                    />
+                    <FormField
+                      control={emailForm.control}
+                      name="password"
+                      render={({ field }) => (
+                        <FormItem>
+                          <FormLabel>Password</FormLabel>
+                          <FormControl>
+                            <Input type="password" placeholder="••••••••" {...field} />
+                          </FormControl>
+                          <FormMessage />
+                        </FormItem>
+                      )}
+                    />
+                    {error && <p className="text-sm text-destructive">{error}</p>}
+                    <Button type="submit" className="w-full" disabled={loading}>
+                      {loading && <Image src="/loader.gif" alt="Loading..." width={24} height={24} unoptimized className="mr-2" />}
+                      Create Account
+                    </Button>
+                  </form>
+                </Form>
+              </TabsContent>
+               <TabsContent value="phone">
+                  <Form {...phoneForm}>
+                    <form onSubmit={phoneForm.handleSubmit(handlePhoneSubmit)} className="space-y-6 mt-6">
+                      <FormField
+                        control={phoneForm.control}
+                        name="phone"
+                        render={({ field }) => (
+                          <FormItem>
+                            <FormLabel>Phone Number</FormLabel>
+                            <FormControl>
+                              <div className="flex gap-2">
+                                <Input placeholder="+1 123 456 7890" {...field} disabled={otpSent} />
+                                {!otpSent && (
+                                  <Button type="button" onClick={handleSendOtp} disabled={loading}>
+                                    {loading ? <Image src="/loader.gif" alt="Loading..." width={24} height={24} unoptimized /> : 'Send OTP'}
+                                  </Button>
+                                )}
+                              </div>
+                            </FormControl>
+                            <FormMessage />
+                          </FormItem>
+                        )}
+                      />
+                      {otpSent && (
+                        <FormField
+                          control={phoneForm.control}
+                          name="otp"
+                          render={({ field }) => (
+                            <FormItem>
+                              <FormLabel>6-Digit OTP</FormLabel>
+                              <FormControl>
+                                <Input placeholder="123456" {...field} />
+                              </FormControl>
+                              <FormMessage />
+                            </FormItem>
+                          )}
+                        />
+                      )}
+                      {error && <p className="text-sm text-destructive">{error}</p>}
+                      {otpSent && (
+                          <Button type="submit" className="w-full" disabled={loading}>
+                          {loading && <Image src="/loader.gif" alt="Loading..." width={24} height={24} unoptimized className="mr-2" />}
+                          Verify OTP & Sign Up
+                        </Button>
+                      )}
+                    </form>
+                  </Form>
+              </TabsContent>
+            </Tabs>
+          </>
         )}
     </div>
   );
