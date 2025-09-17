@@ -10,6 +10,7 @@ import { useToast } from '@/hooks/use-toast';
 import { Button } from '@/components/ui/button';
 import Link from 'next/link';
 import { ArrowLeft } from 'lucide-react';
+import { RoadmapGraphic } from '@/components/futurepath/RoadmapGraphic';
 
 export default function GeneratorPage() {
   const [results, setResults] = useState<CareerPath[] | null>(null);
@@ -97,7 +98,14 @@ export default function GeneratorPage() {
       return <ResultsDashboard results={results} onReset={handleReset} formInput={formInput}/>;
     }
 
-    return <CareerForm onSubmit={handleFormSubmit} />;
+    return (
+      <>
+        <div className="relative flex justify-center items-center animate-fade-in mb-8">
+            <RoadmapGraphic />
+        </div>
+        <CareerForm onSubmit={handleFormSubmit} />
+      </>
+    );
   }
 
   return (

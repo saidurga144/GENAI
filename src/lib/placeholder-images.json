@@ -1,35 +1,4 @@
 
 {
-  "placeholderImages": [
-    {
-      "id": "hero-1",
-      "description": "A person confidently looking towards a bright, abstract representation of a successful career path.",
-      "imageUrl": "https://picsum.photos/seed/career-journey/600/400",
-      "imageHint": "professional journey"
-    },
-    {
-      "id": "hero-2",
-      "description": "A software developer collaborating with a team in a modern office with code on a screen.",
-      "imageUrl": "https://picsum.photos/seed/developer-team/600/400",
-      "imageHint": "developer team"
-    },
-    {
-      "id": "hero-3",
-      "description": "An abstract visualization of a secure digital network with interconnected nodes.",
-      "imageUrl": "https://picsum.photos/seed/digital-security/600/400",
-      "imageHint": "digital security"
-    },
-    {
-      "id": "hero-4",
-      "description": "An engineer working on a futuristic piece of hardware or a robotics project.",
-      "imageUrl": "https://picsum.photos/seed/hardware-innovation/600/400",
-      "imageHint": "hardware innovation"
-    },
-    {
-      "id": "hero-5",
-      "description": "A person sketching out a career plan on a whiteboard with charts and diagrams.",
-      "imageUrl": "https://picsum.photos/seed/career-whiteboard/600/400",
-      "imageHint": "career planning"
-    }
-  ]
+  "placeholderImages": []
 }

@@ -20,7 +20,6 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/com
 import type { FormInput } from "@/lib/types";
 import { FileText, Lightbulb, User, Briefcase, Rocket, Upload } from "lucide-react";
 import Image from "next/image";
-import { PlaceHolderImages } from "@/lib/placeholder-images";
 
 const formSchema = z.object({
   email: z.string().email({ message: "Please enter a valid email address." }),
@@ -39,7 +38,6 @@ type CareerFormProps = {
 export function CareerForm({ onSubmit }: CareerFormProps) {
   const [resumeText, setResumeText] = useState<string | undefined>();
   const [fileName, setFileName] = useState<string | undefined>();
-  const heroImage = PlaceHolderImages[4];
 
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
@@ -74,17 +72,6 @@ export function CareerForm({ onSubmit }: CareerFormProps) {
   
   return (
     <div className="max-w-3xl mx-auto animate-in fade-in-50 duration-500">
-       <div className="relative flex justify-center items-center animate-fade-in mb-8">
-          <Image
-              src={heroImage.imageUrl}
-              alt={heroImage.description}
-              width={600}
-              height={400}
-              className="rounded-lg shadow-2xl z-10"
-              priority
-              data-ai-hint={heroImage.imageHint}
-          />
-      </div>
       <div className="text-center mb-10">
         <h1 className="text-4xl md:text-5xl font-extrabold tracking-tight mb-4">Discover Your Future Path</h1>
         <p className="text-lg text-muted-foreground max-w-2xl mx-auto">Tell us a bit about yourself, and our AI will generate personalized career recommendations for you.</p>
