@@ -7,7 +7,6 @@ import { Button } from '@/components/ui/button';
 import Link from 'next/link';
 import Image from 'next/image';
 import { ArrowRight, CheckCircle, Rocket } from 'lucide-react';
-import { RoadmapGraphic } from '@/components/futurepath/RoadmapGraphic';
 
 
 const FeatureCard = ({ icon, title, description }: { icon: React.ReactNode, title: string, description: string }) => (
@@ -62,7 +61,13 @@ export default function Home() {
                   </Button>
                 </div>
                 <div className="relative flex justify-center items-center animate-fade-in">
-                  <RoadmapGraphic />
+                  <Image
+                    src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSwH2jAocMzvCUqNMjLz9SfjclgZ7YrmHnPzg&s"
+                    alt="Career Navigation"
+                    width={600}
+                    height={400}
+                    className="max-w-lg w-full h-auto object-contain"
+                  />
                 </div>
               </div>
             </div>

@@ -3,7 +3,7 @@ import { Card, CardHeader, CardTitle, CardDescription, CardContent } from "@/com
 import { Button } from "@/components/ui/button";
 import { ArrowLeft, CheckCircle } from "lucide-react";
 import Link from "next/link";
-import { RoadmapGraphic } from "@/components/futurepath/RoadmapGraphic";
+import Image from "next/image";
 
 const roadmap = [
     {
@@ -60,7 +60,13 @@ export default function CybersecuritySpecialistPage() {
                 </Button>
             </div>
             <div className="relative flex justify-center items-center animate-fade-in mb-8">
-                <RoadmapGraphic />
+                <Image
+                    src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSuotlKVgciT_n0GSsvQ5RSQnh8B-p_R3aIeQ&s"
+                    alt="Cybersecurity"
+                    width={200}
+                    height={200}
+                    className="object-contain"
+                />
             </div>
             <PageHeader
                 title="Roadmap: Cybersecurity Specialist"
