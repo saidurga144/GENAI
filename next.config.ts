@@ -39,6 +39,12 @@ const nextConfig: NextConfig = {
         hostname: 'streamlynacademy.com',
         port: '',
         pathname: '/**',
+      },
+      {
+        protocol: 'http',
+        hostname: 'www.h2r.co.nz',
+        port: '',
+        pathname: '/**',
       }
     ],
   },
