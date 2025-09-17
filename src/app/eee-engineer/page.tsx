@@ -3,6 +3,8 @@ import { Card, CardHeader, CardTitle, CardDescription, CardContent } from "@/com
 import { Button } from "@/components/ui/button";
 import { ArrowLeft, CheckCircle } from "lucide-react";
 import Link from "next/link";
+import Image from "next/image";
+import { PlaceHolderImages } from "@/lib/placeholder-images";
 
 const roadmap = [
     {
@@ -48,15 +50,27 @@ const roadmap = [
 ];
 
 export default function EeeEngineerPage() {
+    const heroImage = PlaceHolderImages[3];
     return (
         <main className="flex-grow container mx-auto px-4 py-12 md:py-20">
             <div className="flex justify-start mb-8">
                  <Button asChild variant="outline">
-                    <Link href="/dashboard">
+                    <Link href="/">
                         <ArrowLeft />
                         Back to Home
                     </Link>
                 </Button>
+            </div>
+            <div className="relative flex justify-center items-center animate-fade-in mb-8">
+                <Image
+                    src={heroImage.imageUrl}
+                    alt={heroImage.description}
+                    width={600}
+                    height={400}
+                    className="rounded-lg shadow-2xl z-10"
+                    priority
+                    data-ai-hint={heroImage.imageHint}
+                />
             </div>
             <PageHeader
                 title="Roadmap: Electrical & Electronics Engineer"
