@@ -19,7 +19,7 @@ export function Header() {
             <span className="sr-only">Toggle sidebar</span>
           </Button>
         )}
-        <h1 className="text-lg font-bold">Bootstrap4 Dashboard</h1>
+        <h1 className="text-lg font-bold">FuturePath Navigator</h1>
       </div>
 
       <nav className="hidden md:flex items-center gap-6 text-sm font-medium">
