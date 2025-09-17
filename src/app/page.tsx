@@ -63,13 +63,13 @@ export default function Home() {
                   <div className="absolute w-64 h-64 bg-primary/10 rounded-full blur-3xl -translate-x-12"></div>
                   <div className="absolute w-64 h-64 bg-accent/10 rounded-full blur-3xl translate-x-12"></div>
                    <Image
-                      src="/career-guidance.jpg"
-                      alt="Career Guidance Illustration"
+                      src="https://picsum.photos/seed/career-path/500/500"
+                      alt="A person looking at a path splitting into multiple directions, symbolizing career choices."
                       width={500}
                       height={500}
                       className="rounded-lg shadow-2xl z-10"
                       priority
-                      data-ai-hint="career choice path"
+                      data-ai-hint="career growth professional development"
                     />
                 </div>
               </div>
