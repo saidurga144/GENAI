@@ -31,7 +31,7 @@ export default function LoginPage() {
             <div className="container w-full max-w-4xl flex-grow flex rounded-xl shadow-2xl overflow-hidden">
                  <div className="hidden md:block relative flex-1">
                     <Image
-                        src="http://www.h2r.co.nz/wp-content/uploads/2020/05/hot-jobs-banner.jpg"
+                        src="https://www.reliablesoft.net/wp-content/uploads/2019/06/digital-marketing-career.jpg"
                         alt="Welcome to CarrierGuide"
                         fill
                         className="object-cover"

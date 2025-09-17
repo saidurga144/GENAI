@@ -45,6 +45,12 @@ const nextConfig: NextConfig = {
         hostname: 'www.h2r.co.nz',
         port: '',
         pathname: '/**',
+      },
+      {
+        protocol: 'https',
+        hostname: 'www.reliablesoft.net',
+        port: '',
+        pathname: '/**',
       }
     ],
   },
