@@ -31,7 +31,7 @@ export default function LoginPage() {
             <div className="container w-full max-w-4xl flex-grow flex rounded-xl shadow-2xl overflow-hidden">
                  <div className="hidden md:block relative flex-1">
                     <Image
-                        src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSwH2jAocMzvCUqNMjLz9SfjclgZ7YrmHnPzg&s"
+                        src="https://streamlynacademy.com/wp-content/uploads/2023/08/what-do-you-mean-by-career-goals-1024x683.webp"
                         alt="Welcome to CarrierGuide"
                         fill
                         className="object-cover"

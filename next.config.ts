@@ -23,7 +23,7 @@ const nextConfig: NextConfig = {
         pathname: '/**',
       },
       {
-        protocol: 'https',
+        protocol: 'httpshttps',
         hostname: 'picsum.photos',
         port: '',
         pathname: '/**',
@@ -31,6 +31,12 @@ const nextConfig: NextConfig = {
       {
         protocol: 'https',
         hostname: 'encrypted-tbn0.gstatic.com',
+        port: '',
+        pathname: '/**',
+      },
+      {
+        protocol: 'https',
+        hostname: 'streamlynacademy.com',
         port: '',
         pathname: '/**',
       }
