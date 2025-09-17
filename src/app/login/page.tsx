@@ -29,12 +29,14 @@ export default function LoginPage() {
     return (
         <div className="flex items-center justify-center min-h-screen bg-secondary/50 p-4">
             <div className="container w-full max-w-4xl flex-grow flex rounded-xl shadow-2xl overflow-hidden">
-                <div 
-                    className="hidden md:flex flex-col justify-center flex-1 bg-cover bg-center p-10 text-white" 
-                    style={{ backgroundImage: "url('https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQnspqp8tncTG3qqPms7LZMcsNVVrVEkoz5Ng&s')" }}
-                >
-                    <h1 className="text-4xl font-extrabold tracking-tight">Welcome to CarrierGuide</h1>
-                    <p className="text-lg mt-4">Please login to continue and manage your journey.</p>
+                 <div className="hidden md:block relative flex-1">
+                    <Image
+                        src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSwH2jAocMzvCUqNMjLz9SfjclgZ7YrmHnPzg&s"
+                        alt="Welcome to CarrierGuide"
+                        fill
+                        className="object-cover"
+                        quality={100}
+                    />
                 </div>
                 <div className="w-full md:flex-1 bg-background p-8 sm:p-12 flex flex-col justify-center">
                     <div className="max-w-md w-full mx-auto">
