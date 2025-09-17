@@ -27,6 +27,7 @@ const emailFormSchema = z.object({
 
 // Schema for phone number login
 const phoneFormSchema = z.object({
+  countryCode: z.string().min(2),
   phone: z.string().min(10, { message: "Please enter a valid phone number." }),
   otp: z.string().optional(),
 });
@@ -46,7 +47,7 @@ export function LoginForm() {
 
   const phoneForm = useForm<z.infer<typeof phoneFormSchema>>({
     resolver: zodResolver(phoneFormSchema),
-    defaultValues: { phone: "" },
+    defaultValues: { countryCode: "+91", phone: "" },
   });
 
 
@@ -65,8 +66,9 @@ export function LoginForm() {
   const handlePhoneSubmit = async (data: z.infer<typeof phoneFormSchema>) => {
     setLoading(true);
     setError(null);
+    const fullPhoneNumber = data.countryCode + data.phone;
     try {
-      await sendOtp(data.phone, data.otp as string);
+      await sendOtp(fullPhoneNumber, data.otp as string);
        // The onAuthStateChanged listener in useAuth will handle the redirect
     } catch (err) {
       setError(err instanceof Error ? err.message : "Failed to sign in with OTP.");
@@ -76,15 +78,16 @@ export function LoginForm() {
   };
   
   const handleSendOtp = async () => {
-    const phone = phoneForm.getValues("phone");
+    const { countryCode, phone } = phoneForm.getValues();
     if (phone.length < 10) {
       phoneForm.setError("phone", { message: "Please enter a valid phone number." });
       return;
     }
     setLoading(true);
     setError(null);
+    const fullPhoneNumber = countryCode + phone;
     try {
-      await sendOtp(phone);
+      await sendOtp(fullPhoneNumber);
       setOtpSent(true);
     } catch (err) {
        setError(err instanceof Error ? err.message : "Failed to send OTP. Please check the number or try again.");
@@ -142,26 +145,38 @@ export function LoginForm() {
         <TabsContent value="phone">
           <Form {...phoneForm}>
             <form onSubmit={phoneForm.handleSubmit(handlePhoneSubmit)} className="space-y-6 mt-6">
-              <FormField
-                control={phoneForm.control}
-                name="phone"
-                render={({ field }) => (
-                  <FormItem>
-                    <FormLabel>Phone Number</FormLabel>
-                    <FormControl>
-                       <div className="flex gap-2">
-                        <Input placeholder="+1 123 456 7890" {...field} disabled={otpSent} />
-                        {!otpSent && (
-                          <Button type="button" onClick={handleSendOtp} disabled={loading}>
-                            {loading ? <Image src="/loader.gif" alt="Loading..." width={24} height={24} unoptimized /> : 'Send OTP'}
-                          </Button>
-                        )}
-                      </div>
-                    </FormControl>
-                    <FormMessage />
-                  </FormItem>
-                )}
-              />
+              <FormItem>
+                <FormLabel>Phone Number</FormLabel>
+                <div className="flex gap-2">
+                   <FormField
+                      control={phoneForm.control}
+                      name="countryCode"
+                      render={({ field }) => (
+                        <FormControl>
+                          <Input {...field} disabled={otpSent} className="w-20" />
+                        </FormControl>
+                      )}
+                    />
+                  <FormField
+                    control={phoneForm.control}
+                    name="phone"
+                    render={({ field }) => (
+                      <FormControl>
+                          <Input placeholder="123 456 7890" {...field} disabled={otpSent} className="flex-1" />
+                      </FormControl>
+                    )}
+                  />
+                  {!otpSent && (
+                    <Button type="button" onClick={handleSendOtp} disabled={loading}>
+                      {loading ? <Image src="/loader.gif" alt="Loading..." width={24} height={24} unoptimized /> : 'Send OTP'}
+                    </Button>
+                  )}
+                </div>
+                 <FormMessage>
+                  {phoneForm.formState.errors.phone?.message}
+                </FormMessage>
+              </FormItem>
+
               {otpSent && (
                 <FormField
                   control={phoneForm.control}
