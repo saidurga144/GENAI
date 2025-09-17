@@ -15,7 +15,6 @@ import {
   FormMessage,
 } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
-import { Card, CardContent } from "@/components/ui/card";
 import { useAuth } from "@/hooks/use-auth";
 import { Separator } from "@/components/ui/separator";
 import Image from "next/image";
@@ -75,8 +74,7 @@ export function LoginForm() {
   }
   
   return (
-    <Card className="transition-transform duration-500 ease-in-out hover:-rotate-y-2 hover:rotate-x-2 hover:scale-105 hover:shadow-2xl" style={{ transformStyle: 'preserve-3d' }}>
-      <CardContent className="p-6">
+    <div className="w-full">
         <div className="flex flex-col space-y-4">
           <Button variant="outline" onClick={() => handleSocialLogin("google")} disabled={!!socialLoading}>
             {socialLoading === 'google' ? <Image src="/loader.gif" alt="Loading..." width={24} height={24} unoptimized className="mr-2" /> : <GoogleIcon />}
@@ -86,7 +84,7 @@ export function LoginForm() {
         
         <div className="my-6 flex items-center">
             <Separator className="flex-grow" />
-            <span className="mx-4 text-xs text-muted-foreground">OR CONTINUE WITH</span>
+            <span className="mx-4 text-xs text-muted-foreground">OR</span>
             <Separator className="flex-grow" />
         </div>
 
@@ -121,11 +119,10 @@ export function LoginForm() {
             {error && <p className="text-sm text-destructive">{error}</p>}
             <Button type="submit" className="w-full" disabled={loading}>
               {loading && <Image src="/loader.gif" alt="Loading..." width={24} height={24} unoptimized className="mr-2" />}
-              Sign In with Email
+              Sign In
             </Button>
           </form>
         </Form>
-      </CardContent>
-    </Card>
+    </div>
   );
 }
