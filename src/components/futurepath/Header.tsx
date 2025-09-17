@@ -19,7 +19,7 @@ export function Header() {
           <div className="p-2 bg-primary/10 rounded-lg text-primary">
             <Target className="w-6 h-6" />
           </div>
-          <h1 className="text-xl font-bold text-foreground tracking-tight">FuturePath Navigator</h1>
+          <h1 className="text-xl font-bold text-foreground tracking-tight">CarrierGuide</h1>
         </Link>
         <div className="flex items-center gap-2">
             {user ? (

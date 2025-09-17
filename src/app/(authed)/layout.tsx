@@ -3,7 +3,6 @@
 import { useEffect } from 'react';
 import { useRouter } from 'next/navigation';
 import { useAuth } from '@/hooks/use-auth';
-import { Header } from '@/components/futurepath/Header';
 import Image from 'next/image';
 
 export default function AuthedLayout({
@@ -30,10 +29,9 @@ export default function AuthedLayout({
 
   return (
     <div className="flex flex-col min-h-screen bg-background text-foreground">
-      <Header />
         {children}
       <footer className="text-center p-6 text-muted-foreground text-sm no-print border-t">
-        <p>FuturePath Navigator &copy; {new Date().getFullYear()}</p>
+        <p>CarrierGuide &copy; {new Date().getFullYear()}</p>
       </footer>
     </div>
   );

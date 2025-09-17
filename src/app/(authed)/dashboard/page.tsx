@@ -2,22 +2,24 @@
 
 import { useState } from 'react';
 import Image from 'next/image';
-import { getCareerRecommendations, parseResume } from '@/app/actions';
+import { getCareerRecommendations, getCareerPathDetails, parseResume } from '@/app/actions';
 import { CareerForm } from '@/components/futurepath/CareerForm';
 import { ResultsDashboard } from '@/components/futurepath/ResultsDashboard';
-import type { DetailedCareerPath, FormInput } from '@/lib/types';
+import type { CareerPath, DetailedCareerPath, FormInput } from '@/lib/types';
 import { useToast } from '@/hooks/use-toast';
 import { Button } from '@/components/ui/button';
 
 export default function DashboardPage() {
-  const [results, setResults] = useState<DetailedCareerPath[] | null>(null);
+  const [results, setResults] = useState<CareerPath[] | null>(null);
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
+  const [formInput, setFormInput] = useState<FormInput | null>(null);
   const { toast } = useToast();
 
   const handleFormSubmit = async (data: FormInput, resumeText?: string) => {
     setIsLoading(true);
     setError(null);
+    setResults(null);
     let submissionData = data;
     const isResumeUpload = !!resumeText;
 
@@ -30,6 +32,8 @@ export default function DashboardPage() {
           academicBackground: parsedData.academicBackground,
         };
       }
+
+      setFormInput(submissionData);
       
       const recommendations = await getCareerRecommendations(submissionData, isResumeUpload);
       if (recommendations.length === 0) {
@@ -64,10 +68,11 @@ export default function DashboardPage() {
   const handleReset = () => {
     setResults(null);
     setError(null);
+    setFormInput(null);
   };
 
   const renderContent = () => {
-    if (isLoading) {
+    if (isLoading && !results) {
       return (
         <div className="flex flex-col items-center justify-center text-center h-full pt-16">
           <Image src="/loader.gif" alt="Loading..." width={100} height={100} unoptimized />
@@ -86,8 +91,8 @@ export default function DashboardPage() {
       );
     }
 
-    if (results) {
-      return <ResultsDashboard results={results} onReset={handleReset} />;
+    if (results && formInput) {
+      return <ResultsDashboard results={results} onReset={handleReset} formInput={formInput}/>;
     }
 
     return <CareerForm onSubmit={handleFormSubmit} />;

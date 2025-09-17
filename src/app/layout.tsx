@@ -5,7 +5,7 @@ import { AuthProvider } from '@/hooks/use-auth';
 import { Header } from '@/components/futurepath/Header';
 
 export const metadata: Metadata = {
-  title: 'FuturePath Navigator',
+  title: 'CarrierGuide',
   description: 'AI-powered career guidance for students.',
 };
 

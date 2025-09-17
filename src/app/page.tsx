@@ -51,7 +51,7 @@ export default function Home() {
                     Navigate Your Career with Confidence
                   </h1>
                   <p className="text-lg md:text-xl text-muted-foreground mb-8 max-w-xl mx-auto md:mx-0">
-                    FuturePath Navigator uses AI to analyze your skills, interests, and background to recommend personalized career paths and create a tailored roadmap for your success.
+                    CarrierGuide uses AI to analyze your skills, interests, and background to recommend personalized career paths and create a tailored roadmap for your success.
                   </p>
                   <Button asChild size="lg">
                     <Link href="/signup">
@@ -110,7 +110,7 @@ export default function Home() {
           </section>
         </main>
         <footer className="text-center p-6 text-muted-foreground text-sm border-t">
-          <p>FuturePath Navigator &copy; {new Date().getFullYear()}</p>
+          <p>CarrierGuide &copy; {new Date().getFullYear()}</p>
         </footer>
       </div>
   );
