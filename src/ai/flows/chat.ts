@@ -49,6 +49,7 @@ const chatFlow = ai.defineFlow(
     }));
 
     const {output} = await ai.generate({
+      model: 'googleai/gemini-2.5-flash-preview',
       system: 'You are a helpful and friendly AI assistant. Your goal is to provide accurate and safe information to the user.',
       history: mappedHistory,
       prompt: message,
