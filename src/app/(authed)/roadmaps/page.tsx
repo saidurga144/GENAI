@@ -12,21 +12,21 @@ const roadmaps = [
         description: "A step-by-step guide to becoming a successful Software Engineer, from fundamentals to specialization.",
         url: "/software-engineer",
         icon: <Code className="w-8 h-8 text-primary" />,
-        imageUrl: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSE3MYeIMZP-ZmYGFjx_V6IHs1nTle81fkT-w&s",
+        imageUrl: "https://tse3.mm.bing.net/th/id/OIP.E19xMrIg0VBd_G9VSyHJmAHaE7?pid=Api&P=0&h=220",
     },
     {
         title: "Electrical & Electronics Engineer",
         description: "Your path to becoming a licensed EEE Engineer, covering core concepts, practical skills, and career launch.",
         url: "/eee-engineer",
         icon: <Cpu className="w-8 h-8 text-primary" />,
-        imageUrl: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRTuATJDJXKBj9uyX0WIaZrUZ2C-r7GGcLRiQ&s",
+        imageUrl: "https://tse4.mm.bing.net/th/id/OIP.BpnBBxHWbDcoF9QcL1aX7AHaEK?pid=Api&P=0&h=220",
     },
     {
         title: "Cybersecurity Specialist",
         description: "Follow this guide to a career in Cybersecurity, from foundational IT skills to hands-on security tools.",
         url: "/cybersecurity-specialist",
         icon: <Shield className="w-8 h-8 text-primary" />,
-        imageUrl: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSuotlKVgciT_n0GSsvQ5RSQnh8B-p_R3aIeQ&s",
+        imageUrl: "https://tse1.mm.bing.net/th/id/OIP.Zf6YLhRpL7la9QnOp0EGOQHaFW?pid=Api&P=0&h=220",
     },
 ]
 

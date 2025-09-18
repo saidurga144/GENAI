@@ -63,10 +63,10 @@ export default function EeeEngineerPage() {
             <div className="relative flex justify-center items-center mb-8" style={{ perspective: '1000px' }}>
                 <div className="bg-secondary/50 rounded-lg p-4 border transition-transform duration-500 ease-in-out hover:-rotate-y-12 hover:rotate-x-12 hover:scale-105 hover:shadow-2xl" style={{ transformStyle: 'preserve-3d' }}>
                      <Image
-                        src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRTuATJDJXKBj9uyX0WIaZrUZ2C-r7GGcLRiQ&s"
+                        src="https://tse4.mm.bing.net/th/id/OIP.BpnBBxHWbDcoF9QcL1aX7AHaEK?pid=Api&P=0&h=220"
                         alt="EEE Engineer"
                         width={600}
-                        height={200}
+                        height={338}
                         className="max-w-md w-full h-auto object-contain"
                         quality={100}
                     />
