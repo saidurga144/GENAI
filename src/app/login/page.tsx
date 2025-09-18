@@ -46,7 +46,7 @@ export default function LoginPage() {
                         height={300}
                         className="mb-6"
                     />
-                    <h1 className="text-3xl font-bold mb-4 text-gray-800">New Here?</h1>
+                    <h1 className="text-3xl font-bold mb-4 text-gray-800">New User?</h1>
                     <p className="mb-6 text-gray-600">Sign up and discover a great amount of new opportunities!</p>
                     <Button asChild variant="outline" className="rounded-full border-primary text-primary hover:bg-primary hover:text-white">
                         <Link href="/signup">
