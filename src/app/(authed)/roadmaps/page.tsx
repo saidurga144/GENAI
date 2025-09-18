@@ -6,7 +6,7 @@ import { useState } from "react";
 import { PageHeader } from "@/components/futurepath/PageHeader";
 import { Card, CardHeader, CardTitle, CardDescription, CardContent, CardFooter } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
-import { ArrowRight, Code, Cpu, Shield, ArrowLeft, Dna, Cog, Building2, Plane, HeartPulse, Search, BrainCircuit, BarChartBig, Briefcase, GraduationCap, Stethoscope } from "lucide-react";
+import { ArrowRight, Code, Cpu, Shield, ArrowLeft, Dna, Cog, Building, Building2, Plane, HeartPulse, Search, BrainCircuit, BarChartBig, Briefcase, GraduationCap, Stethoscope } from "lucide-react";
 import Link from "next/link";
 import Image from "next/image";
 import { Input } from "@/components/ui/input";
@@ -18,6 +18,13 @@ const roadmapsList = [
         url: "/aeronautical-engineer",
         icon: <Plane className="w-8 h-8 text-primary" />,
         imageUrl: "https://tse3.mm.bing.net/th/id/OIP.asHETTJ6fyo4sr_T1ffJXgHaE7?pid=Api&P=0&h=220",
+    },
+    {
+        title: "Architect",
+        description: "A 5-step guide to becoming a licensed Architect, from foundational skills to professional practice.",
+        url: "/architect",
+        icon: <Building className="w-8 h-8 text-primary" />,
+        imageUrl: "https://tse4.mm.bing.net/th/id/OIP.RNF1pYPivEktyONgeQCu_gHaD4?pid=Api&P=0&h=220",
     },
      {
         title: "Artificial Intelligence (AI) Specialist",
