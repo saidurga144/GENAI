@@ -5,10 +5,11 @@ import { useAuth } from "@/hooks/use-auth";
 import { useSearchParams } from "next/navigation";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card";
-import { User, LogOut, Mail, KeyRound, ArrowRight } from "lucide-react";
+import { User, LogOut, Mail, KeyRound, ArrowRight, UserCircle } from "lucide-react";
 import Link from "next/link";
 import Image from "next/image";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
+import { Input } from "@/components/ui/input";
 
 
 function ProfileDashboard() {
@@ -36,6 +37,17 @@ function ProfileDashboard() {
           <div className="text-sm">
             <p className="font-medium">Email</p>
             <p className="text-muted-foreground">{user.email || 'Not provided'}</p>
+          </div>
+        </div>
+        <div className="flex items-center gap-4 p-3 bg-secondary/50 rounded-md">
+          <UserCircle className="w-5 h-5 text-muted-foreground" />
+          <div className="text-sm w-full">
+            <p className="font-medium">Username</p>
+            <div className="flex items-center gap-2 mt-1">
+                <Input defaultValue="" placeholder="4 letters, 3 numbers" className="text-muted-foreground"/>
+                <Button disabled size="sm">Save</Button>
+            </div>
+             <p className="text-xs text-muted-foreground mt-2">Username availability check coming soon.</p>
           </div>
         </div>
         <div className="flex items-center gap-4 p-3 bg-secondary/50 rounded-md">
