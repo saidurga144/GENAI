@@ -41,7 +41,6 @@ const chatFlow = ai.defineFlow(
   },
   async input => {
     const {history, message} = input;
-    const model = ai.getModel();
 
     // The Gemini 2.5 Flash model used in this app only supports 'user' and 'model' roles.
     const mappedHistory: Message[] = history.map(h => ({
@@ -50,7 +49,6 @@ const chatFlow = ai.defineFlow(
     }));
 
     const {output} = await ai.generate({
-      model,
       history: mappedHistory,
       prompt: message,
     });
