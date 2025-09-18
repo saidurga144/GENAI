@@ -126,32 +126,6 @@ function ProfileDashboard() {
           </div>
         </div>
         <div className="flex items-center gap-4 p-3 bg-secondary/50 rounded-md">
-          <UserCircle className="w-5 h-5 text-muted-foreground" />
-          <div className="text-sm w-full">
-            <p className="font-medium">Username</p>
-            <div className="flex items-center gap-2 mt-1 relative">
-                <Input 
-                  value={username}
-                  onChange={(e) => setUsername(e.target.value)}
-                  placeholder="4 letters, 3 numbers" 
-                  className="text-muted-foreground pr-10"
-                />
-                 <div className="absolute right-3 top-1/2 -translate-y-1/2">
-                  {getFeedbackIcon()}
-                </div>
-            </div>
-            <div className="h-4 mt-1">
-                {debouncedUsername && isValid === false && <p className="text-xs text-destructive">Username must be 4 letters followed by 3 numbers.</p>}
-                {isAvailable === false && <p className="text-xs text-destructive">Username already taken.</p>}
-                {isAvailable === true && <p className="text-xs text-green-500">Username is available!</p>}
-            </div>
-             <Button onClick={handleSave} disabled={isLoading || !isValid || !isAvailable || username === currentUsername} size="sm" className="w-full mt-2">
-                {isLoading && <Loader2 className="mr-2 h-4 w-4 animate-spin" />}
-                Save Username
-            </Button>
-          </div>
-        </div>
-        <div className="flex items-center gap-4 p-3 bg-secondary/50 rounded-md">
           <KeyRound className="w-5 h-5 text-muted-foreground" />
           <div className="text-sm">
             <p className="font-medium">User ID</p>
