@@ -40,11 +40,12 @@ export default function SignupPage() {
                 {/* Login Info Panel */}
                 <div className="flex-1 p-10 text-center bg-[#e0ecff] flex flex-col justify-center items-center animate-slide-in-left">
                      <Image 
-                        src="https://img.freepik.com/free-vector/man-sitting-desk-unlocking-computer-with-fingerprint-personal-data-security-cyber-security-online-education-online-learning-concept_1150-69275.jpg"
+                        src="https://cdn.dribbble.com/users/1059583/screenshots/4171367/programming-illustration.gif"
                         alt="Welcome Animation"
-                        width={300}
+                        width={400}
                         height={300}
                         className="mb-6"
+                        unoptimized
                     />
                     <h1 className="text-3xl font-bold mb-4 text-gray-800">Welcome Back!</h1>
                     <p className="mb-6 text-gray-600">Already have an account? Login to access your dashboard.</p>

@@ -40,11 +40,12 @@ export default function LoginPage() {
                 {/* Registration Info Panel */}
                 <div className="flex-1 p-10 text-center bg-white flex flex-col justify-center items-center animate-slide-in-left">
                     <Image 
-                        src="https://img.freepik.com/free-vector/sign-up-concept-illustration_114360-7875.jpg"
+                        src="https://cdn.dribbble.com/users/1094625/screenshots/4308331/media/ce4a796014ddf6983d8e57843b015354.gif"
                         alt="Welcome Animation"
                         width={300}
                         height={300}
                         className="mb-6"
+                        unoptimized
                     />
                     <h1 className="text-3xl font-bold mb-4 text-gray-800">New User?</h1>
                     <p className="mb-6 text-gray-600">Sign up and discover a great amount of new opportunities!</p>
