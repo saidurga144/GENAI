@@ -2,18 +2,23 @@ rules_version = '2';
 
 service cloud.firestore {
   match /databases/{database}/documents {
-  
-    // Users can read their own user document
     match /users/{userId} {
-      allow read, update: if request.auth != null && request.auth.uid == userId;
+      allow read, write: if request.auth.uid == userId;
+
+      // Allow users to create and read their own history
+      match /history/{historyId} {
+        allow create, read: if request.auth.uid == userId;
+      }
     }
 
-    // Usernames collection for uniqueness check
     match /usernames/{username} {
-      // Anyone can check if a username exists
       allow read;
-      // Only the authenticated user can create/delete their own username entry
-      allow create, delete: if request.auth != null && request.auth.uid == request.resource.data.uid;
+      allow create: if request.auth != null && request.resource.data.uid == request.auth.uid;
+    }
+
+    // Default deny all other access
+    match /{document=**} {
+      allow read, write: if false;
     }
   }
 }

@@ -1,10 +1,14 @@
 
+'use client';
+
+import { useEffect } from 'react';
 import { PageHeader } from "@/components/futurepath/PageHeader";
 import { Card, CardHeader, CardTitle, CardDescription, CardContent } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { ArrowLeft, CheckCircle } from "lucide-react";
 import Link from "next/link";
-import Image from "next/image";
+import { useAuth } from '@/hooks/use-auth';
+import { logUserActivity } from '@/app/actions';
 
 const roadmap = [
     {
@@ -59,6 +63,15 @@ const roadmap = [
 ];
 
 export default function SoftwareEngineerPage() {
+    const { user } = useAuth();
+    const roadmapTitle = "Software Engineer";
+
+    useEffect(() => {
+        if (user) {
+            logUserActivity(user.uid, `Visited the ${roadmapTitle} roadmap`);
+        }
+    }, [user]);
+
     return (
         <main className="flex-grow container mx-auto px-4 py-12 md:py-20">
             <div className="flex justify-start mb-8">
@@ -77,7 +90,8 @@ export default function SoftwareEngineerPage() {
                 {roadmap.map((stage) => (
                     <Card key={stage.title} className="print-break-inside-avoid">
                         <CardHeader>
-                            <CardTitle>{stage.title}</CardTitle>                            <CardDescription>{stage.description}</CardDescription>
+                            <CardTitle>{stage.title}</CardTitle>
+                            <CardDescription>{stage.description}</CardDescription>
                         </CardHeader>
                         <CardContent>
                             <ul className="space-y-3">

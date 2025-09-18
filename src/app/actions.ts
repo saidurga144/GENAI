@@ -1,3 +1,4 @@
+
 "use server";
 
 import { generatePersonalizedCareerPaths } from '@/ai/flows/generate-personalized-career-paths';
@@ -7,8 +8,8 @@ import { generateRoadmap } from '@/ai/flows/generate-roadmap';
 import { chat } from '@/ai/flows/chat';
 import type { ChatInput, ChatOutput } from '@/ai/flows/chat';
 import type { CareerPath, DetailedCareerPath, FormInput } from '@/lib/types';
-import { auth } from '@/lib/firebase';
-import { signInWithEmailAndPassword, createUserWithEmailAndPassword } from 'firebase/auth';
+import { db } from '@/lib/firebase';
+import { collection, addDoc, serverTimestamp, getDocs, query, orderBy, limit } from 'firebase/firestore';
 
 export async function getCareerRecommendations(
   data: FormInput,
@@ -79,4 +80,41 @@ export async function parseResume(input: ParseResumeInput) {
 
 export async function sendMessage(input: ChatInput): Promise<ChatOutput> {
   return await chat(input);
+}
+
+// History Actions
+export async function logUserActivity(userId: string, activity: string) {
+  if (!userId) return;
+  try {
+    const historyCollection = collection(db, 'users', userId, 'history');
+    await addDoc(historyCollection, {
+      activity,
+      timestamp: serverTimestamp(),
+    });
+  } catch (error) {
+    console.error("Failed to log user activity:", error);
+    // Don't throw error to prevent crashing the client
+  }
+}
+
+export async function getUserActivity(userId: string) {
+  if (!userId) return [];
+  try {
+    const historyCollection = collection(db, 'users', userId, 'history');
+    const q = query(historyCollection, orderBy('timestamp', 'desc'), limit(20));
+    const querySnapshot = await getDocs(q);
+    
+    return querySnapshot.docs.map(doc => {
+      const data = doc.data();
+      return {
+        id: doc.id,
+        activity: data.activity,
+        // Convert Firestore Timestamp to a serializable format (ISO string)
+        timestamp: data.timestamp?.toDate().toISOString() || new Date().toISOString(),
+      };
+    });
+  } catch (error) {
+    console.error("Failed to get user activity:", error);
+    return [];
+  }
 }
