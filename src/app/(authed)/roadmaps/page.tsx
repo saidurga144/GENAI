@@ -1,54 +1,16 @@
 
+'use client';
+
+import { useState } from "react";
 import { PageHeader } from "@/components/futurepath/PageHeader";
 import { Card, CardHeader, CardTitle, CardDescription, CardContent, CardFooter } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
-import { ArrowRight, Code, Cpu, Shield, ArrowLeft, Dna, Cog, Building2, Plane, HeartPulse } from "lucide-react";
+import { ArrowRight, Code, Cpu, Shield, ArrowLeft, Dna, Cog, Building2, Plane, HeartPulse, Search } from "lucide-react";
 import Link from "next/link";
 import Image from "next/image";
+import { Input } from "@/components/ui/input";
 
-const roadmaps = [
-    {
-        title: "Software Engineer",
-        description: "A step-by-step guide to becoming a successful Software Engineer, from fundamentals to specialization.",
-        url: "/software-engineer",
-        icon: <Code className="w-8 h-8 text-primary" />,
-        imageUrl: "https://tse3.mm.bing.net/th/id/OIP.E19xMrIg0VBd_G9VSyHJmAHaE7?pid=Api&P=0&h=220",
-    },
-    {
-        title: "Electrical & Electronics Engineer",
-        description: "Your path to becoming a licensed EEE Engineer, covering core concepts, practical skills, and career launch.",
-        url: "/eee-engineer",
-        icon: <Cpu className="w-8 h-8 text-primary" />,
-        imageUrl: "https://tse4.mm.bing.net/th/id/OIP.BpnBBxHWbDcoF9QcL1aX7AHaEK?pid=Api&P=0&h=220",
-    },
-    {
-        title: "Cybersecurity Specialist",
-        description: "Follow this guide to a career in Cybersecurity, from foundational IT skills to hands-on security tools.",
-        url: "/cybersecurity-specialist",
-        icon: <Shield className="w-8 h-8 text-primary" />,
-        imageUrl: "https://tse1.mm.bing.net/th/id/OIP.Zf6YLhRpL7la9QnOp0EGOQHaFW?pid=Api&P=0&h=220",
-    },
-    {
-        title: "Biotechnology Specialist",
-        description: "A guide to a career in Biotechnology, from BiPC foundations to genetic engineering and bioinformatics.",
-        url: "/biotechnology-specialist",
-        icon: <Dna className="w-8 h-8 text-primary" />,
-        imageUrl: "https://4-hontario.ca/wp-content/uploads/2020/09/Intro-to-Agricultural-Biotechnology_Main-Image-2048x1364.jpeg",
-    },
-    {
-        title: "Mechanical Engineer",
-        description: "A comprehensive roadmap for aspiring Mechanical Engineers, covering core subjects, skills, and career opportunities.",
-        url: "/mechanical-engineer",
-        icon: <Cog className="w-8 h-8 text-primary" />,
-        imageUrl: "https://wallpaperaccess.com/full/1564707.jpg",
-    },
-    {
-        title: "Civil Engineer",
-        description: "Your guide to a career in Civil Engineering, from structural design to project management and sustainable construction.",
-        url: "/civil-engineer",
-        icon: <Building2 className="w-8 h-8 text-primary" />,
-        imageUrl: "https://wonderfulengineering.com/wp-content/uploads/2014/01/civil-engineers-3.jpg",
-    },
+const roadmapsList = [
     {
         title: "Aeronautical Engineer",
         description: "A step-by-step path to a career in Aeronautical Engineering, from aerodynamics to aircraft design and beyond.",
@@ -63,9 +25,57 @@ const roadmaps = [
         icon: <HeartPulse className="w-8 h-8 text-primary" />,
         imageUrl: "https://tse2.mm.bing.net/th/id/OIP.M7ct0Vlp9Me0eVPpSEAWcgHaHa?pid=Api&P=0&h=220",
     },
-]
+    {
+        title: "Biotechnology Specialist",
+        description: "A guide to a career in Biotechnology, from BiPC foundations to genetic engineering and bioinformatics.",
+        url: "/biotechnology-specialist",
+        icon: <Dna className="w-8 h-8 text-primary" />,
+        imageUrl: "https://4-hontario.ca/wp-content/uploads/2020/09/Intro-to-Agricultural-Biotechnology_Main-Image-2048x1364.jpeg",
+    },
+    {
+        title: "Civil Engineer",
+        description: "Your guide to a career in Civil Engineering, from structural design to project management and sustainable construction.",
+        url: "/civil-engineer",
+        icon: <Building2 className="w-8 h-8 text-primary" />,
+        imageUrl: "https://wonderfulengineering.com/wp-content/uploads/2014/01/civil-engineers-3.jpg",
+    },
+    {
+        title: "Cybersecurity Specialist",
+        description: "Follow this guide to a career in Cybersecurity, from foundational IT skills to hands-on security tools.",
+        url: "/cybersecurity-specialist",
+        icon: <Shield className="w-8 h-8 text-primary" />,
+        imageUrl: "https://tse1.mm.bing.net/th/id/OIP.Zf6YLhRpL7la9QnOp0EGOQHaFW?pid=Api&P=0&h=220",
+    },
+    {
+        title: "Electrical & Electronics Engineer",
+        description: "Your path to becoming a licensed EEE Engineer, covering core concepts, practical skills, and career launch.",
+        url: "/eee-engineer",
+        icon: <Cpu className="w-8 h-8 text-primary" />,
+        imageUrl: "https://tse4.mm.bing.net/th/id/OIP.BpnBBxHWbDcoF9QcL1aX7AHaEK?pid=Api&P=0&h=220",
+    },
+    {
+        title: "Mechanical Engineer",
+        description: "A comprehensive roadmap for aspiring Mechanical Engineers, covering core subjects, skills, and career opportunities.",
+        url: "/mechanical-engineer",
+        icon: <Cog className="w-8 h-8 text-primary" />,
+        imageUrl: "https://wallpaperaccess.com/full/1564707.jpg",
+    },
+    {
+        title: "Software Engineer",
+        description: "A step-by-step guide to becoming a successful Software Engineer, from fundamentals to specialization.",
+        url: "/software-engineer",
+        icon: <Code className="w-8 h-8 text-primary" />,
+        imageUrl: "https://tse3.mm.bing.net/th/id/OIP.E19xMrIg0VBd_G9VSyHJmAHaE7?pid=Api&P=0&h=220",
+    },
+].sort((a, b) => a.title.localeCompare(b.title));
 
 export default function RoadmapsPage() {
+    const [searchTerm, setSearchTerm] = useState('');
+
+    const filteredRoadmaps = roadmapsList.filter(roadmap =>
+        roadmap.title.toLowerCase().includes(searchTerm.toLowerCase())
+    );
+
     return (
         <div className="flex flex-col min-h-screen bg-background text-foreground">
             <main className="flex-grow container mx-auto px-4 py-12 md:py-20">
@@ -81,8 +91,20 @@ export default function RoadmapsPage() {
                     title="Carrier Roadmaps"
                     description="Explore our expert-curated roadmaps for popular career paths. These step-by-step guides provide a clear framework for your journey."
                 />
+                 <div className="mb-8 max-w-md mx-auto">
+                    <div className="relative">
+                        <Input
+                            type="text"
+                            placeholder="Search for a roadmap..."
+                            value={searchTerm}
+                            onChange={(e) => setSearchTerm(e.target.value)}
+                            className="pl-10"
+                        />
+                        <Search className="absolute left-3 top-1/2 -translate-y-1/2 h-5 w-5 text-muted-foreground" />
+                    </div>
+                </div>
                 <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8" style={{ perspective: '1000px' }}>
-                    {roadmaps.map((roadmap) => (
+                    {filteredRoadmaps.map((roadmap) => (
                         <Card key={roadmap.title} className="flex flex-col transition-transform duration-500 ease-in-out hover:-rotate-y-6 hover:rotate-x-6 hover:scale-105 hover:shadow-2xl" style={{ transformStyle: 'preserve-3d' }}>
                            <CardHeader className="flex-row items-center gap-4">
                                 <div className="p-3 bg-primary/10 rounded-lg">
@@ -114,6 +136,11 @@ export default function RoadmapsPage() {
                         </Card>
                     ))}
                 </div>
+                {filteredRoadmaps.length === 0 && (
+                     <div className="text-center col-span-full py-16">
+                        <p className="text-muted-foreground">No roadmaps found for &quot;{searchTerm}&quot;.</p>
+                    </div>
+                )}
             </main>
         </div>
     );
