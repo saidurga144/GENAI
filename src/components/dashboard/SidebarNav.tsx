@@ -19,7 +19,6 @@ import {
 } from "@/components/ui/collapsible";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import {
-  Component,
   FileText,
   LayoutDashboard,
   LogOut,
@@ -59,30 +58,38 @@ export function SidebarNav() {
             <SidebarMenu>
               <SidebarMenuItem>
                 <SidebarMenuButton
-                  href="/dashboard"
+                  asChild
                   isActive={pathname === "/dashboard"}
                   tooltip="Dashboard"
                 >
-                  <LayoutDashboard />
-                  Dashboard
+                  <Link href="/dashboard">
+                    <LayoutDashboard />
+                    Dashboard
+                  </Link>
                 </SidebarMenuButton>
               </SidebarMenuItem>
               <SidebarMenuItem>
-                <SidebarMenuButton href="/dashboard/generator" isActive={pathname === '/dashboard/generator'} tooltip="Career Generator">
-                  <FileText />
-                  Career Generator
+                <SidebarMenuButton asChild isActive={pathname === '/dashboard/generator'} tooltip="Career Generator">
+                  <Link href="/dashboard/generator">
+                    <FileText />
+                    Career Generator
+                  </Link>
                 </SidebarMenuButton>
               </SidebarMenuItem>
               <SidebarMenuItem>
-                <SidebarMenuButton href="/roadmaps" isActive={pathname === '/roadmaps'} tooltip="Sample Roadmaps">
-                  <Map />
-                  Sample Roadmaps
+                <SidebarMenuButton asChild isActive={pathname === '/roadmaps'} tooltip="Sample Roadmaps">
+                  <Link href="/roadmaps">
+                    <Map />
+                    Sample Roadmaps
+                  </Link>
                 </SidebarMenuButton>
               </SidebarMenuItem>
               <SidebarMenuItem>
-                <SidebarMenuButton href="/resources" isActive={pathname === '/resources'} tooltip="Resources">
-                  <Table />
-                  Resources
+                <SidebarMenuButton asChild isActive={pathname === '/resources'} tooltip="Resources">
+                  <Link href="/resources">
+                    <Table />
+                    Resources
+                  </Link>
                 </SidebarMenuButton>
               </SidebarMenuItem>
             </SidebarMenu>
@@ -113,12 +120,14 @@ export function SidebarNav() {
             <SidebarMenu className="mt-2">
                 <SidebarMenuItem>
                 <SidebarMenuButton
-                    href="/dashboard?view=profile"
+                    asChild
                     isActive={pathname === "/dashboard" && new URLSearchParams(window.location.search).get('view') === 'profile'}
                     tooltip="Profile"
                 >
+                  <Link href="/dashboard?view=profile">
                     <User />
                     Profile
+                  </Link>
                 </SidebarMenuButton>
                 </SidebarMenuItem>
                 <SidebarMenuItem>
