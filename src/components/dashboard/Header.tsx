@@ -45,7 +45,7 @@ export function Header() {
           className="transition-colors hover:text-primary-foreground/80 flex items-center gap-2"
         >
           <Bot className="w-4 h-4" />
-          AI Chatbot
+          AI ChatBot
         </Link>
       </nav>
 
