@@ -95,10 +95,10 @@ export function SidebarNav() {
                 </SidebarMenuButton>
               </SidebarMenuItem>
               <SidebarMenuItem>
-                <SidebarMenuButton asChild isActive={pathname.startsWith('/roadmaps')} tooltip="Sample Roadmaps" onClick={handleLinkClick}>
+                <SidebarMenuButton asChild isActive={pathname.startsWith('/roadmaps')} tooltip="Carrier Roadmaps" onClick={handleLinkClick}>
                   <Link href="/roadmaps">
                     <Map />
-                    Sample Roadmaps
+                    Carrier Roadmaps
                   </Link>
                 </SidebarMenuButton>
               </SidebarMenuItem>
