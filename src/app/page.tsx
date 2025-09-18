@@ -44,11 +44,12 @@ export default function Home() {
   return (
       <div className="flex flex-col min-h-screen bg-background text-foreground">
         <header className="absolute top-0 left-0 right-0 p-4 z-20">
-            <div className="container mx-auto px-4 flex justify-end items-center">
-                <Button asChild variant="outline">
+             <div className="container mx-auto px-4 flex justify-between items-center">
+                <h2 className="text-2xl font-bold text-primary tracking-widest uppercase">CarrierGuide</h2>
+                <Button asChild variant="link" className="text-primary text-lg">
                     <Link href="/login">
-                        <LogIn className="mr-2" />
                         Log In
+                        <LogIn className="ml-2" />
                     </Link>
                 </Button>
             </div>
@@ -59,7 +60,6 @@ export default function Home() {
             <div className="container mx-auto px-4 z-10 relative">
               <div className="grid md:grid-cols-2 gap-12 items-center">
                 <div className="text-center md:text-left animate-fade-in-up">
-                  <h2 className="text-2xl font-bold text-primary tracking-widest uppercase mb-2">CarrierGuide</h2>
                   <h1 className="text-4xl md:text-6xl font-extrabold tracking-tighter mb-4 text-foreground">
                     Navigate Your Career with Confidence
                   </h1>
@@ -96,7 +96,7 @@ export default function Home() {
                 <p className="text-lg text-muted-foreground mt-2 max-w-2xl mx-auto">Three simple steps to unlock your future potential.</p>
               </div>
               <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-                <div className="animate-fade-in-up flex" style={{ animationDelay: '0.2s' }}>
+                 <div className="animate-fade-in-up flex" style={{ animationDelay: '0.2s' }}>
                   <FeatureCard
                     icon={<Rocket size={24} />}
                     title="1. Tell Us About You"
