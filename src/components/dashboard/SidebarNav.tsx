@@ -27,6 +27,7 @@ import {
   ChevronDown,
   Map,
   Book,
+  Bot,
 } from "lucide-react";
 import { useAuth } from "@/hooks/use-auth";
 import Link from "next/link";
@@ -82,6 +83,14 @@ export function SidebarNav() {
                   <Link href="/dashboard/generator">
                     <FileText />
                     Career Generator
+                  </Link>
+                </SidebarMenuButton>
+              </SidebarMenuItem>
+                 <SidebarMenuItem>
+                <SidebarMenuButton asChild isActive={pathname === '/chatbot'} tooltip="AI Chatbot" onClick={handleLinkClick}>
+                  <Link href="/chatbot">
+                    <Bot />
+                    AI Chatbot
                   </Link>
                 </SidebarMenuButton>
               </SidebarMenuItem>
