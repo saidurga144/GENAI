@@ -5,7 +5,7 @@ import { SignupForm } from "@/components/auth/SignupForm";
 import Link from "next/link";
 import { useAuth } from "@/hooks/use-auth";
 import { useRouter } from "next/navigation";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import Image from "next/image";
 import { Button } from "@/components/ui/button";
 
@@ -35,12 +35,12 @@ export default function SignupPage() {
     }
     
     return (
-        <div className="flex items-center justify-center min-h-screen p-4">
-            <div className="flex bg-white rounded-2xl shadow-2xl overflow-hidden max-w-4xl w-full animate-fade-in-up">
+        <div className="flex items-center justify-center min-h-screen p-4 animate-fade-in">
+            <div className="flex bg-white rounded-2xl shadow-2xl overflow-hidden max-w-4xl w-full">
                 {/* Login Info Panel */}
-                <div className="flex-1 p-10 text-center bg-[#e0ecff] flex flex-col justify-center items-center">
+                <div className="flex-1 p-10 text-center bg-[#e0ecff] flex-col justify-center items-center hidden md:flex animate-slide-in-left">
                      <Image 
-                        src="https://img.freepik.com/free-vector/sign-up-concept-illustration_114360-7885.jpg?w=740&t=st=1718182285~exp=1718182885~hmac=dba9835824c93570354b54e7f3c647e3a36481a8c71f92e5c709115b810d7a04"
+                        src="https://img.freepik.com/free-vector/access-control-system-abstract-concept-illustration-security-system-authorisation-biometric-identification-entering-permission-pass-verification-code_335657-3330.jpg?w=740&t=st=1718182903~exp=1718183503~hmac=591945115598642168903c746e01a8848b6d36e765582236594246835d0a6496"
                         alt="Sign Up Concept"
                         width={400}
                         height={300}
@@ -56,7 +56,7 @@ export default function SignupPage() {
                 </div>
 
                 {/* Signup Form Panel */}
-                <div className="flex-1 p-10 bg-white flex flex-col justify-center items-center">
+                <div className="flex-1 p-10 bg-white flex flex-col justify-center items-center animate-slide-in-right">
                     <h1 className="text-3xl font-bold text-gray-800 mb-6">Create Account</h1>
                     <SignupForm />
                 </div>
