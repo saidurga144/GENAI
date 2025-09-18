@@ -5,7 +5,7 @@ import { useState } from "react";
 import { PageHeader } from "@/components/futurepath/PageHeader";
 import { Card, CardHeader, CardTitle, CardDescription, CardContent, CardFooter } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
-import { ArrowRight, Code, Cpu, Shield, ArrowLeft, Dna, Cog, Building2, Plane, HeartPulse, Search, BrainCircuit, BarChartBig } from "lucide-react";
+import { ArrowRight, Code, Cpu, Shield, ArrowLeft, Dna, Cog, Building2, Plane, HeartPulse, Search, BrainCircuit, BarChartBig, Briefcase, GraduationCap, Stethoscope } from "lucide-react";
 import Link from "next/link";
 import Image from "next/image";
 import { Input } from "@/components/ui/input";
@@ -24,6 +24,13 @@ const roadmapsList = [
         url: "/ai-specialist",
         icon: <BrainCircuit className="w-8 h-8 text-primary" />,
         imageUrl: "https://tse2.mm.bing.net/th/id/OIP.qvhcmd-GbCm7CDbfUmF9LAHaE8?pid=Api&P=0&h=220",
+    },
+    {
+        title: "BBA Program",
+        description: "Your guide to a successful career with a Bachelor of Business Administration, from core subjects to leadership roles.",
+        url: "/bba",
+        icon: <Briefcase className="w-8 h-8 text-primary" />,
+        imageUrl: "https://picsum.photos/seed/bba/600/400",
     },
      {
         title: "Biomedical Engineer",
@@ -60,7 +67,7 @@ const roadmapsList = [
         icon: <Cpu className="w-8 h-8 text-primary" />,
         imageUrl: "https://tse4.mm.bing.net/th/id/OIP.BpnBBxHWbDcoF9QcL1aX7AHaEK?pid=Api&P=0&h=220",
     },
-    {
+     {
         title: "Machine Learning (ML) Engineer",
         description: "A 5-step roadmap for ML Engineers, covering everything from statistics and programming to advanced model deployment.",
         url: "/ml-engineer",
@@ -68,11 +75,25 @@ const roadmapsList = [
         imageUrl: "https://tse2.mm.bing.net/th/id/OIP.AdHBr9rWfNDKsWwd446LZwHaEK?pid=Api&P=0&h=220",
     },
     {
+        title: "MBA Program",
+        description: "A roadmap for pursuing a Master of Business Administration, from entrance exams to executive leadership.",
+        url: "/mba",
+        icon: <GraduationCap className="w-8 h-8 text-primary" />,
+        imageUrl: "https://picsum.photos/seed/mba/600/400",
+    },
+    {
         title: "Mechanical Engineer",
         description: "A comprehensive roadmap for aspiring Mechanical Engineers, covering core subjects, skills, and career opportunities.",
         url: "/mechanical-engineer",
         icon: <Cog className="w-8 h-8 text-primary" />,
         imageUrl: "https://wallpaperaccess.com/full/1564707.jpg",
+    },
+    {
+        title: "Paramedical Specialist",
+        description: "Your guide to a career in paramedical sciences, from choosing a course to advanced clinical roles.",
+        url: "/paramedical-specialist",
+        icon: <Stethoscope className="w-8 h-8 text-primary" />,
+        imageUrl: "https://picsum.photos/seed/paramedical/600/400",
     },
     {
         title: "Software Engineer",
