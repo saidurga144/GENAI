@@ -77,10 +77,18 @@ export function AuthProvider({ children }: { children: ReactNode }) {
     };
 
     const signUp = async (email: string, pass: string) => {
-        const userCredential = await createUserWithEmailAndPassword(auth, email, pass);
-        await sendEmailVerification(userCredential.user);
-        await firebaseSignOut(auth);
-        return userCredential;
+         try {
+            const userCredential = await createUserWithEmailAndPassword(auth, email, pass);
+            await sendEmailVerification(userCredential.user);
+            await firebaseSignOut(auth);
+            return userCredential;
+        } catch (error: any) {
+            if (error.code === AuthErrorCodes.EMAIL_EXISTS) {
+                throw new Error("Email already exists. Please log in.");
+            } else {
+                throw new Error(error.message || "An unexpected error occurred during sign-up.");
+            }
+        }
     };
 
     const signOut = () => {
