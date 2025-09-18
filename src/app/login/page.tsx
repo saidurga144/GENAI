@@ -7,6 +7,7 @@ import { useAuth } from "@/hooks/use-auth";
 import { useRouter } from "next/navigation";
 import { useEffect } from "react";
 import Image from "next/image";
+import { Button } from "@/components/ui/button";
 
 export default function LoginPage() {
     const { user, loading } = useAuth();
