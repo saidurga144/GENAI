@@ -85,6 +85,9 @@
   .auth-body {
     background: linear-gradient(90deg, #90d9dc, #e2e2e2, #c0dfff);
   }
+  .auth-body-alt {
+    background: linear-gradient(90deg, hsl(221, 83%, 63%), hsl(221, 83%, 43%));
+  }
 }
 
 @layer utilities {

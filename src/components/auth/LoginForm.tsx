@@ -20,13 +20,13 @@ import { useAuth } from "@/hooks/use-auth";
 import Image from "next/image";
 import Link from "next/link";
 import { Eye, EyeOff } from 'lucide-react';
+import { Separator } from "../ui/separator";
+import { useRouter } from "next/navigation";
 
 const emailFormSchema = z.object({
   email: z.string().email({ message: "Please enter a valid email address." }),
   password: z.string().min(1, { message: "Password is required." }),
-  acceptTerms: z.boolean().refine(val => val === true, {
-    message: "You must accept the terms and conditions.",
-  }),
+  rememberMe: z.boolean().optional(),
 });
 
 export function LoginForm() {
@@ -34,10 +34,11 @@ export function LoginForm() {
   const [loading, setLoading] = useState(false);
   const [showPassword, setShowPassword] = useState(false);
   const { signIn } = useAuth();
+  const router = useRouter();
   
   const form = useForm<z.infer<typeof emailFormSchema>>({
     resolver: zodResolver(emailFormSchema),
-    defaultValues: { email: "", password: "", acceptTerms: false },
+    defaultValues: { email: "", password: "", rememberMe: false },
   });
 
   const handleEmailSubmit = async (data: z.infer<typeof emailFormSchema>) => {
@@ -55,20 +56,19 @@ export function LoginForm() {
   return (
     <div className="w-full max-w-sm font-sans">
       <Form {...form}>
-        <form onSubmit={form.handleSubmit(handleEmailSubmit)} className="space-y-5">
+        <form onSubmit={form.handleSubmit(handleEmailSubmit)} className="space-y-4">
           <FormField
             control={form.control}
             name="email"
             render={({ field }) => (
-              <FormItem className="relative">
+              <FormItem>
                 <FormControl>
                   <Input 
-                    placeholder="Email" 
+                    placeholder="sallegroup@email.com" 
                     {...field} 
-                    className="w-full pl-5 pr-10 py-3 border-none rounded-lg bg-[#f0f0f0] outline-none"
+                    className="w-full"
                   />
                 </FormControl>
-                <i className='bx bx-user absolute right-4 top-1/2 -translate-y-1/2 text-gray-500'></i>
                 <FormMessage />
               </FormItem>
             )}
@@ -77,14 +77,14 @@ export function LoginForm() {
             control={form.control}
             name="password"
             render={({ field }) => (
-              <FormItem className="relative">
+              <FormItem>
                 <FormControl>
                   <div className="relative">
                     <Input 
                       type={showPassword ? "text" : "password"}
                       placeholder="Password" 
                       {...field} 
-                      className="w-full pl-5 pr-10 py-3 border-none rounded-lg bg-[#f0f0f0] outline-none"
+                      className="w-full"
                     />
                     <button
                       type="button"
@@ -103,36 +103,45 @@ export function LoginForm() {
               </FormItem>
             )}
           />
-          <FormField
-            control={form.control}
-            name="acceptTerms"
-            render={({ field }) => (
-              <FormItem className="flex flex-row items-start space-x-3 space-y-0">
-                <FormControl>
-                  <Checkbox
-                    checked={field.value}
-                    onCheckedChange={field.onChange}
-                  />
-                </FormControl>
-                <div className="space-y-1 leading-none">
-                  <FormLabel>
-                    Accept terms and conditions
-                  </FormLabel>
-                   <FormMessage />
-                </div>
-              </FormItem>
-            )}
-          />
-           <div className="text-right">
+          <div className="flex items-center justify-between">
+            <FormField
+              control={form.control}
+              name="rememberMe"
+              render={({ field }) => (
+                <FormItem className="flex flex-row items-start space-x-3 space-y-0">
+                  <FormControl>
+                    <Checkbox
+                      checked={field.value}
+                      onCheckedChange={field.onChange}
+                    />
+                  </FormControl>
+                  <div className="space-y-1 leading-none">
+                    <FormLabel>
+                      Remember me
+                    </FormLabel>
+                  </div>
+                </FormItem>
+              )}
+            />
             <Link href="#" className="text-sm text-primary hover:underline">
-                Forgot Password?
+                Forget Password?
             </Link>
           </div>
           {error && <p className="text-sm text-destructive">{error}</p>}
-          <Button type="submit" className="w-full rounded-lg py-3 text-base bg-primary hover:bg-primary/90" disabled={loading}>
+          <Button type="submit" className="w-full" disabled={loading}>
             {loading && <Image src="/loader.gif" alt="Loading..." width={24} height={24} unoptimized className="mr-2" />}
-            Login
+            Sign In
           </Button>
+
+            <div className="flex items-center gap-2">
+                <div className="w-full h-px bg-border"/>
+                <span className="text-xs text-muted-foreground">OR</span>
+                <div className="w-full h-px bg-border"/>
+            </div>
+
+            <Button variant="outline" className="w-full" onClick={() => router.push('/signup')}>
+                Create an account
+            </Button>
         </form>
       </Form>
     </div>

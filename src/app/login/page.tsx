@@ -20,9 +20,9 @@ export default function LoginPage() {
     }, [user, loading, router]);
 
     useEffect(() => {
-      document.body.classList.add("auth-body");
+      document.body.classList.add("auth-body-alt");
       return () => {
-          document.body.classList.remove("auth-body");
+          document.body.classList.remove("auth-body-alt");
       };
     }, []);
     
@@ -35,32 +35,50 @@ export default function LoginPage() {
     }
 
     return (
-        <div className="flex items-center justify-center min-h-screen p-4">
-            <div className="flex bg-white rounded-2xl shadow-2xl overflow-hidden max-w-4xl w-full">
-                {/* Registration Info Panel */}
-                <div className="flex-1 p-10 text-center bg-white flex flex-col justify-center items-center animate-slide-in-left">
-                    <Image 
-                        src="https://img.freepik.com/free-vector/sign-up-concept-illustration_114360-7885.jpg?t=st=1718182998~exp=1718186598~hmac=8f3d64117b3a1b32f26702e5b15b3c3b53fca87d46c82306d1c68e7f1a53239a&w=740"
-                        alt="Welcome Animation"
-                        width={400}
-                        height={300}
-                        className="mb-6 rounded-lg"
-                    />
-                    <h1 className="text-3xl font-bold mb-4 text-gray-800">New User?</h1>
-                    <p className="mb-6 text-gray-600">Sign up and discover a great amount of new opportunities!</p>
-                    <Button asChild variant="outline" className="rounded-full border-primary text-primary hover:bg-primary hover:text-white">
-                        <Link href="/signup">
-                            Sign Up
-                        </Link>
-                    </Button>
+        <div className="flex flex-col min-h-screen">
+             <header className="absolute top-0 left-0 right-0 p-4 z-20 bg-transparent">
+                 <div className="container mx-auto px-4 flex justify-between items-center">
+                    <h2 className="text-3xl font-bold text-white tracking-widest uppercase">CareerGuide</h2>
+                    <nav className="flex items-center gap-6 text-sm font-medium">
+                       <Link href="/" className="text-white transition-colors hover:text-white/80">Home</Link>
+                       <Link href="#" className="text-white transition-colors hover:text-white/80">About</Link>
+                       <Link href="#" className="text-white transition-colors hover:text-white/80">Team</Link>
+                       <Button asChild variant="outline" className="text-white border-white bg-transparent rounded-full px-6 py-2 hover:bg-white hover:text-primary">
+                           <Link href="/login">Log In</Link>
+                       </Button>
+                   </nav>
                 </div>
+            </header>
+            <main className="flex-grow flex items-center justify-center">
+                <div className="container mx-auto px-4">
+                    <div className="flex bg-white rounded-2xl shadow-2xl overflow-hidden max-w-4xl w-full mx-auto">
+                        {/* Login Form Panel */}
+                        <div className="flex-1 p-10 bg-white flex flex-col justify-center items-center animate-slide-in-right">
+                             <div className="text-left w-full max-w-sm">
+                                <h2 className="text-3xl font-bold text-gray-800 mb-2">Personal Information</h2>
+                                <p className="text-muted-foreground mb-6">Enter your e-mail address and your password</p>
+                            </div>
+                            <LoginForm />
+                             <div className="mt-6 text-center w-full max-w-sm">
+                                <p className="text-muted-foreground text-sm">© Copyright by CareerGuide</p>
+                            </div>
+                        </div>
 
-                {/* Login Form Panel */}
-                <div className="flex-1 p-10 bg-[#e0ecff] flex flex-col justify-center items-center animate-slide-in-right">
-                    <h1 className="text-3xl font-bold text-gray-800 mb-6">Login</h1>
-                    <LoginForm />
+                         {/* Image Panel */}
+                        <div className="flex-1 p-10 text-center bg-transparent md:flex flex-col justify-center items-center hidden animate-slide-in-left">
+                            <Image 
+                                src="https://picsum.photos/seed/business-woman/600/400"
+                                alt="Woman working on laptop"
+                                width={500}
+                                height={400}
+                                className="mb-6 rounded-lg object-cover"
+                                data-ai-hint="woman laptop business"
+                            />
+                        </div>
+
+                    </div>
                 </div>
-            </div>
+            </main>
         </div>
     );
 }
