@@ -65,7 +65,7 @@ export function LoginForm() {
               <FormItem>
                 <FormControl>
                   <Input 
-                      placeholder="Username" 
+                      placeholder="Enter mail id" 
                       {...field} 
                       className="w-full bg-slate-800/50 border-slate-700 text-gray-200 rounded-full h-12 px-6 focus:ring-primary focus:border-primary"
                   />
