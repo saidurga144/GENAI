@@ -61,7 +61,7 @@ export default function Home() {
               <div className="grid md:grid-cols-2 gap-12 items-center">
                 <div className="text-center md:text-left animate-fade-in-up">
                   <h1 className="text-4xl md:text-6xl font-extrabold tracking-tighter mb-4 text-foreground">
-                    Navigate Your Career with Confidence
+                    Navigate Your Carrier with Confidence
                   </h1>
                   <p className="text-lg md:text-xl text-muted-foreground mb-8 max-w-xl mx-auto md:mx-0">
                     CarrierGuide uses AI to analyze your skills, interests, and background to recommend personalized career paths and create a tailored roadmap for your success.
