@@ -18,6 +18,7 @@ import { useAuth } from "@/hooks/use-auth";
 import Image from "next/image";
 import { Eye, EyeOff } from 'lucide-react';
 import Link from "next/link";
+import { useRouter } from "next/navigation";
 
 const emailFormSchema = z.object({
   email: z.string().email({ message: "Please enter a valid email address." }),
@@ -32,9 +33,9 @@ const emailFormSchema = z.object({
 export function SignupForm() {
   const [error, setError] = useState<string | null>(null);
   const [loading, setLoading] = useState(false);
-  const [successMessage, setSuccessMessage] = useState<string | null>(null);
   const [showPassword, setShowPassword] = useState(false);
   const { signUp } = useAuth();
+  const router = useRouter();
 
   const form = useForm<z.infer<typeof emailFormSchema>>({
     resolver: zodResolver(emailFormSchema),
@@ -44,11 +45,10 @@ export function SignupForm() {
   const handleEmailSubmit = async (data: z.infer<typeof emailFormSchema>) => {
     setLoading(true);
     setError(null);
-    setSuccessMessage(null);
     try {
       await signUp(data.email, data.password);
-      setSuccessMessage("Account created! A verification email has been sent. Please check your inbox (and spam folder) to verify your account before logging in.");
-      form.reset();
+      // The user is now automatically logged in, so we can redirect.
+      // The redirect is handled by the useEffect in the SignupPage component.
     } catch (err) {
       setError(err instanceof Error ? err.message : "An unexpected error occurred.");
     } finally {
@@ -58,74 +58,62 @@ export function SignupForm() {
 
   return (
     <div className="w-full max-w-sm font-sans">
-        {successMessage ? (
-          <div className="p-4 bg-green-100 border border-green-400 text-green-700 rounded-md text-center">
-            <h3 className="font-bold text-lg mb-2">Success!</h3>
-            <p className="text-sm">{successMessage}</p>
-             <Button asChild variant="link" className="mt-4">
-                <Link href="/login">
-                    Proceed to Login
-                </Link>
-            </Button>
-          </div>
-        ) : (
-          <Form {...form}>
-            <form onSubmit={form.handleSubmit(handleEmailSubmit)} className="space-y-5">
-              <FormField
-                control={form.control}
-                name="email"
-                render={({ field }) => (
-                  <FormItem className="relative">
-                    <FormControl>
+        <Form {...form}>
+          <form onSubmit={form.handleSubmit(handleEmailSubmit)} className="space-y-5">
+            <FormField
+              control={form.control}
+              name="email"
+              render={({ field }) => (
+                <FormItem className="relative">
+                  <FormControl>
+                    <Input 
+                      placeholder="Email" 
+                      {...field}
+                      className="w-full pl-5 pr-10 py-3 border-none rounded-lg bg-[#f0f0f0] outline-none"
+                    />
+                  </FormControl>
+                    <i className='bx bx-envelope absolute right-4 top-1/2 -translate-y-1/2 text-gray-500'></i>
+                  <FormMessage />
+                </FormItem>
+              )}
+            />
+            <FormField
+              control={form.control}
+              name="password"
+              render={({ field }) => (
+                <FormItem className="relative">
+                  <FormControl>
+                      <div className="relative">
                       <Input 
-                        placeholder="Email" 
-                        {...field}
+                        type={showPassword ? "text" : "password"}
+                        placeholder="Password" 
+                        {...field} 
                         className="w-full pl-5 pr-10 py-3 border-none rounded-lg bg-[#f0f0f0] outline-none"
                       />
-                    </FormControl>
-                     <i className='bx bx-envelope absolute right-4 top-1/2 -translate-y-1/2 text-gray-500'></i>
-                    <FormMessage />
-                  </FormItem>
-                )}
-              />
-              <FormField
-                control={form.control}
-                name="password"
-                render={({ field }) => (
-                  <FormItem className="relative">
-                    <FormControl>
-                       <div className="relative">
-                        <Input 
-                          type={showPassword ? "text" : "password"}
-                          placeholder="Password" 
-                          {...field} 
-                          className="w-full pl-5 pr-10 py-3 border-none rounded-lg bg-[#f0f0f0] outline-none"
-                        />
-                        <button
-                          type="button"
-                          onClick={() => setShowPassword(!showPassword)}
-                          className="absolute right-3 top-1/2 -translate-y-1/2"
-                        >
-                          {showPassword ? (
-                            <EyeOff className="h-5 w-5 text-gray-500" />
-                          ) : (
-                            <Eye className="h-5 w-5 text-gray-500" />
-                          )}
-                        </button>
-                      </div>
-                    </FormControl>
-                    <FormMessage />
-                  </FormItem>
-                )}
-              />
-              {error && <p className="text-sm text-destructive">{error}</p>}
-              <Button type="submit" className="w-full rounded-lg py-3 text-base bg-primary hover:bg-primary/90" disabled={loading}>
-                {loading && <Image src="/loader.gif" alt="Loading..." width={24} height={24} unoptimized className="mr-2" />}
-                Register
-              </Button>
-            </form>
-          </Form>
-        )}
+                      <button
+                        type="button"
+                        onClick={() => setShowPassword(!showPassword)}
+                        className="absolute right-3 top-1/2 -translate-y-1/2"
+                      >
+                        {showPassword ? (
+                          <EyeOff className="h-5 w-5 text-gray-500" />
+                        ) : (
+                          <Eye className="h-5 w-5 text-gray-500" />
+                        )}
+                      </button>
+                    </div>
+                  </FormControl>
+                  <FormMessage />
+                </FormItem>
+              )}
+            />
+            {error && <p className="text-sm text-destructive">{error}</p>}
+            <Button type="submit" className="w-full rounded-lg py-3 text-base bg-primary hover:bg-primary/90" disabled={loading}>
+              {loading && <Image src="/loader.gif" alt="Loading..." width={24} height={24} unoptimized className="mr-2" />}
+              Register
+            </Button>
+          </form>
+        </Form>
     </div>
   );
 }
