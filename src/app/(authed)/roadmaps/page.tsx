@@ -45,7 +45,7 @@ const roadmapsList = [
         description: "Explore the intersection of medicine and engineering, designing devices and systems to improve human health.",
         url: "/biomedical-engineer",
         icon: <HeartPulse className="w-8 h-8 text-primary" />,
-        imageUrl: "https://tse2.mm.bing.net/th/id/OIP.M7ct0Vlp9Me0eVPpSEAWcgHaHa?pid=Api&P=0&h=220",
+        imageUrl: "https://tse2.mm.bing.net/th/id/OIP.p3gfA3yfRsxXRG1_ddTaGwHaEO?pid=Api&P=0&h=220",
     },
     {
         title: "Biotechnology Specialist",
