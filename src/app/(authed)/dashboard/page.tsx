@@ -5,19 +5,105 @@ import { useAuth } from "@/hooks/use-auth";
 import { useSearchParams } from "next/navigation";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card";
-import { User, LogOut, Mail, KeyRound, ArrowRight, UserCircle } from "lucide-react";
+import { User, LogOut, Mail, KeyRound, ArrowRight, UserCircle, Check, X, Loader2 } from "lucide-react";
 import Link from "next/link";
 import Image from "next/image";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { Input } from "@/components/ui/input";
-
+import { useEffect, useState, useCallback } from "react";
+import { checkUsernameAvailability, setUsername, getUsername } from "./profile/actions";
+import { useToast } from "@/hooks/use-toast";
+import { useDebounce } from "@/hooks/use-debounce";
+import { cn } from "@/lib/utils";
 
 function ProfileDashboard() {
   const { user, signOut } = useAuth();
+  const { toast } = useToast();
+
+  const [username, setUsername] = useState('');
+  const [currentUsername, setCurrentUsername] = useState('');
+  const [isValid, setIsValid] = useState<boolean | null>(null);
+  const [isAvailable, setIsAvailable] = useState<boolean | null>(null);
+  const [isLoading, setIsLoading] = useState(false);
+  const [isChecking, setIsChecking] = useState(false);
+
+  const debouncedUsername = useDebounce(username, 500);
+
+  const usernameRegex = /^[a-zA-Z]{4}[0-9]{3}$/;
+
+  const checkAvailability = useCallback(async (name: string) => {
+    if (!usernameRegex.test(name)) {
+      setIsValid(false);
+      setIsAvailable(null);
+      return;
+    }
+    setIsValid(true);
+    setIsChecking(true);
+    try {
+      const available = await checkUsernameAvailability(name);
+      setIsAvailable(available);
+    } catch (error) {
+      setIsAvailable(null);
+    } finally {
+      setIsChecking(false);
+    }
+  }, [usernameRegex]);
+
+  useEffect(() => {
+    if (debouncedUsername) {
+      checkAvailability(debouncedUsername);
+    } else {
+      setIsValid(null);
+      setIsAvailable(null);
+    }
+  }, [debouncedUsername, checkAvailability]);
+
+  useEffect(() => {
+    if (user) {
+      const fetchUsername = async () => {
+        const current = await getUsername(user.uid);
+        if (current) {
+          setCurrentUsername(current);
+          setUsername(current);
+        }
+      };
+      fetchUsername();
+    }
+  }, [user]);
 
   if (!user) {
     return null;
   }
+
+  const handleSave = async () => {
+    if (!isValid || !isAvailable || !user) return;
+    setIsLoading(true);
+    try {
+      await setUsername(user.uid, username);
+      setCurrentUsername(username);
+      toast({
+        title: "Success",
+        description: "Username updated successfully!",
+      });
+    } catch (error) {
+      const errorMessage = error instanceof Error ? error.message : "An unexpected error occurred.";
+      toast({
+        variant: "destructive",
+        title: "Error",
+        description: errorMessage,
+      });
+    } finally {
+      setIsLoading(false);
+    }
+  };
+
+  const getFeedbackIcon = () => {
+    if (isChecking) return <Loader2 className="w-5 h-5 text-muted-foreground animate-spin" />;
+    if (debouncedUsername && isValid === false) return <X className="w-5 h-5 text-destructive" />;
+    if (isAvailable === true) return <Check className="w-5 h-5 text-green-500" />;
+    if (isAvailable === false) return <X className="w-5 h-5 text-destructive" />;
+    return null;
+  };
 
   return (
     <Card className="w-full max-w-md shadow-lg animate-in fade-in-50 duration-500">
@@ -28,7 +114,7 @@ function ProfileDashboard() {
                 <User className="w-10 h-10 text-muted-foreground" />
             </AvatarFallback>
         </Avatar>
-        <CardTitle>Your Profile</CardTitle>
+        <CardTitle>{currentUsername || "Your Profile"}</CardTitle>
         <CardDescription>Here are your account details.</CardDescription>
       </CardHeader>
       <CardContent className="space-y-4">
@@ -43,11 +129,26 @@ function ProfileDashboard() {
           <UserCircle className="w-5 h-5 text-muted-foreground" />
           <div className="text-sm w-full">
             <p className="font-medium">Username</p>
-            <div className="flex items-center gap-2 mt-1">
-                <Input defaultValue="" placeholder="4 letters, 3 numbers" className="text-muted-foreground"/>
-                <Button disabled size="sm">Save</Button>
+            <div className="flex items-center gap-2 mt-1 relative">
+                <Input 
+                  value={username}
+                  onChange={(e) => setUsername(e.target.value)}
+                  placeholder="4 letters, 3 numbers" 
+                  className="text-muted-foreground pr-10"
+                />
+                 <div className="absolute right-3 top-1/2 -translate-y-1/2">
+                  {getFeedbackIcon()}
+                </div>
             </div>
-             <p className="text-xs text-muted-foreground mt-2">Username availability check coming soon.</p>
+            <div className="h-4 mt-1">
+                {debouncedUsername && isValid === false && <p className="text-xs text-destructive">Username must be 4 letters followed by 3 numbers.</p>}
+                {isAvailable === false && <p className="text-xs text-destructive">Username already taken.</p>}
+                {isAvailable === true && <p className="text-xs text-green-500">Username is available!</p>}
+            </div>
+             <Button onClick={handleSave} disabled={isLoading || !isValid || !isAvailable || username === currentUsername} size="sm" className="w-full mt-2">
+                {isLoading && <Loader2 className="mr-2 h-4 w-4 animate-spin" />}
+                Save Username
+            </Button>
           </div>
         </div>
         <div className="flex items-center gap-4 p-3 bg-secondary/50 rounded-md">
