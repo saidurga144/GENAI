@@ -54,9 +54,9 @@ export default function CybersecuritySpecialistPage() {
         <main className="flex-grow container mx-auto px-4 py-12 md:py-20">
             <div className="flex justify-start mb-8">
                  <Button asChild variant="outline">
-                    <Link href="/roadmaps">
+                    <Link href="/dashboard">
                         <ArrowLeft />
-                        Back to Roadmaps
+                        Back to Dashboard
                     </Link>
                 </Button>
             </div>
