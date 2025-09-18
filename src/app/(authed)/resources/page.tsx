@@ -8,7 +8,7 @@ import Link from "next/link";
 const channels = [
     { name: "Learn Engineering", url: "https://www.youtube.com/channel/UCsm2OHyG9Mzf7UtfjUf6QTw", description: "This channel focuses on engineering topics, especially explaining how things around us work, using CAD/CAE visualization tools. It often breaks down complex mechanical, electrical, structural engineering phenomena into intuitive animations." },
     { name: "Gate Smashers", url: "https://www.youtube.com/channel/UCJihyK0A38SZ6SdJirEdIOw", description: "Gate Smashers is an Indian EdTech YouTube channel/community that provides free lectures for B.Tech CSE, GATE CSE, and other entrance exams. They aim to help students preparing for competitive exams by giving strong foundational lectures and problem-solving." },
-    { name: "Neso Academy", url: "https://www.youtube.com/channel/UCQYMhOMi_Cdj1CEAU-fv80A", description: "Comprehensive lectures on engineering and computer science subjects." },
+    { name: "Neso Academy", url: "https://www.youtube.com/channel/UCQYMhOMi_Cdj1CEAU-fv80A", description: "Neso Academy offers high-quality free educational videos primarily in Computer Science and Engineering subjects. It covers theory and practice with lectures on core topics like algorithms, data structures, automata theory, etc." },
     { name: "Edu9 Career Guidance", url: "https://www.youtube.com/channel/UCLx0Y5AJpHhoh-PjH7EAp1Q", description: "Career guidance and counseling for students." },
     { name: "Mark Rober", url: "https://www.youtube.com/c/MarkRober/videos", description: "Fun science experiments and engineering projects." },
     { name: "SmarterEveryDay", url: "https://www.youtube.com/c/smartereveryday/videos", description: "Exploring the world of science and engineering through curiosity." },
