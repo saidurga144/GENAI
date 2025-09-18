@@ -49,6 +49,7 @@ export default function Home() {
             <div className="container mx-auto px-4 z-10 relative">
               <div className="grid md:grid-cols-2 gap-12 items-center">
                 <div className="text-center md:text-left animate-fade-in-up">
+                  <h2 className="text-lg font-semibold text-primary tracking-widest uppercase mb-2">CarrierGuide</h2>
                   <h1 className="text-4xl md:text-6xl font-extrabold tracking-tighter mb-4 text-foreground">
                     Navigate Your Career with Confidence
                   </h1>
