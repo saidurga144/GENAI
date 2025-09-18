@@ -54,9 +54,9 @@ export default function EeeEngineerPage() {
         <main className="flex-grow container mx-auto px-4 py-12 md:py-20">
             <div className="flex justify-start mb-8">
                  <Button asChild variant="outline">
-                    <Link href="/dashboard">
+                    <Link href="/roadmaps">
                         <ArrowLeft />
-                        Back to Home
+                        Back to Roadmaps
                     </Link>
                 </Button>
             </div>
