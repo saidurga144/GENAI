@@ -39,7 +39,10 @@ const roadmap = [
         title: "Step 4: Internships & Real-World Projects",
         description: "Gain practical experience by building projects, securing internships, and contributing to open-source software.",
         tasks: [
-            "Build projects: E-commerce site, Chat application, AI/ML project.",
+            "Build projects:",
+            "E-commerce site",
+            "Chat application",
+            "AI/ML project",
             "Internship in tech companies, startups.",
             "Contribute to open source (GitHub)."
         ]
@@ -60,9 +63,9 @@ export default function SoftwareEngineerPage() {
         <main className="flex-grow container mx-auto px-4 py-12 md:py-20">
             <div className="flex justify-start mb-8">
                  <Button asChild variant="outline">
-                    <Link href="/dashboard">
+                    <Link href="/roadmaps">
                         <ArrowLeft />
-                        Back to Dashboard
+                        Back to Roadmaps
                     </Link>
                 </Button>
             </div>

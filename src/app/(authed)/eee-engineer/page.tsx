@@ -29,7 +29,10 @@ const roadmap = [
         description: "Gain practical skills in PLC/SCADA, embedded systems, and earn relevant certifications to enhance your profile.",
         tasks: [
             "Learn PLC/SCADA, Embedded Systems, IoT.",
-            "Certifications: AutoCAD Electrical, MATLAB Simulation, Electrical Safety Standards.",
+            "Certifications:",
+            "AutoCAD Electrical",
+            "MATLAB Simulation",
+            "Electrical Safety Standards",
             "Industry 4.0 tools: Renewable Energy, Smart Grids, Robotics."
         ]
     },
@@ -38,7 +41,10 @@ const roadmap = [
         description: "Apply your knowledge through internships and hands-on projects in areas like solar energy and smart home automation.",
         tasks: [
             "Do internships in Power Plants, Electronics Companies, Core Manufacturing Firms.",
-            "Projects like: Solar energy systems, Smart home automation, Motor control using IoT."
+            "Projects like:",
+            "Solar energy systems",
+            "Smart home automation",
+            "Motor control using IoT"
         ]
     },
     {
@@ -57,9 +63,9 @@ export default function EeeEngineerPage() {
         <main className="flex-grow container mx-auto px-4 py-12 md:py-20">
             <div className="flex justify-start mb-8">
                  <Button asChild variant="outline">
-                    <Link href="/dashboard">
+                    <Link href="/roadmaps">
                         <ArrowLeft />
-                        Back to Dashboard
+                        Back to Roadmaps
                     </Link>
                 </Button>
             </div>

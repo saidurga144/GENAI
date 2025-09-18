@@ -8,9 +8,8 @@ import Link from "next/link";
 const roadmap = [
     {
         title: "Step 1: Build Strong Foundations (6–12 months)",
-        description: "Learn computer fundamentals, networking, and Linux commands. Free resources: Cisco NetAcad, Cybrary, TryHackMe (beginner paths).",
+        description: "Learn Computer Fundamentals → OS (Windows, Linux), networking basics, hardware.",
         tasks: [
-            "Learn Computer Fundamentals → OS (Windows, Linux), networking basics, hardware.",
             "Start with Networking → TCP/IP, DNS, Firewalls, VPNs, Subnetting.",
             "Study Linux commands (most cybersecurity tools run on Linux).",
             "📚 Free Resources: Cisco NetAcad, Cybrary, TryHackMe (beginner paths)."
@@ -18,19 +17,22 @@ const roadmap = [
     },
     {
         title: "Step 2: Formal Education / Degree (2–4 years)",
-        description: "Choose a Bachelor’s degree in CSE, IT, Cybersecurity, or ECE. If a degree isn’t possible, continue with certifications and practical labs.",
+        description: "Choose a Bachelor’s degree in CSE, IT, Cybersecurity, or ECE (Computer Science is most common).",
         tasks: [
-            "Choose a Bachelor’s degree in CSE, IT, Cybersecurity, or ECE (Computer Science is most common).",
             "During degree → focus on subjects like Computer Networks, Cryptography, Operating Systems, and Security Fundamentals.",
             "If degree isn’t possible, you can still continue with Certifications + Practical Labs."
         ]
     },
     {
         title: "Step 3: Earn Core Certifications (Parallel with Degree or Independently)",
-        description: "Start with CompTIA Security+ and CCNA, then move to intermediate certs like CEH and OSCP. Consider cloud security certs as well.",
+        description: "Start small: CompTIA Security+ and CCNA, then move to intermediate certs like CEH and OSCP.",
         tasks: [
-            "Start small: CompTIA Security+ (Basics of security), CCNA (Networking knowledge).",
-            "Intermediate: CEH (Hacking tools & methods), OSCP (Advanced penetration testing).",
+            "Start small:",
+            "CompTIA Security+ → Basics of security.",
+            "CCNA (Cisco) → Networking knowledge.",
+            "Intermediate:",
+            "CEH (Certified Ethical Hacker) → Hacking tools & methods.",
+            "OSCP (Offensive Security Certified Professional) → Advanced penetration testing.",
             "Optional: Cloud Security certs (AWS, Azure, Google Cloud)."
         ]
     },
@@ -48,7 +50,12 @@ const roadmap = [
         title: "Step 5: Specialize & Start Career (After 3–5 years)",
         description: "Pick a specialization like Ethical Hacking or SOC Analyst. Apply for internships and entry-level roles and keep upgrading with advanced certifications.",
         tasks: [
-            "Pick a specialization: Ethical Hacking, SOC Analyst, Digital Forensics, Malware Analysis, or Cloud Security.",
+            "Pick a specialization:",
+            "Ethical Hacking / Penetration Testing",
+            "SOC Analyst (Security Operations)",
+            "Digital Forensics & Incident Response",
+            "Malware Analysis / Reverse Engineering",
+            "Cloud Security",
             "Apply for Internships & Entry-level roles → SOC Analyst, Security Engineer, Junior Pen Tester.",
             "Keep upgrading with advanced certs like CISSP, CISM, OSCE, SANS GIAC as you grow."
         ]
@@ -61,9 +68,9 @@ export default function CybersecuritySpecialistPage() {
         <main className="flex-grow container mx-auto px-4 py-12 md:py-20">
             <div className="flex justify-start mb-8">
                  <Button asChild variant="outline">
-                    <Link href="/dashboard">
+                    <Link href="/roadmaps">
                         <ArrowLeft />
-                        Back to Dashboard
+                        Back to Roadmaps
                     </Link>
                 </Button>
             </div>
