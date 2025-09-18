@@ -113,18 +113,6 @@ export default function GeneratorPage() {
             title="Discover Your Future Path"
             description="Tell us a bit about yourself, and our AI will generate personalized career recommendations for you."
         />
-        <div className="relative flex justify-center items-center mb-8">
-            <div className="bg-secondary/50 rounded-lg p-4 border">
-                <Image
-                    src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSZvTHxQh-irUf-ly0NlkTFwPSLg-XYG9GL6Q&s"
-                    alt="AI Brain"
-                    width={600}
-                    height={200}
-                    className="max-w-md w-full h-auto object-contain"
-                    quality={100}
-                />
-            </div>
-        </div>
         <CareerForm onSubmit={handleFormSubmit} />
       </>
     );

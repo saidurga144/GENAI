@@ -73,103 +73,99 @@ export function CareerForm({ onSubmit }: CareerFormProps) {
   
   return (
     <div className="max-w-3xl mx-auto animate-in fade-in-50 duration-500">
-      <Card className="border-2 border-primary/10 shadow-lg shadow-primary/5">
-        <CardContent className="p-8">
-          <Form {...form}>
-            <form onSubmit={form.handleSubmit(handleFormSubmit)} className="space-y-8">
-              
-              <Card className="bg-secondary/50 border-dashed">
-                <CardHeader>
-                  <CardTitle className="flex items-center gap-2 text-lg">
-                    <FileText className="w-5 h-5" />
-                    Upload Your Resume (Optional)
-                  </CardTitle>
-                   <CardDescription>
-                    For the best results, upload a .txt or .md file. This automatically fills in your skills and background.
-                  </CardDescription>
-                </CardHeader>
-                <CardContent>
-                   <div className="flex items-center gap-4">
-                    <Button asChild variant="secondary" className="border">
-                      <label htmlFor="resume-upload" className="cursor-pointer">
-                        <Upload className="mr-2 h-4 w-4" />
-                        Choose File
-                      </label>
-                    </Button>
-                    <Input id="resume-upload" type="file" className="hidden" onChange={handleFileChange} accept=".txt,.md" />
-                    {fileName && <p className="text-sm text-muted-foreground">{fileName}</p>}
-                  </div>
-                </CardContent>
-              </Card>
-
-              <div className="grid md:grid-cols-2 gap-6">
-                <FormField
-                  control={form.control}
-                  name="academicBackground"
-                  render={({ field }) => (
-                    <FormItem>
-                      <FormLabel className="flex items-center gap-2"><Briefcase className="w-4 h-4" />Academic Background</FormLabel>
-                      <FormControl>
-                        <Textarea placeholder="e.g., Bachelor's in Computer Science, focusing on AI and machine learning." {...field} disabled={!!resumeText} rows={5}/>
-                      </FormControl>
-                      <FormMessage />
-                    </FormItem>
-                  )}
-                />
-                <FormField
-                  control={form.control}
-                  name="skills"
-                  render={({ field }) => (
-                    <FormItem>
-                      <FormLabel className="flex items-center gap-2"><Lightbulb className="w-4 h-4" />Skills</FormLabel>
-                      <FormControl>
-                        <Textarea placeholder="e.g., Python, React, data analysis, project management." {...field} disabled={!!resumeText} rows={5} />
-                      </FormControl>
-                      <FormMessage />
-                    </FormItem>
-                  )}
-                />
+      <Form {...form}>
+        <form onSubmit={form.handleSubmit(handleFormSubmit)} className="space-y-8">
+          
+          <Card className="bg-secondary/50 border-dashed">
+            <CardHeader>
+              <CardTitle className="flex items-center gap-2 text-lg">
+                <FileText className="w-5 h-5" />
+                Upload Your Resume (Optional)
+              </CardTitle>
+                <CardDescription>
+                For the best results, upload a .txt or .md file. This automatically fills in your skills and background.
+              </CardDescription>
+            </CardHeader>
+            <CardContent>
+                <div className="flex items-center gap-4">
+                <Button asChild variant="secondary" className="border">
+                  <label htmlFor="resume-upload" className="cursor-pointer">
+                    <Upload className="mr-2 h-4 w-4" />
+                    Choose File
+                  </label>
+                </Button>
+                <Input id="resume-upload" type="file" className="hidden" onChange={handleFileChange} accept=".txt,.md" />
+                {fileName && <p className="text-sm text-muted-foreground">{fileName}</p>}
               </div>
-              
-              <FormField
-                control={form.control}
-                name="interests"
-                render={({ field }) => (
-                  <FormItem>
-                    <FormLabel className="flex items-center gap-2"><Lightbulb className="w-4 h-4" />Interests & Hobbies</FormLabel>
-                    <FormControl>
-                      <Textarea placeholder="e.g., Building mobile apps, competitive gaming, reading sci-fi novels." {...field} />
-                    </FormControl>
-                     <FormMessage />
-                  </FormItem>
-                )}
-              />
+            </CardContent>
+          </Card>
 
-              <FormField
-                control={form.control}
-                name="email"
-                render={({ field }) => (
-                  <FormItem>
-                    <FormLabel className="flex items-center gap-2"><User className="w-4 h-4" />Email Address</FormLabel>
-                    <FormControl>
-                      <Input placeholder="you@example.com" {...field} />
-                    </FormControl>
-                    <FormDescription>
-                      We'll use this to potentially send your results in the future (feature coming soon!).
-                    </FormDescription>
-                    <FormMessage />
-                  </FormItem>
-                )}
-              />
+          <div className="grid md:grid-cols-2 gap-6">
+            <FormField
+              control={form.control}
+              name="academicBackground"
+              render={({ field }) => (
+                <FormItem>
+                  <FormLabel className="flex items-center gap-2"><Briefcase className="w-4 h-4" />Academic Background</FormLabel>
+                  <FormControl>
+                    <Textarea placeholder="e.g., Bachelor's in Computer Science, focusing on AI and machine learning." {...field} disabled={!!resumeText} rows={5}/>
+                  </FormControl>
+                  <FormMessage />
+                </FormItem>
+              )}
+            />
+            <FormField
+              control={form.control}
+              name="skills"
+              render={({ field }) => (
+                <FormItem>
+                  <FormLabel className="flex items-center gap-2"><Lightbulb className="w-4 h-4" />Skills</FormLabel>
+                  <FormControl>
+                    <Textarea placeholder="e.g., Python, React, data analysis, project management." {...field} disabled={!!resumeText} rows={5} />
+                  </FormControl>
+                  <FormMessage />
+                </FormItem>
+              )}
+            />
+          </div>
+          
+          <FormField
+            control={form.control}
+            name="interests"
+            render={({ field }) => (
+              <FormItem>
+                <FormLabel className="flex items-center gap-2"><Lightbulb className="w-4 h-4" />Interests & Hobbies</FormLabel>
+                <FormControl>
+                  <Textarea placeholder="e.g., Building mobile apps, competitive gaming, reading sci-fi novels." {...field} />
+                </FormControl>
+                  <FormMessage />
+              </FormItem>
+            )}
+          />
 
-              <Button type="submit" className="w-full" size="lg">
-                <Rocket className="mr-2 h-5 w-5" />
-                Generate My Career Path
-              </Button>
-            </form>
-          </Form>
-        </CardContent>
-      </Card>
+          <FormField
+            control={form.control}
+            name="email"
+            render={({ field }) => (
+              <FormItem>
+                <FormLabel className="flex items-center gap-2"><User className="w-4 h-4" />Email Address</FormLabel>
+                <FormControl>
+                  <Input placeholder="you@example.com" {...field} />
+                </FormControl>
+                <FormDescription>
+                  We'll use this to potentially send your results in the future (feature coming soon!).
+                </FormDescription>
+                <FormMessage />
+              </FormItem>
+            )}
+          />
+
+          <Button type="submit" className="w-full" size="lg">
+            <Rocket className="mr-2 h-5 w-5" />
+            Generate My Career Path
+          </Button>
+        </form>
+      </Form>
     </div>
   );
 }
