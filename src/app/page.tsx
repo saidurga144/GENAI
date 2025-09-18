@@ -75,7 +75,7 @@ export default function Home() {
                 <div className="relative flex justify-center items-center animate-fade-in-up" style={{ perspective: '1000px', animationDelay: '0.2s' }}>
                      <div className="bg-secondary/50 rounded-lg p-4 border transition-transform duration-500 ease-in-out hover:-rotate-y-12 hover:rotate-x-12 hover:scale-105 hover:shadow-2xl" style={{ transformStyle: 'preserve-3d' }}>
                       <Image
-                        src="https://picsum.photos/seed/career-woman/600/400"
+                        src="https://picsum.photos/seed/career-planning/600/400"
                         alt="A woman holding a laptop and thinking about career guidelines."
                         width={600}
                         height={400}
