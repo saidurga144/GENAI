@@ -74,6 +74,24 @@ const nextConfig: NextConfig = {
         hostname: '4-hontario.ca',
         port: '',
         pathname: '/**',
+      },
+      {
+        protocol: 'https',
+        hostname: 'wallpaperaccess.com',
+        port: '',
+        pathname: '/**',
+      },
+      {
+        protocol: 'https',
+        hostname: 'wonderfulengineering.com',
+        port: '',
+        pathname: '/**',
+      },
+      {
+        protocol: 'https',
+        hostname: 'www.aldirasa.com',
+        port: '',
+        pathname: '/**',
       }
     ],
   },

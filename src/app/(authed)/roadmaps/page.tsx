@@ -2,7 +2,7 @@
 import { PageHeader } from "@/components/futurepath/PageHeader";
 import { Card, CardHeader, CardTitle, CardDescription, CardContent, CardFooter } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
-import { ArrowRight, Code, Cpu, Shield, ArrowLeft, Dna } from "lucide-react";
+import { ArrowRight, Code, Cpu, Shield, ArrowLeft, Dna, Cog, Building2, Plane } from "lucide-react";
 import Link from "next/link";
 import Image from "next/image";
 
@@ -34,6 +34,27 @@ const roadmaps = [
         url: "/biotechnology-specialist",
         icon: <Dna className="w-8 h-8 text-primary" />,
         imageUrl: "https://4-hontario.ca/wp-content/uploads/2020/09/Intro-to-Agricultural-Biotechnology_Main-Image-2048x1364.jpeg",
+    },
+    {
+        title: "Mechanical Engineer",
+        description: "A comprehensive roadmap for aspiring Mechanical Engineers, covering core subjects, skills, and career opportunities.",
+        url: "/mechanical-engineer",
+        icon: <Cog className="w-8 h-8 text-primary" />,
+        imageUrl: "https://wallpaperaccess.com/full/1564707.jpg",
+    },
+    {
+        title: "Civil Engineer",
+        description: "Your guide to a career in Civil Engineering, from structural design to project management and sustainable construction.",
+        url: "/civil-engineer",
+        icon: <Building2 className="w-8 h-8 text-primary" />,
+        imageUrl: "https://wonderfulengineering.com/wp-content/uploads/2014/01/civil-engineers-3.jpg",
+    },
+    {
+        title: "Aeronautical Engineer",
+        description: "A step-by-step path to a career in Aeronautical Engineering, from aerodynamics to aircraft design and beyond.",
+        url: "/aeronautical-engineer",
+        icon: <Plane className="w-8 h-8 text-primary" />,
+        imageUrl: "https://www.aldirasa.com/cdn-cgi/image/format=auto,fit=contain,width=1200,height=630/https://www.aldirasa.com/storage/departments/76e9d6d3e6a67aa2999279f208e9076a11-9Z.jpg",
     },
 ]
 
