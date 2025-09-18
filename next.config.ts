@@ -67,6 +67,12 @@ const nextConfig: NextConfig = {
         hostname: 'img.freepik.com',
         port: '',
         pathname: '/**',
+      },
+      {
+        protocol: 'https',
+        hostname: '4-hontario.ca',
+        port: '',
+        pathname: '/**',
       }
     ],
   },
