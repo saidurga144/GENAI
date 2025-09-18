@@ -85,21 +85,21 @@ export default function Home() {
                 <p className="text-lg text-muted-foreground mt-2 max-w-2xl mx-auto">Three simple steps to unlock your future potential.</p>
               </div>
               <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-                <div className="animate-fade-in-up" style={{ animationDelay: '0.2s' }}>
+                <div className="animate-fade-in-up flex" style={{ animationDelay: '0.2s' }}>
                   <FeatureCard
                     icon={<Rocket size={24} />}
                     title="1. Tell Us About You"
                     description="Input your skills, academic background, and interests, or simply upload your resume to get started."
                   />
                 </div>
-                <div className="animate-fade-in-up" style={{ animationDelay: '0.4s' }}>
+                <div className="animate-fade-in-up flex" style={{ animationDelay: '0.4s' }}>
                    <FeatureCard
                     icon={<CheckCircle size={24} />}
                     title="2. Get AI Recommendations"
                     description="Our advanced AI analyzes your profile to generate a list of suitable career paths, complete with a suitability score."
                   />
                 </div>
-                <div className="animate-fade-in-up" style={{ animationDelay: '0.6s' }}>
+                <div className="animate-fade-in-up flex" style={{ animationDelay: '0.6s' }}>
                   <FeatureCard
                     icon={<ArrowRight size={24} />}
                     title="3. Receive Your Roadmap"
