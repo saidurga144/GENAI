@@ -32,12 +32,20 @@ import { useAuth } from "@/hooks/use-auth";
 import Link from "next/link";
 import { cn } from "@/lib/utils";
 import { useState } from "react";
+import { useSidebar } from "@/components/ui/sidebar";
 
 export function SidebarNav() {
   const pathname = usePathname();
   const { user, signOut } = useAuth();
+  const { isMobile, setOpenMobile } = useSidebar();
   const [mainNavOpen, setMainNavOpen] = useState(true);
   const [userNavOpen, setUserNavOpen] = useState(false);
+
+  const handleLinkClick = () => {
+    if (isMobile) {
+      setOpenMobile(false);
+    }
+  };
 
   return (
     <>
@@ -61,6 +69,7 @@ export function SidebarNav() {
                   asChild
                   isActive={pathname === "/dashboard"}
                   tooltip="Dashboard"
+                  onClick={handleLinkClick}
                 >
                   <Link href="/dashboard">
                     <LayoutDashboard />
@@ -69,7 +78,7 @@ export function SidebarNav() {
                 </SidebarMenuButton>
               </SidebarMenuItem>
               <SidebarMenuItem>
-                <SidebarMenuButton asChild isActive={pathname === '/dashboard/generator'} tooltip="Career Generator">
+                <SidebarMenuButton asChild isActive={pathname === '/dashboard/generator'} tooltip="Career Generator" onClick={handleLinkClick}>
                   <Link href="/dashboard/generator">
                     <FileText />
                     Career Generator
@@ -77,7 +86,7 @@ export function SidebarNav() {
                 </SidebarMenuButton>
               </SidebarMenuItem>
               <SidebarMenuItem>
-                <SidebarMenuButton asChild isActive={pathname.startsWith('/roadmaps')} tooltip="Sample Roadmaps">
+                <SidebarMenuButton asChild isActive={pathname.startsWith('/roadmaps')} tooltip="Sample Roadmaps" onClick={handleLinkClick}>
                   <Link href="/roadmaps">
                     <Map />
                     Sample Roadmaps
@@ -85,7 +94,7 @@ export function SidebarNav() {
                 </SidebarMenuButton>
               </SidebarMenuItem>
               <SidebarMenuItem>
-                <SidebarMenuButton asChild isActive={pathname === '/resources'} tooltip="Resources">
+                <SidebarMenuButton asChild isActive={pathname === '/resources'} tooltip="Resources" onClick={handleLinkClick}>
                   <Link href="/resources">
                     <Book />
                     Resources
@@ -121,8 +130,9 @@ export function SidebarNav() {
                 <SidebarMenuItem>
                 <SidebarMenuButton
                     asChild
-                    isActive={pathname === "/dashboard" && new URLSearchParams(window.location.search).get('view') === 'profile'}
+                    isActive={pathname === "/dashboard" && new URLSearchParams(typeof window !== 'undefined' ? window.location.search : '').get('view') === 'profile'}
                     tooltip="Profile"
+                    onClick={handleLinkClick}
                 >
                   <Link href="/dashboard?view=profile">
                     <User />
@@ -137,7 +147,10 @@ export function SidebarNav() {
                 </SidebarMenuButton>
                 </SidebarMenuItem>
                 <SidebarMenuItem>
-                <SidebarMenuButton onClick={signOut} tooltip="Logout">
+                <SidebarMenuButton onClick={() => {
+                  signOut();
+                  handleLinkClick();
+                }} tooltip="Logout">
                     <LogOut />
                     Logout
                 </SidebarMenuButton>
