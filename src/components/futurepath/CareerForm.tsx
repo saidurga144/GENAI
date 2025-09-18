@@ -80,7 +80,7 @@ export function CareerForm({ onSubmit }: CareerFormProps) {
             <CardHeader>
               <CardTitle className="flex items-center gap-2 text-lg">
                 <FileText className="w-5 h-5" />
-                Upload Your Resume (Optional)
+                Upload Your Resume
               </CardTitle>
                 <CardDescription>
                 For the best results, upload a .txt or .md file. This automatically fills in your skills and background.
