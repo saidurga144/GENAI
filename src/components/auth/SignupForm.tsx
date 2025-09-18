@@ -18,7 +18,6 @@ import { useAuth } from "@/hooks/use-auth";
 import Image from "next/image";
 
 const emailFormSchema = z.object({
-  username: z.string().min(2, { message: "Username must be at least 2 characters." }),
   email: z.string().email({ message: "Please enter a valid email address." }),
   password: z.string()
     .min(8, { message: "Password must be at least 8 characters." })
@@ -32,7 +31,7 @@ export function SignupForm() {
 
   const form = useForm<z.infer<typeof emailFormSchema>>({
     resolver: zodResolver(emailFormSchema),
-    defaultValues: { username: "", email: "", password: "" },
+    defaultValues: { email: "", password: "" },
   });
 
   const handleEmailSubmit = async (data: z.infer<typeof emailFormSchema>) => {
@@ -60,23 +59,6 @@ export function SignupForm() {
         ) : (
           <Form {...form}>
             <form onSubmit={form.handleSubmit(handleEmailSubmit)} className="space-y-5">
-              <FormField
-                control={form.control}
-                name="username"
-                render={({ field }) => (
-                  <FormItem className="relative">
-                    <FormControl>
-                      <Input 
-                        placeholder="Username" 
-                        {...field} 
-                        className="w-full pl-5 pr-10 py-3 border-none rounded-lg bg-[#f0f0f0] outline-none"
-                      />
-                    </FormControl>
-                     <i className='bx bx-user absolute right-4 top-1/2 -translate-y-1/2 text-gray-500'></i>
-                    <FormMessage />
-                  </FormItem>
-                )}
-              />
               <FormField
                 control={form.control}
                 name="email"
