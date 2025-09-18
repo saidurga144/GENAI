@@ -17,6 +17,7 @@ import { Input } from "@/components/ui/input";
 import { useAuth } from "@/hooks/use-auth";
 import Image from "next/image";
 import { Eye, EyeOff } from 'lucide-react';
+import Link from "next/link";
 
 const emailFormSchema = z.object({
   email: z.string().email({ message: "Please enter a valid email address." }),
@@ -46,7 +47,7 @@ export function SignupForm() {
     setSuccessMessage(null);
     try {
       await signUp(data.email, data.password);
-      setSuccessMessage("Account created! A verification email has been sent. Please check your inbox and verify your email before logging in.");
+      setSuccessMessage("Account created! A verification email has been sent. Please check your inbox (and spam folder) to verify your account before logging in.");
       form.reset();
     } catch (err) {
       setError(err instanceof Error ? err.message : "An unexpected error occurred.");
@@ -58,9 +59,14 @@ export function SignupForm() {
   return (
     <div className="w-full max-w-sm font-sans">
         {successMessage ? (
-          <div className="p-4 bg-green-100 border border-green-400 text-green-700 rounded-md">
-            <h3 className="font-bold">Success!</h3>
-            <p>{successMessage}</p>
+          <div className="p-4 bg-green-100 border border-green-400 text-green-700 rounded-md text-center">
+            <h3 className="font-bold text-lg mb-2">Success!</h3>
+            <p className="text-sm">{successMessage}</p>
+             <Button asChild variant="link" className="mt-4">
+                <Link href="/login">
+                    Proceed to Login
+                </Link>
+            </Button>
           </div>
         ) : (
           <Form {...form}>
