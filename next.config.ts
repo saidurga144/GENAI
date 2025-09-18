@@ -86,7 +86,8 @@ const nextConfig: NextConfig = {
         pathname: '/**',
       },
       {
-        protocol: 'https',
+        protocol: 'https'
+        ,
         hostname: 'wonderfulengineering.com',
         port: '',
         pathname: '/**',
