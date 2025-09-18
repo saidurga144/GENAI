@@ -11,7 +11,7 @@ import { ArrowRight, CheckCircle, Rocket } from 'lucide-react';
 
 
 const FeatureCard = ({ icon, title, description }: { icon: React.ReactNode, title: string, description: string }) => (
-  <div className="bg-card p-6 rounded-xl border border-border/10 shadow-sm hover:shadow-primary/10 transition-shadow duration-300">
+  <div className="bg-card p-6 rounded-xl border border-border/10 shadow-sm hover:shadow-primary/10 transition-shadow duration-300 flex flex-col h-full">
     <div className="flex items-center gap-4 mb-4">
       <div className="p-3 rounded-lg bg-primary/10 text-primary">
         {icon}
