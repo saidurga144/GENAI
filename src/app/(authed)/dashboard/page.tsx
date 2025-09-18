@@ -75,7 +75,7 @@ export default function DashboardPage() {
             <div className="relative flex justify-center items-center mb-8" style={{ perspective: '1000px' }}>
                 <div className="bg-secondary/50 rounded-lg p-4 border transition-transform duration-500 ease-in-out hover:-rotate-y-12 hover:rotate-x-12 hover:scale-105 hover:shadow-2xl" style={{ transformStyle: 'preserve-3d' }}>
                     <Image
-                        src="https://www.aldirasa.com/wp-content/uploads/2021/11/Career-guidance.jpg"
+                        src="https://tse4.mm.bing.net/th/id/OIP.jxQ-l3YiVcwFFMl-nJX5bAHaE8?pid=Api&P=0&h=220"
                         alt="A person drawing a career path graph"
                         width={600}
                         height={400}
