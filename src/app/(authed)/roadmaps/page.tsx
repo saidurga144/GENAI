@@ -54,7 +54,7 @@ const roadmaps = [
         description: "A step-by-step path to a career in Aeronautical Engineering, from aerodynamics to aircraft design and beyond.",
         url: "/aeronautical-engineer",
         icon: <Plane className="w-8 h-8 text-primary" />,
-        imageUrl: "https://www.aldirasa.com/cdn-cgi/image/format=auto,fit=contain,width=1200,height=630/https://www.aldirasa.com/storage/departments/76e9d6d3e6a67aa2999279f208e9076a11-9Z.jpg",
+        imageUrl: "https://tse3.mm.bing.net/th/id/OIP.asHETTJ6fyo4sr_T1ffJXgHaE7?pid=Api&P=0&h=220",
     },
      {
         title: "Biomedical Engineer",
