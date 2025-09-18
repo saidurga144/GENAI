@@ -38,7 +38,7 @@ export default function LoginPage() {
         <div className="flex items-center justify-center min-h-screen p-4">
             <div className="flex bg-white rounded-2xl shadow-2xl overflow-hidden max-w-4xl w-full">
                 {/* Registration Info Panel */}
-                <div className="flex-1 p-10 text-center bg-white flex flex-col justify-center items-center">
+                <div className="flex-1 p-10 text-center bg-white flex flex-col justify-center items-center animate-slide-in-left">
                      <h1 className="text-3xl font-bold mb-4 text-gray-800">New Here?</h1>
                     <p className="mb-6 text-gray-600">Sign up and discover a great amount of new opportunities!</p>
                     <Button asChild variant="outline" className="rounded-full border-primary text-primary hover:bg-primary hover:text-white">
@@ -49,7 +49,7 @@ export default function LoginPage() {
                 </div>
 
                 {/* Login Form Panel */}
-                <div className="flex-1 p-10 bg-[#e0ecff] flex flex-col justify-center items-center">
+                <div className="flex-1 p-10 bg-[#e0ecff] flex flex-col justify-center items-center animate-slide-in-right">
                     <h1 className="text-3xl font-bold text-gray-800 mb-6">Login</h1>
                     <LoginForm />
                 </div>

@@ -1,3 +1,4 @@
+
 "use client";
 
 import { SignupForm } from "@/components/auth/SignupForm";
@@ -37,7 +38,7 @@ export default function SignupPage() {
         <div className="flex items-center justify-center min-h-screen p-4">
             <div className="flex bg-white rounded-2xl shadow-2xl overflow-hidden max-w-4xl w-full">
                 {/* Login Info Panel */}
-                <div className="flex-1 p-10 text-center bg-[#e0ecff] flex flex-col justify-center items-center">
+                <div className="flex-1 p-10 text-center bg-[#e0ecff] flex flex-col justify-center items-center animate-slide-in-left">
                     <h1 className="text-3xl font-bold mb-4 text-gray-800">Welcome Back!</h1>
                     <p className="mb-6 text-gray-600">Already have an account? Login to access your dashboard.</p>
                     <Button asChild variant="outline" className="rounded-full border-primary text-primary hover:bg-primary hover:text-white">
@@ -48,7 +49,7 @@ export default function SignupPage() {
                 </div>
 
                 {/* Signup Form Panel */}
-                <div className="flex-1 p-10 bg-white flex flex-col justify-center items-center">
+                <div className="flex-1 p-10 bg-white flex flex-col justify-center items-center animate-slide-in-right">
                     <h1 className="text-3xl font-bold text-gray-800 mb-6">Create Account</h1>
                     <SignupForm />
                 </div>
