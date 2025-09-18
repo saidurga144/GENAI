@@ -79,10 +79,10 @@ export function SidebarNav() {
                 </SidebarMenuButton>
               </SidebarMenuItem>
               <SidebarMenuItem>
-                <SidebarMenuButton asChild isActive={pathname === '/dashboard/generator'} tooltip="Career Generator" onClick={handleLinkClick}>
+                <SidebarMenuButton asChild isActive={pathname === '/dashboard/generator'} tooltip="Build Your Career" onClick={handleLinkClick}>
                   <Link href="/dashboard/generator">
                     <FileText />
-                    Career Generator
+                    Build Your Career
                   </Link>
                 </SidebarMenuButton>
               </SidebarMenuItem>
