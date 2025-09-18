@@ -48,8 +48,8 @@ function ProfileDashboard() {
       </CardContent>
       <CardFooter className="flex flex-col gap-4">
         <Button asChild className="w-full">
-          <Link href="/dashboard/generator">
-            Explore Career Paths
+          <Link href="/roadmaps">
+            Carrier Roadmaps
             <ArrowRight />
           </Link>
         </Button>
