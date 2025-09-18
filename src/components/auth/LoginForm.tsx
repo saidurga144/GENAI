@@ -52,7 +52,7 @@ export function LoginForm() {
   };
   
   return (
-    <div className="w-full max-w-sm text-gray-300">
+    <div className="w-full max-w-sm text-gray-300 mx-auto">
       <Form {...form}>
         <form onSubmit={form.handleSubmit(handleEmailSubmit)} className="space-y-6">
           <FormField
@@ -61,14 +61,11 @@ export function LoginForm() {
             render={({ field }) => (
               <FormItem>
                 <FormControl>
-                  <div className="relative">
-                    <User className="absolute left-3 top-1/2 -translate-y-1/2 h-5 w-5 text-gray-400" />
-                    <Input 
+                  <Input 
                       placeholder="Username" 
                       {...field} 
-                      className="w-full bg-black/40 border-gray-600 text-gray-200 pl-10 focus:ring-offset-gray-800 focus:border-gray-500"
-                    />
-                  </div>
+                      className="w-full bg-slate-800/50 border-slate-700 text-gray-200 rounded-full h-12 px-6 focus:ring-primary focus:border-primary"
+                  />
                 </FormControl>
                 <FormMessage />
               </FormItem>
@@ -80,21 +77,18 @@ export function LoginForm() {
             render={({ field }) => (
               <FormItem>
                 <FormControl>
-                  <div className="relative">
-                     <Lock className="absolute left-3 top-1/2 -translate-y-1/2 h-5 w-5 text-gray-400" />
-                    <Input 
-                      type="password"
-                      placeholder="********" 
-                      {...field} 
-                      className="w-full bg-black/40 border-gray-600 text-gray-200 pl-10 focus:ring-offset-gray-800 focus:border-gray-500"
-                    />
-                  </div>
+                  <Input 
+                    type="password"
+                    placeholder="Password" 
+                    {...field} 
+                    className="w-full bg-slate-800/50 border-slate-700 text-gray-200 rounded-full h-12 px-6 focus:ring-primary focus:border-primary"
+                  />
                 </FormControl>
                 <FormMessage />
               </FormItem>
             )}
           />
-          <div className="flex items-center justify-between text-xs">
+           <div className="flex items-center justify-between text-xs px-2">
             <FormField
               control={form.control}
               name="rememberMe"
@@ -104,7 +98,7 @@ export function LoginForm() {
                     <Checkbox
                       checked={field.value}
                       onCheckedChange={field.onChange}
-                      className="data-[state=checked]:bg-gray-400 border-gray-500"
+                      className="data-[state=checked]:bg-primary data-[state=checked]:border-primary border-slate-600"
                     />
                   </FormControl>
                   <FormLabel className="font-normal text-gray-400">
@@ -118,11 +112,14 @@ export function LoginForm() {
             </Link>
           </div>
           {error && <p className="text-sm text-red-400 text-center">{error}</p>}
-          <Button type="submit" className="w-full bg-gray-400 text-black hover:bg-gray-300 font-bold tracking-wider" disabled={loading}>
+          <Button 
+            type="submit" 
+            className="w-full h-12 rounded-full bg-gradient-to-r from-primary to-fuchsia-600 text-white hover:opacity-90 font-bold tracking-wider transition-opacity" 
+            disabled={loading}
+          >
             {loading && <Image src="/loader.gif" alt="Loading..." width={24} height={24} unoptimized className="mr-2" />}
-            LOGIN
+            Log In
           </Button>
-
             <div className="text-center text-xs">
                 <span className="text-gray-500">Not a member? </span>
                 <Link href="/signup" className="font-semibold text-gray-400 hover:text-white">
