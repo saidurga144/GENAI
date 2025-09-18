@@ -36,8 +36,6 @@ const AuthHeader = () => (
             </Link>
             <nav className="hidden md:flex items-center gap-8 text-sm">
                 <Link href="/" className="text-white/80 hover:text-white transition-colors">Home</Link>
-                <Link href="#" className="text-white/80 hover:text-white transition-colors">Download</Link>
-                <Link href="#" className="text-white/80 hover:text-white transition-colors">About</Link>
                 <Link href="/login" className="text-white/80 hover:text-white transition-colors">Login</Link>
             </nav>
         </div>
