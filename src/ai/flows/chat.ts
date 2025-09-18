@@ -20,12 +20,12 @@ const ChatInputSchema = z.object({
       })
     )
     .describe('The chat history.'),
-  message: z.string().describe('The user\'s message.'),
+  message: z.string().describe("The user's message."),
 });
 export type ChatInput = z.infer<typeof ChatInputSchema>;
 
 const ChatOutputSchema = z.object({
-  message: z.string().describe('The AI\'s response.'),
+  message: z.string().describe("The AI's response."),
 });
 export type ChatOutput = z.infer<typeof ChatOutputSchema>;
 
@@ -53,24 +53,24 @@ const chatFlow = ai.defineFlow(
       prompt: message,
       config: {
         safetySettings: [
-            {
-                category: 'HARM_CATEGORY_DANGEROUS_CONTENT',
-                threshold: 'BLOCK_ONLY_HIGH',
-            },
-            {
-                category: 'HARM_CATEGORY_HATE_SPEECH',
-                threshold: 'BLOCK_ONLY_HIGH',
-            },
-            {
-                category: 'HARM_CATEGORY_HARASSMENT',
-                threshold: 'BLOCK_ONLY_HIGH',
-            },
-            {
-                category: 'HARM_CATEGORY_SEXUALLY_EXPLICIT',
-                threshold: 'BLOCK_ONLY_HIGH',
-            },
+          {
+            category: 'HARM_CATEGORY_DANGEROUS_CONTENT',
+            threshold: 'BLOCK_NONE',
+          },
+          {
+            category: 'HARM_CATEGORY_HATE_SPEECH',
+            threshold: 'BLOCK_NONE',
+          },
+          {
+            category: 'HARM_CATEGORY_HARASSMENT',
+            threshold: 'BLOCK_NONE',
+          },
+          {
+            category: 'HARM_CATEGORY_SEXUALLY_EXPLICIT',
+            threshold: 'BLOCK_NONE',
+          },
         ],
-      }
+      },
     });
 
     if (!output) {
