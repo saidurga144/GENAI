@@ -39,7 +39,14 @@ export default function LoginPage() {
             <div className="flex bg-white rounded-2xl shadow-2xl overflow-hidden max-w-4xl w-full">
                 {/* Registration Info Panel */}
                 <div className="flex-1 p-10 text-center bg-white flex flex-col justify-center items-center animate-slide-in-left">
-                     <h1 className="text-3xl font-bold mb-4 text-gray-800">New Here?</h1>
+                    <Image 
+                        src="https://img.freepik.com/free-vector/access-control-system-abstract-concept_335657-3180.jpg"
+                        alt="Welcome Animation"
+                        width={300}
+                        height={300}
+                        className="mb-6"
+                    />
+                    <h1 className="text-3xl font-bold mb-4 text-gray-800">New Here?</h1>
                     <p className="mb-6 text-gray-600">Sign up and discover a great amount of new opportunities!</p>
                     <Button asChild variant="outline" className="rounded-full border-primary text-primary hover:bg-primary hover:text-white">
                         <Link href="/signup">
