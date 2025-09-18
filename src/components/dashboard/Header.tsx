@@ -18,7 +18,7 @@ export function Header() {
             <Menu className="h-6 w-6" />
             <span className="sr-only">Toggle sidebar</span>
         </Button>
-        <h1 className="text-lg font-bold">CarrierGuide</h1>
+        <h1 className="text-lg font-bold">CareerGuide</h1>
       </div>
 
       <nav className="hidden lg:flex items-center gap-6 text-sm font-medium">

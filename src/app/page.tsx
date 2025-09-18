@@ -45,7 +45,7 @@ export default function Home() {
       <div className="flex flex-col min-h-screen bg-background text-foreground">
         <header className="absolute top-0 left-0 right-0 p-4 z-20">
              <div className="container mx-auto px-4 flex justify-between items-center">
-                <h2 className="text-3xl font-bold text-foreground tracking-widest uppercase">CarrierGuide</h2>
+                <h2 className="text-3xl font-bold text-foreground tracking-widest uppercase">CareerGuide</h2>
                 <Button asChild variant="outline" className="text-primary text-lg font-semibold border-2 border-primary bg-transparent rounded-lg px-6 py-3 hover:bg-primary hover:text-white hover:shadow-lg hover:-translate-y-0.5 transition-all duration-300">
                     <Link href="/login">
                         Log In
@@ -61,10 +61,10 @@ export default function Home() {
               <div className="grid md:grid-cols-2 gap-12 items-center">
                 <div className="text-center md:text-left animate-fade-in-up">
                   <h1 className="text-4xl md:text-6xl font-extrabold tracking-tighter mb-4 text-foreground">
-                    Navigate Your Carrier with Confidence
+                    Navigate Your Career with Confidence
                   </h1>
                   <p className="text-lg md:text-xl text-muted-foreground mb-8 max-w-xl mx-auto md:mx-0">
-                    CarrierGuide uses AI to analyze your skills, interests, and background to recommend personalized career paths and create a tailored roadmap for your success.
+                    CareerGuide uses AI to analyze your skills, interests, and background to recommend personalized career paths and create a tailored roadmap for your success.
                   </p>
                   <Button asChild size="lg">
                     <Link href="/signup">
@@ -116,7 +116,7 @@ export default function Home() {
           </section>
         </main>
         <footer className="text-center p-6 text-muted-foreground text-sm border-t">
-          <p>CarrierGuide &copy; {new Date().getFullYear()}</p>
+          <p>CareerGuide &copy; {new Date().getFullYear()}</p>
         </footer>
       </div>
   );

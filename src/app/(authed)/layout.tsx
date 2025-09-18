@@ -47,7 +47,7 @@ export default function AuthedLayout({
             {children}
           </main>
           <footer className="text-center p-6 text-muted-foreground text-sm no-print border-t">
-            <p>CarrierGuide &copy; {new Date().getFullYear()}</p>
+            <p>CareerGuide &copy; {new Date().getFullYear()}</p>
           </footer>
         </div>
       </SidebarInset>

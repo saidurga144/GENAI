@@ -5,7 +5,7 @@ import { Toaster } from '@/components/ui/toaster';
 import { AuthProvider } from '@/hooks/use-auth';
 
 export const metadata: Metadata = {
-  title: 'CarrierGuide',
+  title: 'CareerGuide',
   description: 'AI-powered career guidance for students.',
 };
 

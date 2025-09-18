@@ -180,7 +180,7 @@ export function ResultsDashboard({ results, onReset, formInput }: ResultsDashboa
       <div className="hidden print:block">
          <div className="mb-8 border-b pb-4">
             <div className="flex items-center gap-3 mb-2">
-                <h1 className="text-2xl font-bold">CarrierGuide</h1>
+                <h1 className="text-2xl font-bold">CareerGuide</h1>
             </div>
             <h2 className="text-xl font-semibold">Your Personalized Career Plan</h2>
             <p className="text-sm text-muted-foreground">Generated on {new Date().toLocaleDateString()}</p>
