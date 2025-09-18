@@ -4,50 +4,57 @@ import { Card, CardHeader, CardTitle, CardDescription, CardContent } from "@/com
 import { Button } from "@/components/ui/button";
 import { ArrowLeft, CheckCircle } from "lucide-react";
 import Link from "next/link";
-import Image from "next/image";
 
 const roadmap = [
     {
-        title: "Stage 1: Foundational IT Skills (Months 0-6)",
-        description: "Build a strong understanding of IT fundamentals.",
+        title: "Step 1: Build Strong Foundations (6–12 months)",
+        description: "Learn computer fundamentals, networking, and Linux commands. Free resources: Cisco NetAcad, Cybrary, TryHackMe (beginner paths).",
         tasks: [
-            "Master computer hardware, software, and operating systems (Windows, Linux).",
-            "Learn networking concepts: TCP/IP, DNS, DHCP, routing, and switching.",
-            "Get a foundational certification like CompTIA A+ or Network+.",
-            "Practice using command-line interfaces (CLI) in both Windows and Linux."
+            "Learn Computer Fundamentals → OS (Windows, Linux), networking basics, hardware.",
+            "Start with Networking → TCP/IP, DNS, Firewalls, VPNs, Subnetting.",
+            "Study Linux commands (most cybersecurity tools run on Linux).",
+            "📚 Free Resources: Cisco NetAcad, Cybrary, TryHackMe (beginner paths)."
         ]
     },
     {
-        title: "Stage 2: Security Fundamentals (Months 6-12)",
-        description: "Dive into the core principles of cybersecurity.",
+        title: "Step 2: Formal Education / Degree (2–4 years)",
+        description: "Choose a Bachelor’s degree in CSE, IT, Cybersecurity, or ECE. If a degree isn’t possible, continue with certifications and practical labs.",
         tasks: [
-            "Study for and pass the CompTIA Security+ certification.",
-            "Learn about common threats, vulnerabilities, and risk management.",
-            "Understand cryptography, access control, and identity management.",
-            "Set up a home lab using virtual machines (e.g., VirtualBox) to practice."
+            "Choose a Bachelor’s degree in CSE, IT, Cybersecurity, or ECE (Computer Science is most common).",
+            "During degree → focus on subjects like Computer Networks, Cryptography, Operating Systems, and Security Fundamentals.",
+            "If degree isn’t possible, you can still continue with Certifications + Practical Labs."
         ]
     },
     {
-        title: "Stage 3: Hands-On Skills & Tools (Months 12-18)",
-        description: "Gain practical experience with industry-standard tools.",
+        title: "Step 3: Earn Core Certifications (Parallel with Degree or Independently)",
+        description: "Start with CompTIA Security+ and CCNA, then move to intermediate certs like CEH and OSCP. Consider cloud security certs as well.",
         tasks: [
-            "Learn to use tools like Wireshark for packet analysis and Nmap for network scanning.",
-            "Explore vulnerability scanning with tools like Nessus or OpenVAS.",
-            "Understand Security Information and Event Management (SIEM) systems like Splunk.",
-            "Practice ethical hacking techniques on platforms like HackTheBox or TryHackMe."
+            "Start small: CompTIA Security+ (Basics of security), CCNA (Networking knowledge).",
+            "Intermediate: CEH (Hacking tools & methods), OSCP (Advanced penetration testing).",
+            "Optional: Cloud Security certs (AWS, Azure, Google Cloud)."
         ]
     },
     {
-        title: "Stage 4: Specialization & Career Launch (Months 18-24)",
-        description: "Choose a specialization and prepare for your first role.",
+        title: "Step 4: Hands-On Practice (Continuous)",
+        description: "Create accounts on TryHackMe and HackTheBox. Build your own home lab to practice attacks and defense, and participate in CTFs.",
         tasks: [
-            "Specialize in areas like Penetration Testing, Security Operations (SOC), or Cloud Security.",
-            "Consider advanced certifications like CySA+ or Pentest+.",
-            "Build a portfolio of projects, write-ups from CTF challenges, or a blog.",
-            "Network with professionals in the field and apply for entry-level analyst roles."
+            "Create accounts on TryHackMe, HackTheBox, OverTheWire for labs.",
+            "Build your own Home Lab (VMware/VirtualBox) to practice attacks & defense.",
+            "Participate in CTFs (Capture The Flag) competitions.",
+            "Contribute to open-source security projects on GitHub."
+        ]
+    },
+    {
+        title: "Step 5: Specialize & Start Career (After 3–5 years)",
+        description: "Pick a specialization like Ethical Hacking or SOC Analyst. Apply for internships and entry-level roles and keep upgrading with advanced certifications.",
+        tasks: [
+            "Pick a specialization: Ethical Hacking, SOC Analyst, Digital Forensics, Malware Analysis, or Cloud Security.",
+            "Apply for Internships & Entry-level roles → SOC Analyst, Security Engineer, Junior Pen Tester.",
+            "Keep upgrading with advanced certs like CISSP, CISM, OSCE, SANS GIAC as you grow."
         ]
     }
 ];
+
 
 export default function CybersecuritySpecialistPage() {
     return (
