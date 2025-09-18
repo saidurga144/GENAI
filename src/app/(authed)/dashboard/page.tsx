@@ -8,6 +8,8 @@ import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle }
 import { User, LogOut, Mail, Phone, KeyRound, ArrowRight } from "lucide-react";
 import Link from "next/link";
 import Image from "next/image";
+import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
+
 
 function ProfileDashboard() {
   const { user, signOut } = useAuth();
@@ -18,10 +20,13 @@ function ProfileDashboard() {
 
   return (
     <Card className="w-full max-w-md shadow-lg animate-in fade-in-50 duration-500">
-      <CardHeader className="text-center">
-        <div className="mx-auto bg-primary/10 p-4 rounded-full w-fit mb-4">
-          <User className="w-10 h-10 text-primary" />
-        </div>
+      <CardHeader className="text-center items-center">
+         <Avatar className="w-24 h-24 mb-4 border-4 border-primary/20">
+            <AvatarImage src="https://tse1.mm.bing.net/th/id/OIP.7O4_GREtLbxqPdJCTmfatQHaHa?pid=Api&P=0&h=220" alt="User Avatar" />
+            <AvatarFallback>
+                <User className="w-10 h-10 text-muted-foreground" />
+            </AvatarFallback>
+        </Avatar>
         <CardTitle>Your Profile</CardTitle>
         <CardDescription>Here are your account details.</CardDescription>
       </CardHeader>
