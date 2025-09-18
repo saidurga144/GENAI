@@ -13,14 +13,7 @@ import { useState } from "react";
 export function Header() {
   const { toggleSidebar } = useSidebar();
   const { signOut } = useAuth();
-  const [notifications, setNotifications] = useState([
-    // Example notification. In a real app, this would be fetched from a server.
-    // {
-    //     title: "Response from Customer Care",
-    //     description: "We've received your feedback and are looking into the issue. We'll get back to you shortly.",
-    //     time: "5 minutes ago",
-    // }
-  ]);
+  const [notifications, setNotifications] = useState<{title: string; description: string; time: string}[]>([]);
 
   return (
     <header className="sticky top-0 z-10 flex h-16 items-center justify-between gap-4 border-b bg-primary px-4 md:px-6 text-primary-foreground no-print">
