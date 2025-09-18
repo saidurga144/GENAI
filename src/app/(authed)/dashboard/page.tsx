@@ -75,13 +75,13 @@ export default function DashboardPage() {
             <div className="relative flex justify-center items-center mb-8" style={{ perspective: '1000px' }}>
                 <div className="bg-secondary/50 rounded-lg p-4 border transition-transform duration-500 ease-in-out hover:-rotate-y-12 hover:rotate-x-12 hover:scale-105 hover:shadow-2xl" style={{ transformStyle: 'preserve-3d' }}>
                     <Image
-                        src="https://www.swarnprastha.com/wp-content/uploads/2023/12/Career-Counselling-1024x536.jpg"
-                        alt="A person considering different career paths"
+                        src="https://www.reliablesoft.net/wp-content/uploads/2018/11/career-guidance.jpg"
+                        alt="A person drawing a career path graph"
                         width={600}
                         height={400}
                         className="max-w-md w-full h-auto object-contain rounded-md"
                         quality={100}
-                        data-ai-hint="career choice paths"
+                        data-ai-hint="career guidance"
                     />
                 </div>
             </div>
