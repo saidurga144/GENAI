@@ -60,18 +60,6 @@ export default function SoftwareEngineerPage() {
                     </Link>
                 </Button>
             </div>
-             <div className="relative flex justify-center items-center mb-8" style={{ perspective: '1000px' }}>
-                <div className="bg-secondary/50 rounded-lg p-4 border transition-transform duration-500 ease-in-out hover:-rotate-y-12 hover:rotate-x-12 hover:scale-105 hover:shadow-2xl" style={{ transformStyle: 'preserve-3d' }}>
-                    <Image
-                        src="https://tse3.mm.bing.net/th/id/OIP.E19xMrIg0VBd_G9VSyHJmAHaE7?pid=Api&P=0&h=220"
-                        alt="Software Engineer"
-                        width={600}
-                        height={400}
-                        className="max-w-md w-full h-auto object-contain"
-                        quality={100}
-                    />
-                </div>
-            </div>
             <PageHeader
                 title="Roadmap: Software Engineer"
                 description="Your step-by-step guide to becoming a successful Software Engineer."

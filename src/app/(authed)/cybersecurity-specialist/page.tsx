@@ -60,18 +60,6 @@ export default function CybersecuritySpecialistPage() {
                     </Link>
                 </Button>
             </div>
-            <div className="relative flex justify-center items-center mb-8" style={{ perspective: '1000px' }}>
-                <div className="bg-secondary/50 rounded-lg p-4 border transition-transform duration-500 ease-in-out hover:-rotate-y-12 hover:rotate-x-12 hover:scale-105 hover:shadow-2xl" style={{ transformStyle: 'preserve-3d' }}>
-                    <Image
-                        src="https://tse1.mm.bing.net/th/id/OIP.Zf6YLhRpL7la9QnOp0EGOQHaFW?pid=Api&P=0&h=220"
-                        alt="Cybersecurity"
-                        width={600}
-                        height={400}
-                        className="max-w-md w-full h-auto object-contain"
-                        quality={100}
-                    />
-                </div>
-            </div>
             <PageHeader
                 title="Roadmap: Cybersecurity Specialist"
                 description="Your step-by-step guide to a career in Cybersecurity."
