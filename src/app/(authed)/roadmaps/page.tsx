@@ -1,4 +1,5 @@
 
+
 'use client';
 
 import { useState } from "react";
@@ -30,7 +31,7 @@ const roadmapsList = [
         description: "Your guide to a successful career with a Bachelor of Business Administration, from core subjects to leadership roles.",
         url: "/bba",
         icon: <Briefcase className="w-8 h-8 text-primary" />,
-        imageUrl: "https://picsum.photos/seed/bba/600/400",
+        imageUrl: "https://tse2.mm.bing.net/th/id/OIP.RajjQs4W5cAmhkO5hQJi4wHaEO?pid=Api&P=0&h=220",
     },
      {
         title: "Biomedical Engineer",
@@ -79,7 +80,7 @@ const roadmapsList = [
         description: "A roadmap for pursuing a Master of Business Administration, from entrance exams to executive leadership.",
         url: "/mba",
         icon: <GraduationCap className="w-8 h-8 text-primary" />,
-        imageUrl: "https://picsum.photos/seed/mba/600/400",
+        imageUrl: "https://tse2.mm.bing.net/th/id/OIP.YjEDBg3BIfri_PeMq3iXigHaEU?pid=Api&P=0&h=220",
     },
     {
         title: "Mechanical Engineer",
@@ -93,7 +94,7 @@ const roadmapsList = [
         description: "Your guide to a career in paramedical sciences, from choosing a course to advanced clinical roles.",
         url: "/paramedical-specialist",
         icon: <Stethoscope className="w-8 h-8 text-primary" />,
-        imageUrl: "https://picsum.photos/seed/paramedical/600/400",
+        imageUrl: "https://tse4.mm.bing.net/th/id/OIP.Zt_9Lh-8GYsQCVltrYeF6gAAAA?pid=Api&P=0&h=220",
     },
     {
         title: "Software Engineer",
