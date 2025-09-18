@@ -1,4 +1,3 @@
-
 "use client";
 
 import { SignupForm } from "@/components/auth/SignupForm";
@@ -52,13 +51,6 @@ export default function SignupPage() {
                 <div className="flex-1 p-10 bg-white flex flex-col justify-center items-center">
                     <h1 className="text-3xl font-bold text-gray-800 mb-6">Create Account</h1>
                     <SignupForm />
-                     <p className="mt-4 text-gray-600">or sign up with</p>
-                    <div className="flex justify-center gap-4 mt-4">
-                        <a href="#" className="text-primary text-2xl hover:text-blue-800"><i className='bx bxl-google'></i></a>
-                        <a href="#" className="text-primary text-2xl hover:text-blue-800"><i className='bx bxl-facebook'></i></a>
-                        <a href="#" className="text-primary text-2xl hover:text-blue-800"><i className='bx bxl-github'></i></a>
-                        <a href="#" className="text-primary text-2xl hover:text-blue-800"><i className='bx bxl-linkedin'></i></a>
-                    </div>
                 </div>
             </div>
         </div>
