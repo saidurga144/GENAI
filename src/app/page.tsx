@@ -11,7 +11,7 @@ import { ArrowRight, CheckCircle, Rocket, LogIn } from 'lucide-react';
 
 
 const FeatureCard = ({ icon, title, description }: { icon: React.ReactNode, title: string, description: string }) => (
-  <div className="bg-card p-6 rounded-xl border border-border/10 shadow-sm hover:shadow-lg hover:-translate-y-1 transition-transform duration-300 flex flex-col h-full">
+  <div className="bg-card p-6 rounded-xl shadow-sm hover:shadow-lg hover:-translate-y-1 transition-transform duration-300 flex flex-col h-full border">
     <div className="flex items-center gap-4 mb-4">
       <div className="p-3 rounded-lg bg-primary/10 text-primary">
         {icon}
@@ -46,7 +46,7 @@ export default function Home() {
         <header className="absolute top-0 left-0 right-0 p-4 z-20">
              <div className="container mx-auto px-4 flex justify-between items-center">
                 <h2 className="text-3xl font-bold text-foreground tracking-widest uppercase">CarrierGuide</h2>
-                <Button asChild variant="link" className="text-primary text-lg">
+                <Button asChild variant="outline" className="text-primary text-lg font-semibold border-2 border-primary bg-transparent rounded-lg px-6 py-3 hover:bg-primary hover:text-white hover:shadow-lg hover:-translate-y-0.5 transition-all duration-300">
                     <Link href="/login">
                         Log In
                         <LogIn className="ml-2" />
@@ -96,27 +96,21 @@ export default function Home() {
                 <p className="text-lg text-muted-foreground mt-2 max-w-2xl mx-auto">Three simple steps to unlock your future potential.</p>
               </div>
               <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-                <div className="flex">
                   <FeatureCard
                     icon={<Rocket size={24} />}
                     title="1. Tell Us About You"
                     description="Input your skills, academic background, and interests, or simply upload your resume to get started."
                   />
-                </div>
-                <div className="flex">
                   <FeatureCard
                     icon={<CheckCircle size={24} />}
                     title="2. Get AI Recommendations"
                     description="Our advanced AI analyzes your profile to generate a list of suitable career paths, complete with a suitability score."
                   />
-                </div>
-                <div className="flex">
                   <FeatureCard
                     icon={<ArrowRight size={24} />}
                     title="3. Receive Your Roadmap"
                     description="Get a step-by-step, actionable roadmap for each recommendation to guide you on your journey."
                   />
-                </div>
               </div>
             </div>
           </section>
