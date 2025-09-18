@@ -74,7 +74,7 @@ export default function SignupPage() {
                     <div className="hidden md:flex flex-col items-center justify-center p-12 bg-black/20 relative overflow-hidden">
                         <div 
                             className="absolute inset-0 bg-no-repeat bg-cover bg-center"
-                            style={{backgroundImage: `url('https://img.freepik.com/free-vector/dark-gradient-background-with-copy-space_53876-99548.jpg?t=st=1721591143~exp=1721594743~hmac=62d980b18f0f08a9c2d1b8c4c798031e4d1fce5757041f021e1104e13d9611b0&w=900')`}}
+                            style={{backgroundImage: `url('https://img.freepik.com/free-vector/gradient-background-vector-illustration_460848-14502.jpg')`}}
                         />
                         <div className="absolute inset-0 bg-gradient-to-t from-slate-900/50 to-transparent"></div>
                         <div className="relative z-10 text-center">
