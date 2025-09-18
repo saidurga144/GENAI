@@ -39,14 +39,12 @@ export default function SignupPage() {
             <div className="flex bg-white rounded-2xl shadow-2xl overflow-hidden max-w-4xl w-full animate-fade-in-up">
                 {/* Login Info Panel */}
                 <div className="flex-1 p-10 text-center bg-[#e0ecff] flex flex-col justify-center items-center">
-                     <video 
-                        src="https://cdn.dribbble.com/users/2432375/screenshots/16839364/media/f48480f333857864835824c168b52994.mp4"
-                        autoPlay
-                        loop
-                        muted
+                     <Image 
+                        src="https://www.aldirasa.com/wp-content/uploads/2021/08/Career-Counselling-for-Students-in-Dubai-1-scaled.jpg"
+                        alt="Welcome Animation"
                         width={400}
                         height={300}
-                        className="mb-6 rounded-lg"
+                        className="mb-6 rounded-lg object-cover"
                     />
                     <h1 className="text-3xl font-bold mb-4 text-gray-800">Welcome Back!</h1>
                     <p className="mb-6 text-gray-600">Already have an account? Login to access your dashboard.</p>
