@@ -7,7 +7,7 @@ import { useAuth } from '@/hooks/use-auth';
 import { Button } from '@/components/ui/button';
 import Link from 'next/link';
 import Image from 'next/image';
-import { ArrowRight, CheckCircle, Rocket } from 'lucide-react';
+import { ArrowRight, CheckCircle, Rocket, LogIn } from 'lucide-react';
 
 
 const FeatureCard = ({ icon, title, description }: { icon: React.ReactNode, title: string, description: string }) => (
@@ -43,13 +43,23 @@ export default function Home() {
 
   return (
       <div className="flex flex-col min-h-screen bg-background text-foreground">
+        <header className="absolute top-0 left-0 right-0 p-4 z-20">
+            <div className="container mx-auto px-4 flex justify-end items-center">
+                <Button asChild variant="outline">
+                    <Link href="/login">
+                        <LogIn className="mr-2" />
+                        Log In
+                    </Link>
+                </Button>
+            </div>
+        </header>
         <main className="flex-grow">
           {/* Hero Section */}
           <section className="relative py-20 md:py-32 overflow-hidden">
             <div className="container mx-auto px-4 z-10 relative">
               <div className="grid md:grid-cols-2 gap-12 items-center">
                 <div className="text-center md:text-left animate-fade-in-up">
-                  <h2 className="text-lg font-semibold text-primary tracking-widest uppercase mb-2">CarrierGuide</h2>
+                  <h2 className="text-2xl font-bold text-primary tracking-widest uppercase mb-2">CarrierGuide</h2>
                   <h1 className="text-4xl md:text-6xl font-extrabold tracking-tighter mb-4 text-foreground">
                     Navigate Your Career with Confidence
                   </h1>
