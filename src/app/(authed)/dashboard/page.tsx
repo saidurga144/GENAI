@@ -75,7 +75,7 @@ export default function DashboardPage() {
             <div className="relative flex justify-center items-center mb-8" style={{ perspective: '1000px' }}>
                 <div className="bg-secondary/50 rounded-lg p-4 border transition-transform duration-500 ease-in-out hover:-rotate-y-12 hover:rotate-x-12 hover:scale-105 hover:shadow-2xl" style={{ transformStyle: 'preserve-3d' }}>
                     <Image
-                        src="https://picsum.photos/seed/career-path/600/400"
+                        src="https://img.freepik.com/free-photo/business-person-looking-futuristic-reports-with-data_1409-2868.jpg?t=st=1722340578~exp=1722344178~hmac=50a97c413e64c4897f56191bfd6f228b3d68376e1f0e4b85c8b2111d4e08253a&w=1060"
                         alt="A person considering different career paths"
                         width={600}
                         height={400}
