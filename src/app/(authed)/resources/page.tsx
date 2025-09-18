@@ -16,6 +16,11 @@ const channels = [
     { name: "Veritasium", url: "https://www.youtube.com/veritasium", description: "An element of truth - videos about science, education, and more." },
     { name: "The Organic Chemistry Tutor", url: "https://www.youtube.com/@TheOrganicChemistryTutor", description: "Tutorials on chemistry, math, and physics." },
     { name: "EEVblog", url: "https://www.youtube.com/@EEVblog", description: "An electronics engineering video blog for experts and beginners." },
+    { name: "Intellipaat", url: "https://youtube.com/@intellipaat", description: "Technology and professional courses." },
+    { name: "Tech With Tim", url: "https://youtube.com/@techwithtim", description: "Python tutorials and programming guides." },
+    { name: "Student Tribe", url: "https://youtube.com/@studenttribe", description: "Study tips and student success strategies." },
+    { name: "Programming with Mosh", url: "https://youtube.com/@programmingwithmosh", description: "Coding fundamentals and software development." },
+    { name: "Pratap Hari Chandan", url: "https://youtube.com/@pratapharichandan", description: "Data science and analytics learning." },
 ];
 
 export default function ResourcesPage() {
