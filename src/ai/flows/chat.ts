@@ -42,14 +42,14 @@ const chatFlow = ai.defineFlow(
   async input => {
     const {history, message} = input;
 
-    // The Gemini 2.5 Flash model used in this app only supports 'user' and 'model' roles.
+    // The Gemini 1.5 Flash model used in this app only supports 'user' and 'model' roles.
     const mappedHistory: Message[] = history.map(h => ({
       role: h.role === 'assistant' ? 'model' : h.role,
       content: h.content,
     }));
 
     const {output} = await ai.generate({
-      model: 'googleai/gemini-2.5-flash-preview',
+      model: 'googleai/gemini-1.5-flash',
       system: 'You are a helpful and friendly AI assistant. Your goal is to provide accurate and safe information to the user.',
       history: mappedHistory,
       prompt: message,
