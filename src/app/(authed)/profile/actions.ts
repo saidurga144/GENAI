@@ -4,6 +4,9 @@
 import { db } from '@/lib/firebase';
 import { doc, getDoc, setDoc, runTransaction } from 'firebase/firestore';
 
+// Note: The username functionality is currently disabled due to unresolved Firestore permission issues.
+// The following functions are preserved for future use but are not currently called by the application.
+
 const usernameRegex = /^[a-zA-Z]{4}[0-9]{3}$/;
 
 export async function checkUsernameAvailability(username: string): Promise<boolean> {

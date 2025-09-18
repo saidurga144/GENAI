@@ -5,105 +5,17 @@ import { useAuth } from "@/hooks/use-auth";
 import { useSearchParams } from "next/navigation";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card";
-import { User, LogOut, Mail, KeyRound, ArrowRight, UserCircle, Check, X, Loader2 } from "lucide-react";
+import { User, LogOut, Mail, KeyRound, ArrowRight } from "lucide-react";
 import Link from "next/link";
 import Image from "next/image";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
-import { Input } from "@/components/ui/input";
-import { useEffect, useState, useCallback } from "react";
-import { checkUsernameAvailability, setUsername, getUsername } from "@/app/(authed)/profile/actions";
-import { useToast } from "@/hooks/use-toast";
-import { useDebounce } from "@/hooks/use-debounce";
-import { cn } from "@/lib/utils";
 
 function ProfileDashboard() {
   const { user, signOut } = useAuth();
-  const { toast } = useToast();
-
-  const [username, setUsername] = useState('');
-  const [currentUsername, setCurrentUsername] = useState('');
-  const [isValid, setIsValid] = useState<boolean | null>(null);
-  const [isAvailable, setIsAvailable] = useState<boolean | null>(null);
-  const [isLoading, setIsLoading] = useState(false);
-  const [isChecking, setIsChecking] = useState(false);
-
-  const debouncedUsername = useDebounce(username, 500);
-
-  const usernameRegex = /^[a-zA-Z]{4}[0-9]{3}$/;
-
-  const checkAvailability = useCallback(async (name: string) => {
-    if (!usernameRegex.test(name)) {
-      setIsValid(false);
-      setIsAvailable(null);
-      return;
-    }
-    setIsValid(true);
-    setIsChecking(true);
-    try {
-      const available = await checkUsernameAvailability(name);
-      setIsAvailable(available);
-    } catch (error) {
-      setIsAvailable(null);
-    } finally {
-      setIsChecking(false);
-    }
-  }, [usernameRegex]);
-
-  useEffect(() => {
-    if (debouncedUsername) {
-      checkAvailability(debouncedUsername);
-    } else {
-      setIsValid(null);
-      setIsAvailable(null);
-    }
-  }, [debouncedUsername, checkAvailability]);
-
-  useEffect(() => {
-    if (user) {
-      const fetchUsername = async () => {
-        const current = await getUsername(user.uid);
-        if (current) {
-          setCurrentUsername(current);
-          setUsername(current);
-        }
-      };
-      fetchUsername();
-    }
-  }, [user]);
 
   if (!user) {
     return null;
   }
-
-  const handleSave = async () => {
-    if (!isValid || !isAvailable || !user) return;
-    setIsLoading(true);
-    try {
-      await setUsername(user.uid, username);
-      setCurrentUsername(username);
-      toast({
-        title: "Success",
-        description: "Username updated successfully!",
-      });
-    } catch (error) {
-      const errorMessage = error instanceof Error ? error.message : "An unexpected error occurred.";
-      toast({
-        variant: "destructive",
-        title: "Error",
-        description: errorMessage,
-      });
-    } finally {
-      setIsLoading(false);
-    }
-  };
-
-  const getFeedbackIcon = () => {
-    if (isChecking) return <Loader2 className="w-5 h-5 text-muted-foreground animate-spin" />;
-    if (debouncedUsername && isValid === false) return <X className="w-5 h-5 text-destructive" />;
-    if (isAvailable === true) return <Check className="w-5 h-5 text-green-500" />;
-    if (isAvailable === false) return <X className="w-5 h-5 text-destructive" />;
-    return null;
-  };
 
   return (
     <Card className="w-full max-w-md shadow-lg animate-in fade-in-50 duration-500">
@@ -114,7 +26,7 @@ function ProfileDashboard() {
                 <User className="w-10 h-10 text-muted-foreground" />
             </AvatarFallback>
         </Avatar>
-        <CardTitle>{currentUsername || "Your Profile"}</CardTitle>
+        <CardTitle>{user.email}</CardTitle>
         <CardDescription>Here are your account details.</CardDescription>
       </CardHeader>
       <CardContent className="space-y-4">
@@ -185,5 +97,3 @@ export default function DashboardPage() {
     </div>
   );
 }
-
-    
