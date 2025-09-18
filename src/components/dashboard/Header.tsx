@@ -34,7 +34,7 @@ export function Header() {
           className="transition-colors hover:text-primary-foreground/80 flex items-center gap-2"
         >
           <FileText className="w-4 h-4" />
-          Build Your Career
+          Build Career
         </Link>
         <Link
           href="/roadmaps"
