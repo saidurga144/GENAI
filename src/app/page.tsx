@@ -11,7 +11,7 @@ import { ArrowRight, CheckCircle, Rocket, LogIn } from 'lucide-react';
 
 
 const FeatureCard = ({ icon, title, description }: { icon: React.ReactNode, title: string, description: string }) => (
-  <div className="bg-card p-6 rounded-xl border border-border/10 shadow-sm hover:shadow-primary/10 transition-shadow duration-300 flex flex-col h-full">
+  <div className="bg-card p-6 rounded-xl border border-border/10 shadow-sm hover:shadow-lg hover:-translate-y-1 transition-transform duration-300 flex flex-col h-full">
     <div className="flex items-center gap-4 mb-4">
       <div className="p-3 rounded-lg bg-primary/10 text-primary">
         {icon}
@@ -96,21 +96,21 @@ export default function Home() {
                 <p className="text-lg text-muted-foreground mt-2 max-w-2xl mx-auto">Three simple steps to unlock your future potential.</p>
               </div>
               <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-                 <div className="animate-fade-in-up flex" style={{ animationDelay: '0.2s' }}>
+                <div className="flex">
                   <FeatureCard
                     icon={<Rocket size={24} />}
                     title="1. Tell Us About You"
                     description="Input your skills, academic background, and interests, or simply upload your resume to get started."
                   />
                 </div>
-                <div className="animate-fade-in-up flex" style={{ animationDelay: '0.4s' }}>
-                   <FeatureCard
+                <div className="flex">
+                  <FeatureCard
                     icon={<CheckCircle size={24} />}
                     title="2. Get AI Recommendations"
                     description="Our advanced AI analyzes your profile to generate a list of suitable career paths, complete with a suitability score."
                   />
                 </div>
-                <div className="animate-fade-in-up flex" style={{ animationDelay: '0.6s' }}>
+                <div className="flex">
                   <FeatureCard
                     icon={<ArrowRight size={24} />}
                     title="3. Receive Your Roadmap"
