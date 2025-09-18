@@ -8,18 +8,18 @@ import { useSidebar } from "@/components/ui/sidebar";
 import { useAuth } from "@/hooks/use-auth";
 import { Popover, PopoverContent, PopoverTrigger } from "@/components/ui/popover";
 import { Avatar, AvatarFallback } from "@/components/ui/avatar";
+import { useState } from "react";
 
-const notifications = [
+export function Header() {
+  const { toggleSidebar } = useSidebar();
+  const { signOut } = useAuth();
+  const [notifications, setNotifications] = useState([
     {
         title: "Response from Customer Care",
         description: "We've received your feedback and are looking into the issue. We'll get back to you shortly.",
         time: "5 minutes ago",
     }
-];
-
-export function Header() {
-  const { toggleSidebar } = useSidebar();
-  const { signOut } = useAuth();
+  ]);
 
   return (
     <header className="sticky top-0 z-10 flex h-16 items-center justify-between gap-4 border-b bg-primary px-4 md:px-6 text-primary-foreground no-print">
@@ -64,10 +64,12 @@ export function Header() {
             <PopoverTrigger asChild>
                 <Button variant="ghost" size="icon" className="relative text-primary-foreground hover:bg-primary/80 hover:text-primary-foreground">
                     <Bell className="h-5 w-5" />
-                     <span className="absolute top-1 right-1 flex h-2 w-2">
-                        <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-red-400 opacity-75"></span>
-                        <span className="relative inline-flex rounded-full h-2 w-2 bg-red-500"></span>
-                    </span>
+                    {notifications.length > 0 && (
+                        <span className="absolute top-1 right-1 flex h-2 w-2">
+                            <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-red-400 opacity-75"></span>
+                            <span className="relative inline-flex rounded-full h-2 w-2 bg-red-500"></span>
+                        </span>
+                    )}
                 </Button>
             </PopoverTrigger>
             <PopoverContent className="w-80" align="end">
