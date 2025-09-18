@@ -2,7 +2,7 @@
 import { PageHeader } from "@/components/futurepath/PageHeader";
 import { Card, CardHeader, CardTitle, CardDescription, CardContent, CardFooter } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
-import { ArrowRight, Code, Cpu, Shield, ArrowLeft, Dna, Cog, Building2, Plane } from "lucide-react";
+import { ArrowRight, Code, Cpu, Shield, ArrowLeft, Dna, Cog, Building2, Plane, HeartPulse } from "lucide-react";
 import Link from "next/link";
 import Image from "next/image";
 
@@ -55,6 +55,13 @@ const roadmaps = [
         url: "/aeronautical-engineer",
         icon: <Plane className="w-8 h-8 text-primary" />,
         imageUrl: "https://www.aldirasa.com/cdn-cgi/image/format=auto,fit=contain,width=1200,height=630/https://www.aldirasa.com/storage/departments/76e9d6d3e6a67aa2999279f208e9076a11-9Z.jpg",
+    },
+     {
+        title: "Biomedical Engineer",
+        description: "Explore the intersection of medicine and engineering, designing devices and systems to improve human health.",
+        url: "/biomedical-engineer",
+        icon: <HeartPulse className="w-8 h-8 text-primary" />,
+        imageUrl: "https://tse2.mm.bing.net/th/id/OIP.M7ct0Vlp9Me0eVPpSEAWcgHaHa?pid=Api&P=0&h=220",
     },
 ]
 
