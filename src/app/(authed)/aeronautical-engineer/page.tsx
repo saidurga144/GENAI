@@ -1,9 +1,14 @@
 
+'use client';
+
+import { useEffect } from 'react';
 import { PageHeader } from "@/components/futurepath/PageHeader";
 import { Card, CardHeader, CardTitle, CardDescription, CardContent } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { ArrowLeft, CheckCircle } from "lucide-react";
 import Link from "next/link";
+import { useAuth } from '@/hooks/use-auth';
+import { logUserActivity } from '@/app/actions';
 
 const roadmap = [
     {
@@ -46,6 +51,15 @@ const roadmap = [
 
 
 export default function AeronauticalEngineerPage() {
+    const { user } = useAuth();
+    const roadmapTitle = "Aeronautical Engineer";
+
+    useEffect(() => {
+        if (user) {
+            logUserActivity(user.uid, `Visited the ${roadmapTitle} roadmap`);
+        }
+    }, [user]);
+
     return (
         <main className="flex-grow container mx-auto px-4 py-12 md:py-20">
             <div className="flex justify-start mb-8">
