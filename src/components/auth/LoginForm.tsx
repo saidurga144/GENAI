@@ -11,9 +11,11 @@ import {
   FormControl,
   FormField,
   FormItem,
+  FormLabel,
   FormMessage,
 } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
+import { Checkbox } from "@/components/ui/checkbox";
 import { useAuth } from "@/hooks/use-auth";
 import Image from "next/image";
 import Link from "next/link";
@@ -22,6 +24,9 @@ import { Eye, EyeOff } from 'lucide-react';
 const emailFormSchema = z.object({
   email: z.string().email({ message: "Please enter a valid email address." }),
   password: z.string().min(1, { message: "Password is required." }),
+  acceptTerms: z.boolean().refine(val => val === true, {
+    message: "You must accept the terms and conditions.",
+  }),
 });
 
 export function LoginForm() {
@@ -32,7 +37,7 @@ export function LoginForm() {
   
   const form = useForm<z.infer<typeof emailFormSchema>>({
     resolver: zodResolver(emailFormSchema),
-    defaultValues: { email: "", password: "" },
+    defaultValues: { email: "", password: "", acceptTerms: false },
   });
 
   const handleEmailSubmit = async (data: z.infer<typeof emailFormSchema>) => {
@@ -95,6 +100,26 @@ export function LoginForm() {
                   </div>
                 </FormControl>
                 <FormMessage />
+              </FormItem>
+            )}
+          />
+          <FormField
+            control={form.control}
+            name="acceptTerms"
+            render={({ field }) => (
+              <FormItem className="flex flex-row items-start space-x-3 space-y-0">
+                <FormControl>
+                  <Checkbox
+                    checked={field.value}
+                    onCheckedChange={field.onChange}
+                  />
+                </FormControl>
+                <div className="space-y-1 leading-none">
+                  <FormLabel>
+                    Accept terms and conditions
+                  </FormLabel>
+                   <FormMessage />
+                </div>
               </FormItem>
             )}
           />
