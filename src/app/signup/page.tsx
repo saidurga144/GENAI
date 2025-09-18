@@ -39,6 +39,13 @@ export default function SignupPage() {
             <div className="flex bg-white rounded-2xl shadow-2xl overflow-hidden max-w-4xl w-full">
                 {/* Login Info Panel */}
                 <div className="flex-1 p-10 text-center bg-[#e0ecff] flex flex-col justify-center items-center animate-slide-in-left">
+                     <Image 
+                        src="https://img.freepik.com/free-vector/authentication-concept-illustration_114360-2168.jpg"
+                        alt="Welcome Animation"
+                        width={300}
+                        height={300}
+                        className="mb-6"
+                    />
                     <h1 className="text-3xl font-bold mb-4 text-gray-800">Welcome Back!</h1>
                     <p className="mb-6 text-gray-600">Already have an account? Login to access your dashboard.</p>
                     <Button asChild variant="outline" className="rounded-full border-primary text-primary hover:bg-primary hover:text-white">
