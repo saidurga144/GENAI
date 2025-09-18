@@ -5,7 +5,7 @@ import { useState } from "react";
 import { PageHeader } from "@/components/futurepath/PageHeader";
 import { Card, CardHeader, CardTitle, CardDescription, CardContent, CardFooter } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
-import { ArrowRight, Code, Cpu, Shield, ArrowLeft, Dna, Cog, Building2, Plane, HeartPulse, Search } from "lucide-react";
+import { ArrowRight, Code, Cpu, Shield, ArrowLeft, Dna, Cog, Building2, Plane, HeartPulse, Search, BrainCircuit, BarChartBig } from "lucide-react";
 import Link from "next/link";
 import Image from "next/image";
 import { Input } from "@/components/ui/input";
@@ -17,6 +17,13 @@ const roadmapsList = [
         url: "/aeronautical-engineer",
         icon: <Plane className="w-8 h-8 text-primary" />,
         imageUrl: "https://tse3.mm.bing.net/th/id/OIP.asHETTJ6fyo4sr_T1ffJXgHaE7?pid=Api&P=0&h=220",
+    },
+     {
+        title: "Artificial Intelligence (AI) Specialist",
+        description: "A 5-step roadmap to becoming an AI Specialist, from mathematical foundations to advanced research and development.",
+        url: "/ai-specialist",
+        icon: <BrainCircuit className="w-8 h-8 text-primary" />,
+        imageUrl: "https://tse2.mm.bing.net/th/id/OIP.qvhcmd-GbCm7CDbfUmF9LAHaE8?pid=Api&P=0&h=220",
     },
      {
         title: "Biomedical Engineer",
@@ -52,6 +59,13 @@ const roadmapsList = [
         url: "/eee-engineer",
         icon: <Cpu className="w-8 h-8 text-primary" />,
         imageUrl: "https://tse4.mm.bing.net/th/id/OIP.BpnBBxHWbDcoF9QcL1aX7AHaEK?pid=Api&P=0&h=220",
+    },
+    {
+        title: "Machine Learning (ML) Engineer",
+        description: "A 5-step roadmap for ML Engineers, covering everything from statistics and programming to advanced model deployment.",
+        url: "/ml-engineer",
+        icon: <BarChartBig className="w-8 h-8 text-primary" />,
+        imageUrl: "https://tse2.mm.bing.net/th/id/OIP.AdHBr9rWfNDKsWwd446LZwHaEK?pid=Api&P=0&h=220",
     },
     {
         title: "Mechanical Engineer",
