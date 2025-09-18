@@ -138,7 +138,7 @@ export default function RoadmapsPage() {
                     </Button>
                 </div>
                 <PageHeader
-                    title="Carrier Roadmaps"
+                    title="Roadmap"
                     description="Explore our expert-curated roadmaps for popular career paths. These step-by-step guides provide a clear framework for your journey."
                 />
                  <div className="mb-8 max-w-md mx-auto">

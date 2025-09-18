@@ -49,7 +49,7 @@ function ProfileDashboard() {
       <CardFooter className="flex flex-col gap-4">
         <Button asChild className="w-full">
           <Link href="/roadmaps">
-            Carrier Roadmaps
+            Roadmap
             <ArrowRight />
           </Link>
         </Button>
