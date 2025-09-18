@@ -2,7 +2,7 @@
 import { PageHeader } from "@/components/futurepath/PageHeader";
 import { Card, CardHeader, CardTitle, CardDescription, CardContent, CardFooter } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
-import { ArrowRight, Code, Cpu, Shield, ArrowLeft } from "lucide-react";
+import { ArrowRight, Code, Cpu, Shield, ArrowLeft, Dna } from "lucide-react";
 import Link from "next/link";
 import Image from "next/image";
 
@@ -27,6 +27,13 @@ const roadmaps = [
         url: "/cybersecurity-specialist",
         icon: <Shield className="w-8 h-8 text-primary" />,
         imageUrl: "https://tse1.mm.bing.net/th/id/OIP.Zf6YLhRpL7la9QnOp0EGOQHaFW?pid=Api&P=0&h=220",
+    },
+    {
+        title: "Biotechnology Specialist",
+        description: "A guide to a career in Biotechnology, from BiPC foundations to genetic engineering and bioinformatics.",
+        url: "/biotechnology-specialist",
+        icon: <Dna className="w-8 h-8 text-primary" />,
+        imageUrl: "https://tse4.mm.bing.net/th/id/OIP.2T5-4A3VIb_t_1p-FyHqGAHaE8?pid=Api&P=0&w=300&h=300",
     },
 ]
 
