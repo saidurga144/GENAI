@@ -36,17 +36,17 @@ export default function SignupPage() {
     
     return (
         <div className="flex items-center justify-center min-h-screen p-4">
-            <div className="flex bg-white rounded-2xl shadow-2xl overflow-hidden max-w-4xl w-full">
+            <div className="flex bg-white rounded-2xl shadow-2xl overflow-hidden max-w-4xl w-full animate-fade-in-up">
                 {/* Login Info Panel */}
-                <div className="flex-1 p-10 text-center bg-[#e0ecff] flex flex-col justify-center items-center animate-slide-in-left">
+                <div className="flex-1 p-10 text-center bg-[#e0ecff] flex flex-col justify-center items-center">
                      <video 
-                        src="https://cdn.dribbble.com/users/2056840/screenshots/7625245/media/13f05471015f85012586a1a81358a93b.mp4"
+                        src="https://cdn.dribbble.com/users/2432375/screenshots/16839364/media/f48480f333857864835824c168b52994.mp4"
                         autoPlay
                         loop
                         muted
                         width={400}
                         height={300}
-                        className="mb-6"
+                        className="mb-6 rounded-lg"
                     />
                     <h1 className="text-3xl font-bold mb-4 text-gray-800">Welcome Back!</h1>
                     <p className="mb-6 text-gray-600">Already have an account? Login to access your dashboard.</p>
@@ -58,7 +58,7 @@ export default function SignupPage() {
                 </div>
 
                 {/* Signup Form Panel */}
-                <div className="flex-1 p-10 bg-white flex flex-col justify-center items-center animate-slide-in-right">
+                <div className="flex-1 p-10 bg-white flex flex-col justify-center items-center">
                     <h1 className="text-3xl font-bold text-gray-800 mb-6">Create Account</h1>
                     <SignupForm />
                 </div>
