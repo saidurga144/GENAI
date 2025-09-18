@@ -48,12 +48,12 @@ const chatFlow = ai.defineFlow(
       content: h.content,
     }));
 
-    // Add a prefix to the user's message to provide context and avoid safety flags.
     const contextualPrompt = `You are a helpful and friendly career counseling assistant. Your goal is to provide accurate and safe information to the user. Please answer the following user query, ensuring your response is helpful and not overly cautious: "${message}"`;
 
     const {output} = await ai.generate({
-      model: 'googleai/gemini-1.5-flash',
-      system: 'You are a helpful and friendly AI assistant. Your goal is to provide accurate and safe information to the user.',
+      model: 'googleai/gemini-1.5-flash-preview-0514',
+      system:
+        'You are a helpful and friendly AI assistant. Your goal is to provide accurate and safe information to the user.',
       history: mappedHistory,
       prompt: contextualPrompt,
       config: {
