@@ -53,8 +53,15 @@ const chatFlow = ai.defineFlow(
       prompt: message,
     });
 
+    if (!output) {
+      return {
+        message:
+          'Sorry, I could not process your request. The response may have been blocked.',
+      };
+    }
+
     return {
-      message: output!.text,
+      message: output.text,
     };
   }
 );
