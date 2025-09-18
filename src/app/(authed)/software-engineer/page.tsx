@@ -8,43 +8,49 @@ import Image from "next/image";
 
 const roadmap = [
     {
-        title: "Stage 1: Foundational Knowledge (Months 0-6)",
-        description: "Build a strong base in computer science and programming fundamentals.",
+        title: "Step 1: Foundation (Intermediate → UG Degree)",
+        description: "Choose a suitable degree and learn fundamental programming languages with a focus on data structures and algorithms.",
         tasks: [
-            "Learn a core programming language like Python or JavaScript.",
-            "Understand data structures (Arrays, Linked Lists, Trees) and algorithms (Sorting, Searching).",
-            "Get comfortable with Git and GitHub for version control.",
-            "Complete introductory courses on platforms like Coursera or freeCodeCamp."
+            "Choose B.Tech CSE / IT / B.Sc Computer Science / BCA.",
+            "Learn C, C++, Java, Python → focus on Data Structures & Algorithms.",
+            "Build problem-solving skills on LeetCode, HackerRank, Codeforces."
         ]
     },
     {
-        title: "Stage 2: Core Skills & Frontend (Months 6-12)",
-        description: "Focus on the skills needed to build modern web applications.",
+        title: "Step 2: Core Software Development Skills",
+        description: "Master essential concepts like Object-Oriented Programming, databases, and the software development lifecycle.",
         tasks: [
-            "Master HTML, CSS, and JavaScript.",
-            "Learn a frontend framework like React, Vue, or Angular.",
-            "Understand how to make API calls to fetch data.",
-            "Build 2-3 personal projects to create a portfolio (e.g., a to-do app, a weather app)."
+            "Master Object-Oriented Programming (OOPs).",
+            "Learn Databases (SQL, MongoDB).",
+            "Understand Software Development Life Cycle (SDLC)."
         ]
     },
     {
-        title: "Stage 3: Backend & Databases (Months 12-18)",
-        description: "Dive into server-side logic and learn how to manage data.",
+        title: "Step 3: Specializations",
+        description: "Specialize in frontend, backend, or full-stack development, and gain expertise in cloud and DevOps technologies.",
         tasks: [
-            "Learn a backend framework like Node.js/Express, Django, or Ruby on Rails.",
-            "Understand RESTful APIs and how to design them.",
-            "Learn SQL and work with a relational database like PostgreSQL.",
-            "Explore NoSQL databases like MongoDB."
+            "Frontend Development: HTML, CSS, JavaScript, React, Angular.",
+            "Backend Development: Node.js, Java Spring Boot, Django, .NET.",
+            "Full-Stack Development: Combine both.",
+            "Learn Cloud & DevOps (AWS, Docker, Git, CI/CD)."
         ]
     },
     {
-        title: "Stage 4: Specialization & Job Prep (Months 18-24)",
-        description: "Specialize in an area of interest and prepare for the job market.",
+        title: "Step 4: Internships & Real-World Projects",
+        description: "Gain practical experience by building projects, securing internships, and contributing to open-source software.",
         tasks: [
-            "Explore areas like cloud computing (AWS, Azure), mobile development, or DevOps.",
-            "Contribute to an open-source project to gain real-world experience.",
-            "Practice coding challenges on platforms like LeetCode or HackerRank.",
-            "Refine your resume, build your network on LinkedIn, and start applying for junior roles."
+            "Build projects: E-commerce site, Chat application, AI/ML project.",
+            "Internship in tech companies, startups.",
+            "Contribute to open source (GitHub)."
+        ]
+    },
+    {
+        title: "Step 5: Career Growth",
+        description: "Start with entry-level roles and progress towards advanced positions like Tech Lead or Software Architect.",
+        tasks: [
+            "Entry roles: Software Developer, Web Developer, QA Engineer.",
+            "Mid-level: Full Stack Engineer, Cloud Engineer, Mobile App Developer.",
+            "Advanced: Tech Lead, Software Architect, CTO."
         ]
     }
 ];

@@ -8,43 +8,46 @@ import Image from "next/image";
 
 const roadmap = [
     {
-        title: "Stage 1: University & Core Concepts (Years 1-2)",
-        description: "Build a solid foundation in mathematics, physics, and fundamental engineering principles.",
+        title: "Step 1: Foundation (Intermediate → UG Degree)",
+        description: "Choose a B.Tech or B.E. in EEE and build a strong foundation in physics, mathematics, and electrical circuits.",
         tasks: [
-            "Excel in calculus, differential equations, and linear algebra.",
-            "Master circuit theory (Ohm's law, Kirchhoff's laws) and digital logic.",
-            "Learn about electromagnetism and semiconductor physics.",
-            "Get hands-on with basic lab equipment like oscilloscopes and multimeters."
+            "Choose B.Tech / BE in Electrical & Electronics Engineering (EEE).",
+            "Build basics in Physics, Mathematics, Electrical Circuits."
         ]
     },
     {
-        title: "Stage 2: Specialization & Core EEE Topics (Years 2-3)",
-        description: "Dive deeper into specialized areas of electrical and electronics engineering.",
+        title: "Step 2: Core EEE Knowledge",
+        description: "Dive into core topics like power systems, electronics, and programming languages relevant to engineering.",
         tasks: [
-            "Study analog and digital electronics, microprocessors, and control systems.",
-            "Learn about power systems, signal processing, and telecommunications.",
-            "Gain proficiency in simulation software like MATLAB, Simulink, or SPICE.",
-            "Participate in university clubs or competitions (e.g., Robotics, IEEE)."
+            "Power Systems, Machines, Control Systems, Signal Processing.",
+            "Electronics: Analog, Digital, Microprocessors, VLSI basics.",
+            "Programming for engineers: MATLAB, C, Python for IoT/Robotics."
         ]
     },
     {
-        title: "Stage 3: Practical Skills & Internships (Year 3-4)",
-        description: "Apply your knowledge in practical settings and gain industry experience.",
+        title: "Step 3: Hands-On Skills & Certifications",
+        description: "Gain practical skills in PLC/SCADA, embedded systems, and earn relevant certifications to enhance your profile.",
         tasks: [
-            "Learn a programming language relevant to EEE, such as C/C++ or Python for automation.",
-            "Master PCB design software like Altium Designer or Eagle.",
-            "Secure an internship to gain real-world engineering experience.",
-            "Work on a significant final year project that showcases your skills."
+            "Learn PLC/SCADA, Embedded Systems, IoT.",
+            "Certifications: AutoCAD Electrical, MATLAB Simulation, Electrical Safety Standards.",
+            "Industry 4.0 tools: Renewable Energy, Smart Grids, Robotics."
         ]
     },
     {
-        title: "Stage 4: Career Launch & Lifelong Learning (Post-Graduation)",
-        description: "Enter the workforce and continue to develop your expertise.",
+        title: "Step 4: Internships & Industry Exposure",
+        description: "Apply your knowledge through internships and hands-on projects in areas like solar energy and smart home automation.",
         tasks: [
-            "Pass the Fundamentals of Engineering (FE) exam as a step towards a Professional Engineer (PE) license.",
-            "Tailor your resume to highlight key projects, internships, and technical skills.",
-            "Join professional organizations like IEEE to network and stay updated.",
-            "Pursue a Master's degree for highly specialized roles or research positions."
+            "Do internships in Power Plants, Electronics Companies, Core Manufacturing Firms.",
+            "Projects like: Solar energy systems, Smart home automation, Motor control using IoT."
+        ]
+    },
+    {
+        title: "Step 5: Career Opportunities",
+        description: "Explore diverse career roles in core electrical, electronics, and advanced fields, with options for further education.",
+        tasks: [
+            "Core roles: Electrical Design Engineer, Power Engineer, Control Systems Engineer.",
+            "Electronics roles: Embedded Engineer, VLSI Engineer, Robotics Engineer.",
+            "Advanced: M.Tech/MS in Power Systems, Renewable Energy, Automation → Research or Govt jobs."
         ]
     }
 ];
