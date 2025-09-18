@@ -18,7 +18,7 @@ const FeatureCard = ({ icon, title, description }: { icon: React.ReactNode, titl
       </div>
       <h3 className="text-lg font-semibold text-card-foreground">{title}</h3>
     </div>
-    <p className="text-sm text-muted-foreground">{description}</p>
+    <p className="text-sm text-muted-foreground flex-grow">{description}</p>
   </div>
 );
 
@@ -64,11 +64,11 @@ export default function Home() {
                 <div className="relative flex justify-center items-center animate-fade-in-up" style={{ perspective: '1000px', animationDelay: '0.2s' }}>
                      <div className="bg-secondary/50 rounded-lg p-4 border transition-transform duration-500 ease-in-out hover:-rotate-y-12 hover:rotate-x-12 hover:scale-105 hover:shadow-2xl" style={{ transformStyle: 'preserve-3d' }}>
                       <Image
-                        src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSwH2jAocMzvCUqNMjLz9SfjclgZ7YrmHnPzg&s"
+                        src="https://www.reliablesoft.net/wp-content/uploads/2019/08/digital-marketing-courses.png"
                         alt="Career Navigation"
                         width={600}
                         height={400}
-                        className="max-w-lg w-full h-auto object-contain"
+                        className="rounded-md max-w-lg w-full h-auto object-cover"
                         quality={100}
                       />
                     </div>
