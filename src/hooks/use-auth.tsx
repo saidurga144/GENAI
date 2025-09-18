@@ -80,7 +80,7 @@ export function AuthProvider({ children }: { children: ReactNode }) {
             const userCredential = await createUserWithEmailAndPassword(auth, email, pass);
             await sendEmailVerification(userCredential.user);
             // Sign the user out immediately, forcing them to verify email before logging in.
-            await firebaseSignOut(auth);
+            await firebaseSignout(auth);
             return userCredential;
         } catch (error: any) {
             if (error.code === AuthErrorCodes.EMAIL_EXISTS) {
