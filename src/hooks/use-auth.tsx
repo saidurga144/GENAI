@@ -15,7 +15,8 @@ import {
     createUserWithEmailAndPassword, 
     signOut as firebaseSignOut,
     sendEmailVerification,
-    User
+    User,
+    AuthErrorCodes
 } from 'firebase/auth';
 import { app } from '@/lib/firebase';
 import { useRouter } from 'next/navigation';
@@ -57,13 +58,26 @@ export function AuthProvider({ children }: { children: ReactNode }) {
     }, [auth]);
 
     const signIn = async (email: string, pass: string) => {
-        const userCredential = await signInWithEmailAndPassword(auth, email, pass);
-        if (!userCredential.user.emailVerified) {
-          // Sign out the user immediately if their email is not verified.
-          await firebaseSignOut(auth);
-          throw new Error("Please verify your email before logging in. Check your inbox for a verification link.");
+        try {
+            const userCredential = await signInWithEmailAndPassword(auth, email, pass);
+            if (!userCredential.user.emailVerified) {
+              // Sign out the user immediately if their email is not verified.
+              await firebaseSignOut(auth);
+              throw new Error("Please verify your email before logging in. Check your inbox for a verification link.");
+            }
+            return userCredential;
+        } catch (error: any) {
+            if (error.code === AuthErrorCodes.INVALID_PASSWORD || error.code === 'auth/wrong-password') {
+                throw new Error("Incorrect password. Please try again.");
+            } else if (error.code === AuthErrorCodes.USER_DELETED || error.code === 'auth/user-not-found') {
+                 throw new Error("No account found with this email. Please sign up first.");
+            } else if (error.code === 'auth/invalid-credential') {
+                 throw new Error("Invalid credentials. Please check your email and password.");
+            }
+            else {
+                throw new Error(error.message || "An unexpected error occurred during sign-in.");
+            }
         }
-        return userCredential;
     };
 
     const signUp = async (email: string, pass: string) => {

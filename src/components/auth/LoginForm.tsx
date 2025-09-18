@@ -16,6 +16,7 @@ import {
 import { Input } from "@/components/ui/input";
 import { useAuth } from "@/hooks/use-auth";
 import Image from "next/image";
+import Link from "next/link";
 
 const emailFormSchema = z.object({
   email: z.string().email({ message: "Please enter a valid email address." }),
@@ -83,6 +84,11 @@ export function LoginForm() {
               </FormItem>
             )}
           />
+           <div className="text-right">
+            <Link href="#" className="text-sm text-primary hover:underline">
+                Forgot Password?
+            </Link>
+          </div>
           {error && <p className="text-sm text-destructive">{error}</p>}
           <Button type="submit" className="w-full rounded-lg py-3 text-base bg-primary hover:bg-primary/90" disabled={loading}>
             {loading && <Image src="/loader.gif" alt="Loading..." width={24} height={24} unoptimized className="mr-2" />}
