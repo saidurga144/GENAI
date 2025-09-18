@@ -33,7 +33,7 @@ const roadmaps = [
         description: "A guide to a career in Biotechnology, from BiPC foundations to genetic engineering and bioinformatics.",
         url: "/biotechnology-specialist",
         icon: <Dna className="w-8 h-8 text-primary" />,
-        imageUrl: "https://tse4.mm.bing.net/th/id/OIP.2T5-4A3VIb_t_1p-FyHqGAHaE8?pid=Api&P=0&w=300&h=300",
+        imageUrl: "https://4-hontario.ca/wp-content/uploads/2020/09/Intro-to-Agricultural-Biotechnology_Main-Image-2048x1364.jpeg",
     },
 ]
 

@@ -3,9 +3,6 @@ import type {NextConfig} from 'next';
 
 const nextConfig: NextConfig = {
   /* config options here */
-  experimental: {
-    allowedDevOrigins: ["9000-firebase-studio-*.cloudworkstations.dev"],
-  },
   typescript: {
     ignoreBuildErrors: true,
   },
@@ -51,7 +48,8 @@ const nextConfig: NextConfig = {
         pathname: '/**',
       },
       {
-        protocol: 'https',
+        protocol: 'https'
+        ,
         hostname: 'tse3.mm.bing.net',
         port: '',
         pathname: '/**',
