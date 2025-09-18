@@ -40,23 +40,8 @@ export function AuthProvider({ children }: { children: ReactNode }) {
 
     useEffect(() => {
         const unsubscribe = onAuthStateChanged(auth, (user) => {
-            if (user) {
-                // This will allow a newly signed up user (who is not verified) to exist in the auth state
-                // on the signup/login pages, but will prevent them from accessing protected routes.
-                if (!user.emailVerified) {
-                    const isAuthPage = window.location.pathname.startsWith('/login') || window.location.pathname.startsWith('/signup') || window.location.pathname === '/';
-                    // If they are on a protected page, sign them out.
-                    if (!isAuthPage) {
-                        firebaseSignOut(auth);
-                        setUser(null);
-                    } else {
-                        // This allows the user object to be available temporarily on auth pages
-                        // which can be useful for displaying messages, but they can't navigate away.
-                        setUser(user); 
-                    }
-                } else {
-                    setUser(user);
-                }
+            if (user && user.emailVerified) {
+                setUser(user);
             } else {
                 setUser(null);
             }
@@ -68,12 +53,11 @@ export function AuthProvider({ children }: { children: ReactNode }) {
     const signIn = async (email: string, pass: string) => {
         try {
             const userCredential = await signInWithEmailAndPassword(auth, email, pass);
-            // The onAuthStateChanged observer will handle the user state.
-            // We just need to check for verification here to provide immediate feedback.
             if (!userCredential.user.emailVerified) {
-              await firebaseSignOut(auth); // Sign out if not verified
+              await firebaseSignOut(auth); 
               throw new Error("Please verify your email before logging in. Check your inbox for a verification link.");
             }
+            // onAuthStateChanged will handle setting the user state
             return userCredential;
         } catch (error: any) {
             if (error.code === AuthErrorCodes.INVALID_PASSWORD || error.code === 'auth/wrong-password') {
@@ -95,8 +79,7 @@ export function AuthProvider({ children }: { children: ReactNode }) {
          try {
             const userCredential = await createUserWithEmailAndPassword(auth, email, pass);
             await sendEmailVerification(userCredential.user);
-            // We sign the user out to force them to verify their email before logging in.
-            // The user will be redirected by the logic in `useEffect`.
+            // Sign the user out immediately, forcing them to verify email before logging in.
             await firebaseSignOut(auth);
             return userCredential;
         } catch (error: any) {
