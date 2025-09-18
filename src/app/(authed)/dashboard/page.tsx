@@ -75,7 +75,7 @@ export default function DashboardPage() {
             <div className="relative flex justify-center items-center mb-8" style={{ perspective: '1000px' }}>
                 <div className="bg-secondary/50 rounded-lg p-4 border transition-transform duration-500 ease-in-out hover:-rotate-y-12 hover:rotate-x-12 hover:scale-105 hover:shadow-2xl" style={{ transformStyle: 'preserve-3d' }}>
                     <Image
-                        src="https://www.reliablesoft.net/wp-content/uploads/2019/08/digital-marketing-courses.png"
+                        src="https://img.freepik.com/free-photo/business-woman-working-laptop_1388-93.jpg"
                         alt="A person considering different career paths"
                         width={600}
                         height={400}
