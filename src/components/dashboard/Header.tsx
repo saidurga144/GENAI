@@ -12,8 +12,8 @@ export function Header() {
   const { signOut } = useAuth();
 
   return (
-    <header className="sticky top-0 z-10 flex h-16 items-center gap-4 border-b bg-primary px-4 md:px-6 text-primary-foreground no-print">
-      <div className="flex items-center gap-4">
+    <header className="sticky top-0 z-10 flex h-16 items-center justify-between gap-4 border-b bg-primary px-4 md:px-6 text-primary-foreground no-print">
+      <div className="flex items-center gap-2 md:gap-4">
         <Button variant="ghost" size="icon" onClick={toggleSidebar} className="text-primary-foreground hover:bg-primary/80 hover:text-primary-foreground">
             <Menu className="h-6 w-6" />
             <span className="sr-only">Toggle sidebar</span>
@@ -21,7 +21,7 @@ export function Header() {
         <h1 className="text-lg font-bold">CarrierGuide</h1>
       </div>
 
-      <nav className="hidden md:flex items-center gap-6 text-sm font-medium">
+      <nav className="hidden lg:flex items-center gap-6 text-sm font-medium">
         <Link
           href="/dashboard"
           className="transition-colors hover:text-primary-foreground/80"
@@ -49,7 +49,7 @@ export function Header() {
         </Link>
       </nav>
 
-      <div className="flex w-full items-center justify-end gap-4 md:ml-auto">
+      <div className="flex items-center gap-4">
          <Button variant="outline" onClick={signOut} className="bg-primary-foreground/10 border-primary-foreground/20 hover:bg-primary-foreground/20 text-primary-foreground">
           <LogOut className="mr-2 h-4 w-4" />
           Sign Out
