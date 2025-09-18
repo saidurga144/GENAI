@@ -7,7 +7,7 @@ import { useAuth } from "@/hooks/use-auth";
 import { useRouter } from "next/navigation";
 import { useEffect } from "react";
 import Image from "next/image";
-
+import { Button } from "@/components/ui/button";
 
 export default function SignupPage() {
     const { user, loading } = useAuth();
@@ -18,6 +18,13 @@ export default function SignupPage() {
             router.push('/dashboard');
         }
     }, [user, loading, router]);
+    
+    useEffect(() => {
+      document.body.classList.add("auth-body");
+      return () => {
+          document.body.classList.remove("auth-body");
+      };
+    }, []);
 
     if (loading || user) {
         return (
@@ -28,30 +35,29 @@ export default function SignupPage() {
     }
     
     return (
-        <div className="flex items-center justify-center min-h-screen bg-secondary/50 p-4">
-            <div className="container w-full max-w-4xl flex-grow flex rounded-xl shadow-2xl overflow-hidden">
-                 <div className="hidden md:block relative flex-1">
-                    <Image
-                        src="https://images.unsplash.com/photo-1556761175-b413da4baf72?q=80&w=2574&auto=format&fit=crop"
-                        alt="Welcome to CarrierGuide"
-                        fill
-                        className="object-cover"
-                        quality={100}
-                    />
+        <div className="flex items-center justify-center min-h-screen p-4">
+            <div className="flex bg-white rounded-2xl shadow-2xl overflow-hidden max-w-4xl w-full">
+                {/* Login Info Panel */}
+                <div className="flex-1 p-10 text-center bg-[#e0ecff] flex flex-col justify-center items-center">
+                    <h1 className="text-3xl font-bold mb-4 text-gray-800">Welcome Back!</h1>
+                    <p className="mb-6 text-gray-600">Already have an account? Login to access your dashboard.</p>
+                    <Button asChild variant="outline" className="rounded-full border-primary text-primary hover:bg-primary hover:text-white">
+                        <Link href="/login">
+                            Login
+                        </Link>
+                    </Button>
                 </div>
-                <div className="w-full md:flex-1 bg-background p-8 sm:p-12 flex flex-col justify-center">
-                    <div className="max-w-md w-full mx-auto">
-                        <div className="text-left mb-8">
-                            <h1 className="text-3xl font-extrabold tracking-tight">Create an Account</h1>
-                            <p className="text-muted-foreground mt-2">Get started with your personalized career guidance.</p>
-                        </div>
-                        <SignupForm />
-                        <p className="text-center text-sm text-muted-foreground mt-6">
-                            Already have an account?{" "}
-                            <Link href="/login" className="text-primary hover:underline">
-                                Login
-                            </Link>
-                        </p>
+
+                {/* Signup Form Panel */}
+                <div className="flex-1 p-10 bg-white flex flex-col justify-center items-center">
+                    <h1 className="text-3xl font-bold text-gray-800 mb-6">Create Account</h1>
+                    <SignupForm />
+                     <p className="mt-4 text-gray-600">or sign up with</p>
+                    <div className="flex justify-center gap-4 mt-4">
+                        <a href="#" className="text-primary text-2xl hover:text-blue-800"><i className='bx bxl-google'></i></a>
+                        <a href="#" className="text-primary text-2xl hover:text-blue-800"><i className='bx bxl-facebook'></i></a>
+                        <a href="#" className="text-primary text-2xl hover:text-blue-800"><i className='bx bxl-github'></i></a>
+                        <a href="#" className="text-primary text-2xl hover:text-blue-800"><i className='bx bxl-linkedin'></i></a>
                     </div>
                 </div>
             </div>

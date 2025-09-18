@@ -17,6 +17,13 @@ export default function LoginPage() {
             router.push('/dashboard');
         }
     }, [user, loading, router]);
+
+    useEffect(() => {
+      document.body.classList.add("auth-body");
+      return () => {
+          document.body.classList.remove("auth-body");
+      };
+    }, []);
     
     if (loading || user) {
         return (
@@ -27,31 +34,23 @@ export default function LoginPage() {
     }
 
     return (
-        <div className="flex items-center justify-center min-h-screen bg-secondary/50 p-4">
-            <div className="container w-full max-w-4xl flex-grow flex rounded-xl shadow-2xl overflow-hidden" style={{ perspective: '1000px' }}>
-                 <div className="hidden md:block relative flex-1 transition-transform duration-500 ease-in-out hover:-rotate-y-2 hover:rotate-x-2 hover:scale-105" style={{ transformStyle: 'preserve-3d' }}>
-                    <Image
-                        src="https://images.unsplash.com/photo-1556761175-b413da4baf72?q=80&w=2574&auto=format&fit=crop"
-                        alt="Welcome to CarrierGuide"
-                        fill
-                        className="object-cover"
-                        quality={100}
-                    />
+        <div className="flex items-center justify-center min-h-screen p-4">
+            <div className="flex bg-white rounded-2xl shadow-2xl overflow-hidden max-w-4xl w-full">
+                {/* Registration Info Panel */}
+                <div className="flex-1 p-10 text-center bg-white flex flex-col justify-center items-center">
+                     <h1 className="text-3xl font-bold mb-4 text-gray-800">New Here?</h1>
+                    <p className="mb-6 text-gray-600">Sign up and discover a great amount of new opportunities!</p>
+                    <Button asChild variant="outline" className="rounded-full border-primary text-primary hover:bg-primary hover:text-white">
+                        <Link href="/signup">
+                            Sign Up
+                        </Link>
+                    </Button>
                 </div>
-                <div className="w-full md:flex-1 bg-background p-8 sm:p-12 flex flex-col justify-center">
-                    <div className="max-w-md w-full mx-auto">
-                        <div className="text-left mb-8">
-                            <h1 className="text-3xl font-extrabold tracking-tight">Login</h1>
-                            <p className="text-muted-foreground mt-2">Sign in to continue to your dashboard.</p>
-                        </div>
-                        <LoginForm />
-                        <p className="text-center text-sm text-muted-foreground mt-6">
-                            Don't have an account?{" "}
-                            <Link href="/signup" className="text-primary hover:underline">
-                                Sign up
-                            </Link>
-                        </p>
-                    </div>
+
+                {/* Login Form Panel */}
+                <div className="flex-1 p-10 bg-[#e0ecff] flex flex-col justify-center items-center">
+                    <h1 className="text-3xl font-bold text-gray-800 mb-6">Login</h1>
+                    <LoginForm />
                 </div>
             </div>
         </div>
