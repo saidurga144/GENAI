@@ -2,7 +2,7 @@
 import { PageHeader } from "@/components/futurepath/PageHeader";
 import { Card, CardHeader, CardTitle, CardDescription, CardContent, CardFooter } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
-import { ArrowRight, Code, Cpu, Shield } from "lucide-react";
+import { ArrowRight, Code, Cpu, Shield, ArrowLeft } from "lucide-react";
 import Link from "next/link";
 import Image from "next/image";
 
@@ -34,6 +34,14 @@ export default function RoadmapsPage() {
     return (
         <div className="flex flex-col min-h-screen bg-background text-foreground">
             <main className="flex-grow container mx-auto px-4 py-12 md:py-20">
+                 <div className="flex justify-start mb-8">
+                     <Button asChild variant="outline">
+                        <Link href="/dashboard">
+                            <ArrowLeft />
+                            Back to Dashboard
+                        </Link>
+                    </Button>
+                </div>
                 <PageHeader
                     title="Sample Career Roadmaps"
                     description="Explore our expert-curated roadmaps for popular career paths. These step-by-step guides provide a clear framework for your journey."
