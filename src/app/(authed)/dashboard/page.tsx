@@ -7,6 +7,7 @@ import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card";
 import { User, LogOut, Mail, Phone, KeyRound, ArrowRight } from "lucide-react";
 import Link from "next/link";
+import Image from "next/image";
 
 function ProfileDashboard() {
   const { user, signOut } = useAuth();
@@ -74,6 +75,18 @@ export default function DashboardPage() {
         <ProfileDashboard />
       ) : (
         <div className="text-center animate-in fade-in-50 duration-500">
+            <div className="relative flex justify-center items-center mb-8" style={{ perspective: '1000px' }}>
+                <div className="bg-secondary/50 rounded-lg p-4 border transition-transform duration-500 ease-in-out hover:-rotate-y-12 hover:rotate-x-12 hover:scale-105 hover:shadow-2xl" style={{ transformStyle: 'preserve-3d' }}>
+                    <Image
+                        src="https://www.reliablesoft.net/wp-content/uploads/2019/08/digital-marketing-courses.png"
+                        alt="Career Path"
+                        width={600}
+                        height={400}
+                        className="max-w-md w-full h-auto object-contain"
+                        quality={100}
+                    />
+                </div>
+            </div>
           <h1 className="text-4xl font-bold tracking-tight">Welcome to Your Dashboard</h1>
           <p className="text-muted-foreground mt-2">Select an option from the sidebar to get started.</p>
            <Button asChild className="mt-6">
@@ -87,3 +100,4 @@ export default function DashboardPage() {
     </div>
   );
 }
+
