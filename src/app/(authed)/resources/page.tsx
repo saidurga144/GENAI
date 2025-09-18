@@ -20,7 +20,7 @@ const channels = [
     { name: "Tech With Tim", url: "https://youtube.com/@techwithtim", description: "Tech With Tim is run by Tim Ruscica, a self-taught developer. He creates educational programming content that is clear, step-by-step, focused on making complex topics accessible without much fluff." },
     { name: "Student Tribe", url: "https://youtube.com/@studenttribe", description: "Study tips and student success strategies." },
     { name: "Programming with Mosh", url: "https://youtube.com/@programmingwithmosh", description: "Coding fundamentals and software development." },
-    { name: "Pratap Hari Chandan", url: "https://youtube.com/@pratapharichandan", description: "Data science and analytics learning." },
+    { name: "Pratap Hari Chandan", url: "https://youtube.com/@pratapharichandan", description: "Pratap Hari Chandan runs the “Atindriyam” channel (also his personal brand) which is focused on empowering students, especially in India, to become high achievers. He shares career guidance, tips, mindset, inspiration, and actionable advice." },
 ];
 
 export default function ResourcesPage() {
