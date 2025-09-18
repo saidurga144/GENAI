@@ -40,7 +40,7 @@ export default function SignupPage() {
                 {/* Login Info Panel */}
                 <div className="flex-1 p-10 text-center bg-[#e0ecff] flex flex-col justify-center items-center">
                      <Image 
-                        src="https://www.aldirasa.com/wp-content/uploads/2021/08/Career-Counselling-for-Students-in-Dubai-1-scaled.jpg"
+                        src="https://picsum.photos/seed/signup1/400/300"
                         alt="Welcome Animation"
                         width={400}
                         height={300}
