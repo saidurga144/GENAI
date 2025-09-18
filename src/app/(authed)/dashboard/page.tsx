@@ -75,13 +75,13 @@ export default function DashboardPage() {
             <div className="relative flex justify-center items-center mb-8" style={{ perspective: '1000px' }}>
                 <div className="bg-secondary/50 rounded-lg p-4 border transition-transform duration-500 ease-in-out hover:-rotate-y-12 hover:rotate-x-12 hover:scale-105 hover:shadow-2xl" style={{ transformStyle: 'preserve-3d' }}>
                     <Image
-                        src="https://picsum.photos/seed/careersearch/600/400"
-                        alt="Career Path"
+                        src="https://picsum.photos/seed/laptop-career/600/400"
+                        alt="A person on a laptop looking for career opportunities"
                         width={600}
                         height={400}
                         className="max-w-md w-full h-auto object-contain rounded-md"
                         quality={100}
-                        data-ai-hint="career opportunity"
+                        data-ai-hint="career opportunity laptop"
                     />
                 </div>
             </div>
