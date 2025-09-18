@@ -14,11 +14,12 @@ export function Header() {
   const { toggleSidebar } = useSidebar();
   const { signOut } = useAuth();
   const [notifications, setNotifications] = useState([
-    {
-        title: "Response from Customer Care",
-        description: "We've received your feedback and are looking into the issue. We'll get back to you shortly.",
-        time: "5 minutes ago",
-    }
+    // Example notification. In a real app, this would be fetched from a server.
+    // {
+    //     title: "Response from Customer Care",
+    //     description: "We've received your feedback and are looking into the issue. We'll get back to you shortly.",
+    //     time: "5 minutes ago",
+    // }
   ]);
 
   return (
