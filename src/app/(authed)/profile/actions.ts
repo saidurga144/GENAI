@@ -58,7 +58,3 @@ export async function getUsername(userId: string): Promise<string | null> {
     }
     return null;
 }
-
-// Dummy export to be included in genkit dev
-// This ensures the file is part of the build process
-export const profileActions = true;

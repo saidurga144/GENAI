@@ -11,7 +11,7 @@ import Image from "next/image";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { Input } from "@/components/ui/input";
 import { useEffect, useState, useCallback } from "react";
-import { checkUsernameAvailability, setUsername, getUsername } from "./profile/actions";
+import { checkUsernameAvailability, setUsername, getUsername } from "@/app/(authed)/profile/actions";
 import { useToast } from "@/hooks/use-toast";
 import { useDebounce } from "@/hooks/use-debounce";
 import { cn } from "@/lib/utils";
@@ -211,3 +211,5 @@ export default function DashboardPage() {
     </div>
   );
 }
+
+    

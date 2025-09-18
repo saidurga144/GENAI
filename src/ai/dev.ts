@@ -6,4 +6,3 @@ import '@/ai/flows/generate-personalized-career-paths.ts';
 import '@/ai/flows/parse-resume.ts';
 import '@/ai/flows/generate-roadmap.ts';
 import '@/ai/flows/chat.ts';
-import '@/app/(authed)/profile/actions.ts';
