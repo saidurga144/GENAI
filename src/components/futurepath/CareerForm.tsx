@@ -72,7 +72,7 @@ export function CareerForm({ onSubmit }: CareerFormProps) {
   };
   
   return (
-    <div className="max-w-3xl mx-auto animate-in fade-in-50 duration-500">
+    <div className="max-w-3xl mx-auto">
       <Form {...form}>
         <form onSubmit={form.handleSubmit(handleFormSubmit)} className="space-y-8">
           
