@@ -40,7 +40,7 @@ export default function LoginPage() {
                 {/* Registration Info Panel */}
                 <div className="flex-1 p-10 text-center bg-white flex flex-col justify-center items-center animate-slide-in-left">
                     <Image 
-                        src="https://img.freepik.com/free-vector/user-verification-unauthorized-access-prevention-private-account-authentication-cyber-security-people-entering-login-password-unlocking-device-cartoon-characters_335657-98.jpg?w=740&t=st=1718175028~exp=1718175628~hmac=50e2908f9c21e64971c26f7a6f3c155b57d6205934668615923985139049405c"
+                        src="https://img.freepik.com/free-vector/user-verification-unauthorized-access-prevention-private-account-authentication-cyber-security-people-entering-login-password-unlocking-device-cartoon-characters_335657-98.jpg?w=740"
                         alt="Welcome Animation"
                         width={400}
                         height={300}
