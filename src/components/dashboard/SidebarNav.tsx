@@ -23,10 +23,10 @@ import {
   LayoutDashboard,
   LogOut,
   Settings,
-  Table,
   User,
   ChevronDown,
   Map,
+  Book,
 } from "lucide-react";
 import { useAuth } from "@/hooks/use-auth";
 import Link from "next/link";
@@ -77,7 +77,7 @@ export function SidebarNav() {
                 </SidebarMenuButton>
               </SidebarMenuItem>
               <SidebarMenuItem>
-                <SidebarMenuButton asChild isActive={pathname === '/roadmaps'} tooltip="Sample Roadmaps">
+                <SidebarMenuButton asChild isActive={pathname.startsWith('/roadmaps')} tooltip="Sample Roadmaps">
                   <Link href="/roadmaps">
                     <Map />
                     Sample Roadmaps
@@ -87,7 +87,7 @@ export function SidebarNav() {
               <SidebarMenuItem>
                 <SidebarMenuButton asChild isActive={pathname === '/resources'} tooltip="Resources">
                   <Link href="/resources">
-                    <Table />
+                    <Book />
                     Resources
                   </Link>
                 </SidebarMenuButton>
