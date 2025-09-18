@@ -40,8 +40,8 @@ export default function SignupPage() {
                 {/* Login Info Panel */}
                 <div className="flex-1 p-10 text-center bg-[#e0ecff] flex flex-col justify-center items-center">
                      <Image 
-                        src="https://picsum.photos/seed/signup1/400/300"
-                        alt="Welcome Animation"
+                        src="https://img.freepik.com/free-vector/sign-up-concept-illustration_114360-7885.jpg?w=740&t=st=1718182285~exp=1718182885~hmac=dba9835824c93570354b54e7f3c647e3a36481a8c71f92e5c709115b810d7a04"
+                        alt="Sign Up Concept"
                         width={400}
                         height={300}
                         className="mb-6 rounded-lg object-cover"
