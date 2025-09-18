@@ -1,7 +1,7 @@
 
 "use-client";
 
-import { Menu, LogOut, Bot, FileText } from "lucide-react";
+import { Menu, LogOut, Bot, FileText, Home, Map, BookOpen } from "lucide-react";
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
 import { useSidebar } from "@/components/ui/sidebar";
@@ -24,8 +24,9 @@ export function Header() {
       <nav className="hidden lg:flex items-center gap-6 text-sm font-medium">
         <Link
           href="/dashboard"
-          className="transition-colors hover:text-primary-foreground/80"
+          className="transition-colors hover:text-primary-foreground/80 flex items-center gap-2"
         >
+          <Home className="w-4 h-4" />
           Home
         </Link>
         <Link
@@ -37,14 +38,16 @@ export function Header() {
         </Link>
         <Link
           href="/roadmaps"
-          className="transition-colors hover:text-primary-foreground/80"
+          className="transition-colors hover:text-primary-foreground/80 flex items-center gap-2"
         >
+          <Map className="w-4 h-4" />
           Roadmaps
         </Link>
          <Link
           href="/resources"
-          className="transition-colors hover:text-primary-foreground/80"
+          className="transition-colors hover:text-primary-foreground/80 flex items-center gap-2"
         >
+          <BookOpen className="w-4 h-4" />
           Resources
         </Link>
         <Link
