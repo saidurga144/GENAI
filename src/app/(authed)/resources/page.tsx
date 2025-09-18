@@ -14,7 +14,7 @@ const channels = [
     { name: "SmarterEveryDay", url: "https://www.youtube.com/c/smartereveryday/videos", description: "Hosted by Destin Sandlin, this channel is about exploring the world through science. He dives deep into how things work, often with experiments, slow-motion, detailed exploration and a sense of wonder." },
     { name: "MinutePhysics", url: "https://www.youtube.com/user/minutephysics/videos", description: "Quick and easy-to-understand physics explanations." },
     { name: "Veritasium", url: "https://www.youtube.com/veritasium", description: "Veritasium (Derek Muller) presents science/engineering with a mix of experiments, interviews, and explorations of common misconceptions. He tries to reveal surprising truths and explain things in a deep but engaging way." },
-    { name: "The Organic Chemistry Tutor", url: "https://www.youtube.com/@TheOrganicChemistryTutor", description: "Tutorials on chemistry, math, and physics." },
+    { name: "The Organic Chemistry Tutor", url: "https://www.youtube.com/@TheOrganicChemistryTutor", description: "Despite the name, this channel offers much more than organic chemistry alone. It provides tutorial videos across general chemistry, physics, algebra, trigonometry, precalculus, and calculus. Very detailed problem-solving, step by step." },
     { name: "EEVblog", url: "https://www.youtube.com/@EEVblog", description: "An electronics engineering video blog for experts and beginners." },
     { name: "Intellipaat", url: "https://youtube.com/@intellipaat", description: "Technology and professional courses." },
     { name: "Tech With Tim", url: "https://youtube.com/@techwithtim", description: "Python tutorials and programming guides." },
