@@ -68,6 +68,13 @@ const roadmapsList = [
         icon: <Shield className="w-8 h-8 text-primary" />,
         imageUrl: "https://tse1.mm.bing.net/th/id/OIP.Zf6YLhRpL7la9QnOp0EGOQHaFW?pid=Api&P=0&h=220",
     },
+     {
+        title: "Data Science Engineer",
+        description: "A 5-step roadmap to becoming a Data Science Engineer, from mathematical foundations to advanced model deployment.",
+        url: "/data-science-engineer",
+        icon: <BarChartBig className="w-8 h-8 text-primary" />,
+        imageUrl: "https://tse3.mm.bing.net/th/id/OIP.fXHgwo8Q58iC_mD_exQWPwHaF7?pid=Api&P=0&h=220",
+    },
     {
         title: "Electrical & Electronics Engineer",
         description: "Your path to becoming a licensed EEE Engineer, covering core concepts, practical skills, and career launch.",
