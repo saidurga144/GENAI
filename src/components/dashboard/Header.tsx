@@ -14,12 +14,10 @@ export function Header() {
   return (
     <header className="sticky top-0 z-10 flex h-16 items-center gap-4 border-b bg-primary px-4 md:px-6 text-primary-foreground no-print">
       <div className="flex items-center gap-4">
-        {isMobile && (
-           <Button variant="ghost" size="icon" onClick={toggleSidebar} className="text-primary-foreground hover:bg-primary/80 hover:text-primary-foreground">
+        <Button variant="ghost" size="icon" onClick={toggleSidebar} className="text-primary-foreground hover:bg-primary/80 hover:text-primary-foreground">
             <Menu className="h-6 w-6" />
             <span className="sr-only">Toggle sidebar</span>
-          </Button>
-        )}
+        </Button>
         <h1 className="text-lg font-bold">CarrierGuide</h1>
       </div>
 
