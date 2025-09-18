@@ -43,7 +43,7 @@ export default function RoadmapsPage() {
                     </Button>
                 </div>
                 <PageHeader
-                    title="Sample Career Roadmaps"
+                    title="Carrier Roadmaps"
                     description="Explore our expert-curated roadmaps for popular career paths. These step-by-step guides provide a clear framework for your journey."
                 />
                 <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8" style={{ perspective: '1000px' }}>
