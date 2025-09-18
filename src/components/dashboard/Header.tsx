@@ -1,7 +1,7 @@
 
 "use-client";
 
-import { Menu, LogOut, Bot } from "lucide-react";
+import { Menu, LogOut, Bot, FileText } from "lucide-react";
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
 import { useSidebar } from "@/components/ui/sidebar";
@@ -27,6 +27,13 @@ export function Header() {
           className="transition-colors hover:text-primary-foreground/80"
         >
           Home
+        </Link>
+        <Link
+          href="/dashboard/generator"
+          className="transition-colors hover:text-primary-foreground/80 flex items-center gap-2"
+        >
+          <FileText className="w-4 h-4" />
+          Build Your Career
         </Link>
         <Link
           href="/roadmaps"
