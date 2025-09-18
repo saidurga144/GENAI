@@ -41,9 +41,6 @@ export function AuthProvider({ children }: { children: ReactNode }) {
     useEffect(() => {
         const unsubscribe = onAuthStateChanged(auth, (user) => {
             if (user && !user.emailVerified) {
-                // If the user is logged in but the email is not verified,
-                // keep them on the login page or show a message.
-                // For this app, we'll just log them out if they refresh.
                 const isAuthPage = window.location.pathname.startsWith('/login') || window.location.pathname.startsWith('/signup');
                 if (!isAuthPage) {
                     firebaseSignOut(auth);
@@ -61,7 +58,6 @@ export function AuthProvider({ children }: { children: ReactNode }) {
         try {
             const userCredential = await signInWithEmailAndPassword(auth, email, pass);
             if (!userCredential.user.emailVerified) {
-              // Sign out the user immediately if their email is not verified.
               await firebaseSignOut(auth);
               throw new Error("Please verify your email before logging in. Check your inbox for a verification link.");
             }
@@ -82,9 +78,7 @@ export function AuthProvider({ children }: { children: ReactNode }) {
 
     const signUp = async (email: string, pass: string) => {
         const userCredential = await createUserWithEmailAndPassword(auth, email, pass);
-        // Send verification email
         await sendEmailVerification(userCredential.user);
-        // Sign out the user immediately so they have to verify to log in
         await firebaseSignOut(auth);
         return userCredential;
     };

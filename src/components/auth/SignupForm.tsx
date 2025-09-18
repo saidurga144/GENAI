@@ -16,17 +16,23 @@ import {
 import { Input } from "@/components/ui/input";
 import { useAuth } from "@/hooks/use-auth";
 import Image from "next/image";
+import { Eye, EyeOff } from 'lucide-react';
 
 const emailFormSchema = z.object({
   email: z.string().email({ message: "Please enter a valid email address." }),
   password: z.string()
     .min(8, { message: "Password must be at least 8 characters." })
+    .regex(/[A-Z]/, { message: "Password must contain at least one uppercase letter." })
+    .regex(/[a-z]/, { message: "Password must contain at least one lowercase letter." })
+    .regex(/[0-9]/, { message: "Password must contain at least one number." })
+    .regex(/[^A-Za-z0-9]/, { message: "Password must contain at least one special character." }),
 });
 
 export function SignupForm() {
   const [error, setError] = useState<string | null>(null);
   const [loading, setLoading] = useState(false);
   const [successMessage, setSuccessMessage] = useState<string | null>(null);
+  const [showPassword, setShowPassword] = useState(false);
   const { signUp } = useAuth();
 
   const form = useForm<z.infer<typeof emailFormSchema>>({
@@ -82,14 +88,26 @@ export function SignupForm() {
                 render={({ field }) => (
                   <FormItem className="relative">
                     <FormControl>
-                      <Input 
-                        type="password" 
-                        placeholder="Password" 
-                        {...field} 
-                        className="w-full pl-5 pr-10 py-3 border-none rounded-lg bg-[#f0f0f0] outline-none"
-                      />
+                       <div className="relative">
+                        <Input 
+                          type={showPassword ? "text" : "password"}
+                          placeholder="Password" 
+                          {...field} 
+                          className="w-full pl-5 pr-10 py-3 border-none rounded-lg bg-[#f0f0f0] outline-none"
+                        />
+                        <button
+                          type="button"
+                          onClick={() => setShowPassword(!showPassword)}
+                          className="absolute right-3 top-1/2 -translate-y-1/2"
+                        >
+                          {showPassword ? (
+                            <EyeOff className="h-5 w-5 text-gray-500" />
+                          ) : (
+                            <Eye className="h-5 w-5 text-gray-500" />
+                          )}
+                        </button>
+                      </div>
                     </FormControl>
-                    <i className='bx bx-lock-alt absolute right-4 top-1/2 -translate-y-1/2 text-gray-500'></i>
                     <FormMessage />
                   </FormItem>
                 )}

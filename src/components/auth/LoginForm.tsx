@@ -17,6 +17,7 @@ import { Input } from "@/components/ui/input";
 import { useAuth } from "@/hooks/use-auth";
 import Image from "next/image";
 import Link from "next/link";
+import { Eye, EyeOff } from 'lucide-react';
 
 const emailFormSchema = z.object({
   email: z.string().email({ message: "Please enter a valid email address." }),
@@ -26,6 +27,7 @@ const emailFormSchema = z.object({
 export function LoginForm() {
   const [error, setError] = useState<string | null>(null);
   const [loading, setLoading] = useState(false);
+  const [showPassword, setShowPassword] = useState(false);
   const { signIn } = useAuth();
   
   const form = useForm<z.infer<typeof emailFormSchema>>({
@@ -72,14 +74,26 @@ export function LoginForm() {
             render={({ field }) => (
               <FormItem className="relative">
                 <FormControl>
-                  <Input 
-                    type="password" 
-                    placeholder="Password" 
-                    {...field} 
-                    className="w-full pl-5 pr-10 py-3 border-none rounded-lg bg-[#f0f0f0] outline-none"
-                  />
+                  <div className="relative">
+                    <Input 
+                      type={showPassword ? "text" : "password"}
+                      placeholder="Password" 
+                      {...field} 
+                      className="w-full pl-5 pr-10 py-3 border-none rounded-lg bg-[#f0f0f0] outline-none"
+                    />
+                    <button
+                      type="button"
+                      onClick={() => setShowPassword(!showPassword)}
+                      className="absolute right-3 top-1/2 -translate-y-1/2"
+                    >
+                      {showPassword ? (
+                        <EyeOff className="h-5 w-5 text-gray-500" />
+                      ) : (
+                        <Eye className="h-5 w-5 text-gray-500" />
+                      )}
+                    </button>
+                  </div>
                 </FormControl>
-                <i className='bx bx-lock-alt absolute right-4 top-1/2 -translate-y-1/2 text-gray-500'></i>
                 <FormMessage />
               </FormItem>
             )}
