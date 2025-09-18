@@ -40,7 +40,7 @@ export function SignupForm() {
     setSuccessMessage(null);
     try {
       await signUp(data.email, data.password);
-      setSuccessMessage("Account created! A verification email has been sent. Please check your inbox.");
+      setSuccessMessage("Account created! A verification email has been sent. Please check your inbox and verify your email before logging in.");
       form.reset();
     } catch (err) {
       setError(err instanceof Error ? err.message : "An unexpected error occurred.");
