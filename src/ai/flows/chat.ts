@@ -44,7 +44,7 @@ const chatFlow = ai.defineFlow(
 
     // The Gemini 1.5 Flash model used in this app only supports 'user' and 'model' roles.
     const mappedHistory: Message[] = history.map(h => ({
-      role: h.role === 'assistant' ? 'model' : h.role,
+      role: h.role === 'user' ? 'user' : 'model',
       content: h.content,
     }));
 
