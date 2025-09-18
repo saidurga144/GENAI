@@ -6,7 +6,7 @@ import { ArrowLeft, ArrowRight } from "lucide-react";
 import Link from "next/link";
 
 const channels = [
-    { name: "Learn Engineering", url: "https://www.youtube.com/channel/UCsm2OHyG9Mzf7UtfjUf6QTw", description: "Complex engineering concepts made simple through animations." },
+    { name: "Learn Engineering", url: "https://www.youtube.com/channel/UCsm2OHyG9Mzf7UtfjUf6QTw", description: "This channel focuses on engineering topics, especially explaining how things around us work, using CAD/CAE visualization tools. It often breaks down complex mechanical, electrical, structural engineering phenomena into intuitive animations." },
     { name: "Gate Smashers", url: "https://www.youtube.com/channel/UCJihyK0A38SZ6SdJirEdIOw", description: "Computer science and GATE exam preparation resources." },
     { name: "Neso Academy", url: "https://www.youtube.com/channel/UCQYMhOMi_Cdj1CEAU-fv80A", description: "Comprehensive lectures on engineering and computer science subjects." },
     { name: "Edu9 Career Guidance", url: "https://www.youtube.com/channel/UCLx0Y5AJpHhoh-PjH7EAp1Q", description: "Career guidance and counseling for students." },
