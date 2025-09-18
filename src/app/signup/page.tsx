@@ -40,7 +40,7 @@ export default function SignupPage() {
                 {/* Login Info Panel */}
                 <div className="flex-1 p-10 text-center bg-[#e0ecff] flex flex-col justify-center items-center animate-slide-in-left">
                      <Image 
-                        src="https://img.freepik.com/free-vector/computer-login-concept-illustration_114360-7962.jpg"
+                        src="https://img.freepik.com/free-vector/man-sitting-desk-unlocking-computer-with-fingerprint-personal-data-security-cyber-security-online-education-online-learning-concept_1150-69275.jpg"
                         alt="Welcome Animation"
                         width={300}
                         height={300}
