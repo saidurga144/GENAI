@@ -97,6 +97,12 @@ const nextConfig: NextConfig = {
         hostname: 'www.aldirasa.com',
         port: '',
         pathname: '/**',
+      },
+      {
+        protocol: 'https',
+        hostname: 'www.swarnprastha.com',
+        port: '',
+        pathname: '/**',
       }
     ],
   },
