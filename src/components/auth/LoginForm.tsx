@@ -19,8 +19,7 @@ import { Checkbox } from "@/components/ui/checkbox";
 import { useAuth } from "@/hooks/use-auth";
 import Image from "next/image";
 import Link from "next/link";
-import { Eye, EyeOff } from 'lucide-react';
-import { Separator } from "../ui/separator";
+import { User, Lock } from 'lucide-react';
 import { useRouter } from "next/navigation";
 
 const emailFormSchema = z.object({
@@ -32,7 +31,6 @@ const emailFormSchema = z.object({
 export function LoginForm() {
   const [error, setError] = useState<string | null>(null);
   const [loading, setLoading] = useState(false);
-  const [showPassword, setShowPassword] = useState(false);
   const { signIn } = useAuth();
   const router = useRouter();
   
@@ -54,20 +52,23 @@ export function LoginForm() {
   };
   
   return (
-    <div className="w-full max-w-sm font-sans">
+    <div className="w-full max-w-sm text-gray-300">
       <Form {...form}>
-        <form onSubmit={form.handleSubmit(handleEmailSubmit)} className="space-y-4">
+        <form onSubmit={form.handleSubmit(handleEmailSubmit)} className="space-y-6">
           <FormField
             control={form.control}
             name="email"
             render={({ field }) => (
               <FormItem>
                 <FormControl>
-                  <Input 
-                    placeholder="sallegroup@email.com" 
-                    {...field} 
-                    className="w-full"
-                  />
+                  <div className="relative">
+                    <User className="absolute left-3 top-1/2 -translate-y-1/2 h-5 w-5 text-gray-400" />
+                    <Input 
+                      placeholder="Username" 
+                      {...field} 
+                      className="w-full bg-black/40 border-gray-600 text-gray-200 pl-10 focus:ring-offset-gray-800 focus:border-gray-500"
+                    />
+                  </div>
                 </FormControl>
                 <FormMessage />
               </FormItem>
@@ -80,68 +81,54 @@ export function LoginForm() {
               <FormItem>
                 <FormControl>
                   <div className="relative">
+                     <Lock className="absolute left-3 top-1/2 -translate-y-1/2 h-5 w-5 text-gray-400" />
                     <Input 
-                      type={showPassword ? "text" : "password"}
-                      placeholder="Password" 
+                      type="password"
+                      placeholder="********" 
                       {...field} 
-                      className="w-full"
+                      className="w-full bg-black/40 border-gray-600 text-gray-200 pl-10 focus:ring-offset-gray-800 focus:border-gray-500"
                     />
-                    <button
-                      type="button"
-                      onClick={() => setShowPassword(!showPassword)}
-                      className="absolute right-3 top-1/2 -translate-y-1/2"
-                    >
-                      {showPassword ? (
-                        <EyeOff className="h-5 w-5 text-gray-500" />
-                      ) : (
-                        <Eye className="h-5 w-5 text-gray-500" />
-                      )}
-                    </button>
                   </div>
                 </FormControl>
                 <FormMessage />
               </FormItem>
             )}
           />
-          <div className="flex items-center justify-between">
+          <div className="flex items-center justify-between text-xs">
             <FormField
               control={form.control}
               name="rememberMe"
               render={({ field }) => (
-                <FormItem className="flex flex-row items-start space-x-3 space-y-0">
+                <FormItem className="flex flex-row items-center space-x-2 space-y-0">
                   <FormControl>
                     <Checkbox
                       checked={field.value}
                       onCheckedChange={field.onChange}
+                      className="data-[state=checked]:bg-gray-400 border-gray-500"
                     />
                   </FormControl>
-                  <div className="space-y-1 leading-none">
-                    <FormLabel>
-                      Remember me
-                    </FormLabel>
-                  </div>
+                  <FormLabel className="font-normal text-gray-400">
+                    Remember me
+                  </FormLabel>
                 </FormItem>
               )}
             />
-            <Link href="#" className="text-sm text-primary hover:underline">
-                Forget Password?
+            <Link href="#" className="text-gray-400 hover:text-white hover:underline">
+                Forgot Password?
             </Link>
           </div>
-          {error && <p className="text-sm text-destructive">{error}</p>}
-          <Button type="submit" className="w-full" disabled={loading}>
+          {error && <p className="text-sm text-red-400 text-center">{error}</p>}
+          <Button type="submit" className="w-full bg-gray-400 text-black hover:bg-gray-300 font-bold tracking-wider" disabled={loading}>
             {loading && <Image src="/loader.gif" alt="Loading..." width={24} height={24} unoptimized className="mr-2" />}
-            Sign In
+            LOGIN
           </Button>
 
-            <div className="flex items-center gap-2">
-                <div className="w-full h-px bg-border"/>
-                <span className="text-xs text-muted-foreground">OR</span>
-                <div className="w-full h-px bg-border"/>
+            <div className="text-center text-xs">
+                <span className="text-gray-500">Not a member? </span>
+                <Link href="/signup" className="font-semibold text-gray-400 hover:text-white">
+                    Sign up now
+                </Link>
             </div>
-
-            <Button variant="outline" className="w-full" onClick={() => router.push('/signup')}>
-                Create an account
-            </Button>
         </form>
       </Form>
     </div>

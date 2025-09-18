@@ -16,7 +16,7 @@ import {
 import { Input } from "@/components/ui/input";
 import { useAuth } from "@/hooks/use-auth";
 import Image from "next/image";
-import { Eye, EyeOff } from 'lucide-react';
+import { Mail, Lock } from 'lucide-react';
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 
@@ -33,7 +33,7 @@ const emailFormSchema = z.object({
 export function SignupForm() {
   const [error, setError] = useState<string | null>(null);
   const [loading, setLoading] = useState(false);
-  const [showPassword, setShowPassword] = useState(false);
+  const [message, setMessage] = useState<string | null>(null);
   const { signUp, signOut } = useAuth();
   const router = useRouter();
 
@@ -45,12 +45,12 @@ export function SignupForm() {
   const handleEmailSubmit = async (data: z.infer<typeof emailFormSchema>) => {
     setLoading(true);
     setError(null);
+    setMessage(null);
     try {
       await signUp(data.email, data.password);
-      // After sign up, Firebase automatically signs the user in.
-      // We sign them out to force a login.
       await signOut();
-      router.push('/login');
+      setMessage("Account created successfully! Redirecting to login...");
+      setTimeout(() => router.push('/login'), 2000);
     } catch (err) {
       setError(err instanceof Error ? err.message : "An unexpected error occurred.");
     } finally {
@@ -59,23 +59,25 @@ export function SignupForm() {
   };
 
   return (
-    <div className="w-full max-w-sm font-sans">
+    <div className="w-full max-w-sm text-gray-300">
         <Form {...form}>
-          <form onSubmit={form.handleSubmit(handleEmailSubmit)} className="space-y-5">
+          <form onSubmit={form.handleSubmit(handleEmailSubmit)} className="space-y-6">
             <FormField
               control={form.control}
               name="email"
               render={({ field }) => (
-                <FormItem className="relative">
+                <FormItem>
                   <FormControl>
-                    <Input 
-                      placeholder="Email" 
-                      {...field}
-                      className="w-full pl-5 pr-10 py-3 border-none rounded-lg bg-[#f0f0f0] outline-none"
-                    />
+                    <div className="relative">
+                      <Mail className="absolute left-3 top-1/2 -translate-y-1/2 h-5 w-5 text-gray-400" />
+                      <Input 
+                        placeholder="Email" 
+                        {...field}
+                        className="w-full bg-black/40 border-gray-600 text-gray-200 pl-10 focus:ring-offset-gray-800 focus:border-gray-500"
+                      />
+                    </div>
                   </FormControl>
-                    <i className='bx bx-envelope absolute right-4 top-1/2 -translate-y-1/2 text-gray-500'></i>
-                  <FormMessage />
+                  <FormMessage className="text-red-400" />
                 </FormItem>
               )}
             />
@@ -83,37 +85,34 @@ export function SignupForm() {
               control={form.control}
               name="password"
               render={({ field }) => (
-                <FormItem className="relative">
+                <FormItem>
                   <FormControl>
-                      <div className="relative">
+                    <div className="relative">
+                       <Lock className="absolute left-3 top-1/2 -translate-y-1/2 h-5 w-5 text-gray-400" />
                       <Input 
-                        type={showPassword ? "text" : "password"}
+                        type="password"
                         placeholder="Password" 
                         {...field} 
-                        className="w-full pl-5 pr-10 py-3 border-none rounded-lg bg-[#f0f0f0] outline-none"
+                        className="w-full bg-black/40 border-gray-600 text-gray-200 pl-10 focus:ring-offset-gray-800 focus:border-gray-500"
                       />
-                      <button
-                        type="button"
-                        onClick={() => setShowPassword(!showPassword)}
-                        className="absolute right-3 top-1/2 -translate-y-1/2"
-                      >
-                        {showPassword ? (
-                          <EyeOff className="h-5 w-5 text-gray-500" />
-                        ) : (
-                          <Eye className="h-5 w-5 text-gray-500" />
-                        )}
-                      </button>
                     </div>
                   </FormControl>
-                  <FormMessage />
+                  <FormMessage className="text-red-400" />
                 </FormItem>
               )}
             />
-            {error && <p className="text-sm text-destructive">{error}</p>}
-            <Button type="submit" className="w-full rounded-lg py-3 text-base bg-primary hover:bg-primary/90" disabled={loading}>
+            {error && <p className="text-sm text-red-400 text-center">{error}</p>}
+            {message && <p className="text-sm text-green-400 text-center">{message}</p>}
+            <Button type="submit" className="w-full bg-gray-400 text-black hover:bg-gray-300 font-bold tracking-wider" disabled={loading}>
               {loading && <Image src="/loader.gif" alt="Loading..." width={24} height={24} unoptimized className="mr-2" />}
-              Register
+              SIGN UP
             </Button>
+            <div className="text-center text-xs">
+                <span className="text-gray-500">Already have an account? </span>
+                <Link href="/login" className="font-semibold text-gray-400 hover:text-white">
+                    Log in
+                </Link>
+            </div>
           </form>
         </Form>
     </div>

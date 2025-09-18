@@ -1,4 +1,3 @@
-
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
@@ -82,11 +81,9 @@
   body {
     @apply bg-background text-foreground;
   }
-  .auth-body {
-    background: linear-gradient(90deg, #90d9dc, #e2e2e2, #c0dfff);
-  }
-  .auth-body-alt {
-    background: linear-gradient(90deg, hsl(221, 83%, 63%), hsl(221, 83%, 43%));
+  .auth-body-dark {
+    background-color: #333333;
+    background-image: radial-gradient(circle at center, rgba(255, 255, 255, 0.05) 0%, rgba(255, 255, 255, 0) 60%);
   }
 }
 
