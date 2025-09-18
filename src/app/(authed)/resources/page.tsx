@@ -13,7 +13,7 @@ const channels = [
     { name: "Mark Rober", url: "https://www.youtube.com/c/MarkRober/videos", description: "Mark Rober is a science & tech content creator (former NASA engineer) who makes entertaining, high-production videos showing engineering pranks, experiments, inventions, and creative builds. His videos are very well produced, fun and accessible." },
     { name: "SmarterEveryDay", url: "https://www.youtube.com/c/smartereveryday/videos", description: "Hosted by Destin Sandlin, this channel is about exploring the world through science. He dives deep into how things work, often with experiments, slow-motion, detailed exploration and a sense of wonder." },
     { name: "MinutePhysics", url: "https://www.youtube.com/user/minutephysics/videos", description: "Quick and easy-to-understand physics explanations." },
-    { name: "Veritasium", url: "https://www.youtube.com/veritasium", description: "An element of truth - videos about science, education, and more." },
+    { name: "Veritasium", url: "https://www.youtube.com/veritasium", description: "Veritasium (Derek Muller) presents science/engineering with a mix of experiments, interviews, and explorations of common misconceptions. He tries to reveal surprising truths and explain things in a deep but engaging way." },
     { name: "The Organic Chemistry Tutor", url: "https://www.youtube.com/@TheOrganicChemistryTutor", description: "Tutorials on chemistry, math, and physics." },
     { name: "EEVblog", url: "https://www.youtube.com/@EEVblog", description: "An electronics engineering video blog for experts and beginners." },
     { name: "Intellipaat", url: "https://youtube.com/@intellipaat", description: "Technology and professional courses." },
