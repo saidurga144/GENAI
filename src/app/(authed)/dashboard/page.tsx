@@ -75,12 +75,13 @@ export default function DashboardPage() {
             <div className="relative flex justify-center items-center mb-8" style={{ perspective: '1000px' }}>
                 <div className="bg-secondary/50 rounded-lg p-4 border transition-transform duration-500 ease-in-out hover:-rotate-y-12 hover:rotate-x-12 hover:scale-105 hover:shadow-2xl" style={{ transformStyle: 'preserve-3d' }}>
                     <Image
-                        src="https://www.reliablesoft.net/wp-content/uploads/2019/08/digital-marketing-courses.png"
+                        src="https://images.unsplash.com/photo-1554415707-6e8cfc93fe23?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
                         alt="Career Path"
                         width={600}
                         height={400}
-                        className="max-w-md w-full h-auto object-contain"
+                        className="max-w-md w-full h-auto object-contain rounded-md"
                         quality={100}
+                        data-ai-hint="woman working"
                     />
                 </div>
             </div>
