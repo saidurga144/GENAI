@@ -55,9 +55,8 @@ export function AuthProvider({ children }: { children: ReactNode }) {
             const userCredential = await signInWithEmailAndPassword(auth, email, pass);
             if (!userCredential.user.emailVerified) {
               await firebaseSignOut(auth); 
-              throw new Error("Please verify your email before logging in. Check your inbox for a verification link.");
+              throw new Error("Please verify your email before logging in. Check your inbox (and spam folder) for a verification link.");
             }
-            // onAuthStateChanged will handle setting the user state
             return userCredential;
         } catch (error: any) {
             if (error.code === AuthErrorCodes.INVALID_PASSWORD || error.code === 'auth/wrong-password') {
@@ -67,7 +66,7 @@ export function AuthProvider({ children }: { children: ReactNode }) {
             } else if (error.code === 'auth/invalid-credential') {
                  throw new Error("Invalid credentials. Please check your email and password.");
             } else if (error.message.includes("Please verify your email")) {
-                throw error; // Re-throw our custom verification error
+                throw error;
             }
             else {
                 throw new Error(error.message || "An unexpected error occurred during sign-in.");
@@ -79,11 +78,10 @@ export function AuthProvider({ children }: { children: ReactNode }) {
          try {
             const userCredential = await createUserWithEmailAndPassword(auth, email, pass);
             await sendEmailVerification(userCredential.user);
-            // Sign the user out immediately, forcing them to verify email before logging in.
-            await firebaseSignout(auth);
+            await firebaseSignOut(auth);
             return userCredential;
         } catch (error: any) {
-            if (error.code === AuthErrorCodes.EMAIL_EXISTS) {
+            if (error.code === AuthErrorCodes.EMAIL_EXISTS || error.code === 'auth/email-already-in-use') {
                 throw new Error("Email already exists. Please log in.");
             } else {
                 throw new Error(error.message || "An unexpected error occurred during sign-up.");
