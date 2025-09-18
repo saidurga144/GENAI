@@ -11,6 +11,7 @@ import { useToast } from '@/hooks/use-toast';
 import { Button } from '@/components/ui/button';
 import Link from 'next/link';
 import { ArrowLeft } from 'lucide-react';
+import { PageHeader } from '@/components/futurepath/PageHeader';
 
 export default function GeneratorPage() {
   const [results, setResults] = useState<CareerPath[] | null>(null);
@@ -100,8 +101,20 @@ export default function GeneratorPage() {
 
     return (
       <>
-        <div className="relative flex justify-center items-center mb-8" style={{ perspective: '1000px' }}>
-            <div className="bg-secondary/50 rounded-lg p-4 border transition-transform duration-500 ease-in-out hover:-rotate-y-12 hover:rotate-x-12 hover:scale-105 hover:shadow-2xl" style={{ transformStyle: 'preserve-3d' }}>
+        <div className="flex justify-start mb-8">
+            <Button asChild variant="outline">
+                <Link href="/dashboard">
+                    <ArrowLeft />
+                    Back to Dashboard
+                </Link>
+            </Button>
+        </div>
+        <PageHeader
+            title="Discover Your Future Path"
+            description="Tell us a bit about yourself, and our AI will generate personalized career recommendations for you."
+        />
+        <div className="relative flex justify-center items-center mb-8">
+            <div className="bg-secondary/50 rounded-lg p-4 border">
                 <Image
                     src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSZvTHxQh-irUf-ly0NlkTFwPSLg-XYG9GL6Q&s"
                     alt="AI Brain"
@@ -119,14 +132,6 @@ export default function GeneratorPage() {
 
   return (
     <main className="flex-grow container mx-auto px-4 py-12 md:py-20">
-      <div className="flex justify-start mb-8">
-        <Button asChild variant="outline">
-          <Link href="/dashboard">
-            <ArrowLeft />
-            Back to Dashboard
-          </Link>
-        </Button>
-      </div>
       {renderContent()}
     </main>
   );

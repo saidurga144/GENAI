@@ -72,13 +72,8 @@ export function CareerForm({ onSubmit }: CareerFormProps) {
   };
   
   return (
-    <div className="max-w-3xl mx-auto animate-in fade-in-50 duration-500" style={{ perspective: '1000px' }}>
-      <div className="text-center mb-10">
-        <h1 className="text-4xl md:text-5xl font-extrabold tracking-tight mb-4">Discover Your Future Path</h1>
-        <p className="text-lg text-muted-foreground max-w-2xl mx-auto">Tell us a bit about yourself, and our AI will generate personalized career recommendations for you.</p>
-      </div>
-
-      <Card className="border-2 border-primary/10 shadow-lg shadow-primary/5 transition-transform duration-500 ease-in-out hover:-rotate-y-2 hover:rotate-x-2 hover:scale-105 hover:shadow-2xl" style={{ transformStyle: 'preserve-3d' }}>
+    <div className="max-w-3xl mx-auto animate-in fade-in-50 duration-500">
+      <Card className="border-2 border-primary/10 shadow-lg shadow-primary/5">
         <CardContent className="p-8">
           <Form {...form}>
             <form onSubmit={form.handleSubmit(handleFormSubmit)} className="space-y-8">
