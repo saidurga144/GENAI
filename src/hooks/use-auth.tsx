@@ -75,9 +75,7 @@ export function AuthProvider({ children }: { children: ReactNode }) {
     };
 
     const signOut = () => {
-        return firebaseSignOut(auth).then(() => {
-            router.push('/login');
-        });
+        return firebaseSignOut(auth)
     };
 
     const value = { user, loading, signIn, signUp, signOut };

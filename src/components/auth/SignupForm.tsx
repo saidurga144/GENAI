@@ -34,7 +34,7 @@ export function SignupForm() {
   const [error, setError] = useState<string | null>(null);
   const [loading, setLoading] = useState(false);
   const [showPassword, setShowPassword] = useState(false);
-  const { signUp } = useAuth();
+  const { signUp, signOut } = useAuth();
   const router = useRouter();
 
   const form = useForm<z.infer<typeof emailFormSchema>>({
@@ -47,8 +47,10 @@ export function SignupForm() {
     setError(null);
     try {
       await signUp(data.email, data.password);
-      // The user is now automatically logged in, so we can redirect.
-      // The redirect is handled by the useEffect in the SignupPage component.
+      // After sign up, Firebase automatically signs the user in.
+      // We sign them out to force a login.
+      await signOut();
+      router.push('/login');
     } catch (err) {
       setError(err instanceof Error ? err.message : "An unexpected error occurred.");
     } finally {
