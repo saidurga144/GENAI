@@ -8,16 +8,13 @@ import { useEffect } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { Users } from "lucide-react";
+import { CompassLogo } from "@/components/auth/CompassLogo";
 
 const AuthHeader = () => (
     <header className="absolute top-0 left-0 right-0 p-6 z-20">
         <div className="container mx-auto px-4 flex justify-between items-center">
             <Link href="/" className="text-2xl font-bold text-white tracking-widest uppercase flex items-center gap-2">
-                <svg width="30" height="30" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                    <path d="M12 2L2 7V17L12 22L22 17V7L12 2Z" stroke="hsl(var(--primary))" strokeWidth="2" strokeLinejoin="round"/>
-                    <path d="M2 7L12 12L22 7" stroke="hsl(var(--primary))" strokeWidth="2" strokeLinejoin="round"/>
-                    <path d="M12 12V22" stroke="hsl(var(--primary))" strokeWidth="2" strokeLinejoin="round"/>
-                </svg>
+                <CompassLogo />
                 CareerGuide
             </Link>
             <nav className="hidden md:flex items-center gap-8 text-sm">
