@@ -40,7 +40,7 @@ export default function LoginPage() {
                 {/* Registration Info Panel */}
                 <div className="flex-1 p-10 text-center bg-white flex flex-col justify-center items-center animate-slide-in-left">
                     <Image 
-                        src="https://www.aldirasa.com/wp-content/uploads/2022/10/Register-cuate.png"
+                        src="https://img.freepik.com/free-vector/sign-up-concept-illustration_114360-7885.jpg?t=st=1718182998~exp=1718186598~hmac=8f3d64117b3a1b32f26702e5b15b3c3b53fca87d46c82306d1c68e7f1a53239a&w=740"
                         alt="Welcome Animation"
                         width={400}
                         height={300}
