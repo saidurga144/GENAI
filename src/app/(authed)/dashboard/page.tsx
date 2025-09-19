@@ -67,7 +67,7 @@ export default function DashboardPage() {
   const view = searchParams.get('view');
 
   return (
-    <div className="flex items-center justify-center h-full">
+    <div className="flex flex-col items-center justify-center min-h-full h-full">
       {view === 'profile' ? (
         <ProfileDashboard />
       ) : (
