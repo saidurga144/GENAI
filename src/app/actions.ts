@@ -5,7 +5,7 @@ import { generatePersonalizedCareerPaths } from '@/ai/flows/generate-personalize
 import { summarizeSkillsForResume } from '@/ai/flows/summarize-skills-for-resume';
 import { parseResume as parseResumeFlow, type ParseResumeInput } from '@/ai/flows/parse-resume';
 import { generateRoadmap } from '@/ai/flows/generate-roadmap';
-import { chat, type ChatInput, type ChatOutput } from '@/ai/flows/chat';
+import { runChat, type ChatInput, type ChatOutput } from '@/ai/flows/chat';
 import type { CareerPath, DetailedCareerPath, FormInput } from '@/lib/types';
 import { db } from '@/lib/firebase';
 import { collection, addDoc, serverTimestamp, getDocs, query, orderBy, limit } from 'firebase/firestore';
@@ -77,9 +77,7 @@ export async function parseResume(input: ParseResumeInput) {
   return await parseResumeFlow(input);
 }
 
-export async function runChat(input: ChatInput): Promise<ChatOutput> {
-  return await chat(input);
-}
+export { runChat, type ChatInput, type ChatOutput };
 
 // History Actions
 export async function logUserActivity(userId: string, activity: string) {

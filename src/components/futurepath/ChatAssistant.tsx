@@ -11,7 +11,6 @@ import { Avatar, AvatarFallback, AvatarImage } from '../ui/avatar';
 import { cn } from '@/lib/utils';
 import Image from 'next/image';
 import { runChat } from '@/app/actions';
-import type { Message } from 'genkit';
 
 type ChatMessage = {
     role: 'user' | 'model';
@@ -53,15 +52,7 @@ export function ChatAssistant() {
         setIsLoading(true);
 
         try {
-            // Now, we map the `newMessages` array which includes the latest user message.
-            const genkitHistory: Message[] = newMessages.map(m => ({
-                role: m.role === 'user' ? 'user' : 'model',
-                content: [{ text: m.content }]
-            }));
-            
-            // We pass the *full* history and don't need the separate message.
-            const response = await runChat({ history: genkitHistory, message: '' });
-
+            const response = await runChat({ history: newMessages.slice(0, -1) });
             const modelMessage: ChatMessage = { role: 'model', content: response.message };
             setMessages(prev => [...prev, modelMessage]);
 

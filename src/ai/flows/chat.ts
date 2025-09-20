@@ -17,12 +17,10 @@ const ChatInputSchema = z.object({
     .array(
       z.object({
         role: z.string(),
-        content: z.array(z.object({text: z.string()})),
+        content: z.string(), // This was the source of the error. It expected an array of objects.
       })
     )
     .describe('The chat history.'),
-  // The message is now part of the history, so we can make this optional.
-  message: z.string().optional().describe("The user's message."),
 });
 export type ChatInput = z.infer<typeof ChatInputSchema>;
 
@@ -31,7 +29,7 @@ const ChatOutputSchema = z.object({
 });
 export type ChatOutput = z.infer<typeof ChatOutputSchema>;
 
-export async function chat(input: ChatInput): Promise<ChatOutput> {
+export async function runChat(input: ChatInput): Promise<ChatOutput> {
   return chatFlow(input);
 }
 
@@ -42,12 +40,11 @@ const chatFlow = ai.defineFlow(
     outputSchema: ChatOutputSchema,
   },
   async input => {
-    const {history} = input;
-
     // The Gemini 1.5 Flash model used in this app only supports 'user' and 'model' roles.
-    const mappedHistory: Message[] = history.map(h => ({
+    // This mapping correctly transforms the chat history into the format Genkit expects.
+    const mappedHistory: Message[] = input.history.map(h => ({
       role: h.role === 'user' ? 'user' : 'model',
-      content: h.content,
+      content: [{text: h.content}],
     }));
 
     const conversation: Message[] = [
