@@ -9,7 +9,7 @@ import { Bot, User, X, Send, ChevronDown, ChevronUp } from 'lucide-react';
 import { ScrollArea } from '../ui/scroll-area';
 import { Avatar, AvatarFallback } from '../ui/avatar';
 import { cn } from '@/lib/utils';
-import { runChat } from '@/app/actions';
+import { chat as runChat } from '@/app/actions';
 
 type ChatMessage = {
     role: 'user' | 'model';
@@ -189,7 +189,7 @@ export function ChatAssistant() {
                                             <div className="flex gap-1.5">
                                                 <span className="w-1.5 h-1.5 rounded-full bg-muted-foreground animate-pulse" style={{animationDelay: '0ms'}}></span>
                                                 <span className="w-1.5 h-1.5 rounded-full bg-muted-foreground animate-pulse" style={{animationDelay: '200ms'}}></span>
-                                                <span className="w-1.5 h-1.5 rounded-full bg-muted-foreground animate-pulse" style={{animationDelay: '400ms'}}></span>
+                 <span className="w-1.5 h-1.5 rounded-full bg-muted-foreground animate-pulse" style={{animationDelay: '400ms'}}></span>
                                             </div>
                                         </div>
                                     </div>

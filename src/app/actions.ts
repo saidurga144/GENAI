@@ -77,7 +77,9 @@ export async function parseResume(input: ParseResumeInput) {
   return await parseResumeFlow(input);
 }
 
-export { runChat, type ChatInput, type ChatOutput };
+export async function chat(input: ChatInput): Promise<ChatOutput> {
+  return await runChat(input);
+}
 
 // History Actions
 export async function logUserActivity(userId: string, activity: string) {
