@@ -17,10 +17,10 @@ type ChatMessage = {
 };
 
 const starterQuestions = [
-    "What is cybersecurity?",
-    "How do I start with AWS?",
-    "Suggest a project for web development.",
-    "Explain machine learning in simple terms.",
+    "What skills do I need for a career in Software Engineering?",
+    "Compare the roles of an AI Specialist and a Data Scientist.",
+    "How can I start a career in Cybersecurity?",
+    "What is the career path for a Mechanical Engineer?",
 ];
 
 export function ChatAssistant() {
