@@ -10,7 +10,7 @@ import { ScrollArea } from '../ui/scroll-area';
 import { Avatar, AvatarFallback, AvatarImage } from '../ui/avatar';
 import { cn } from '@/lib/utils';
 import Image from 'next/image';
-import { chat } from '@/app/actions';
+import { runChat } from '@/app/actions';
 import type { Message } from 'genkit';
 
 type ChatMessage = {
@@ -57,7 +57,7 @@ export function ChatAssistant() {
                 content: [{ text: m.content }]
             }));
             
-            const response = await chat({ history: genkitHistory, message: input });
+            const response = await runChat({ history: genkitHistory, message: input });
 
             const modelMessage: ChatMessage = { role: 'model', content: response.message };
             setMessages(prev => [...prev, modelMessage]);
