@@ -62,7 +62,6 @@ const chatFlow = ai.defineFlow(
 
     const {output} = await ai.generate({
       model: 'googleai/gemini-1.5-flash',
-      prompt: " ", // The prompt is managed via history
       history: conversation,
       config: {
         safetySettings: [
