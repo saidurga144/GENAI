@@ -14,7 +14,6 @@ export const allStarterQuestions = [
     "What are the main roles for an EEE graduate?",
     "What does a Paramedical Specialist do?",
     "How is Data Science different from AI?",
-    "What are the first steps after a BBA degree?",
     "Contact Customer Support"
 ];
 
@@ -33,5 +32,10 @@ export const starterAnswers: Record<string, string> = {
     [allStarterQuestions[11]]: `Graduates with an Electrical & Electronics Engineering (EEE) degree have diverse career options. Core electrical roles include Electrical Design Engineer and Power Systems Engineer. In the electronics sector, they can work as Embedded Engineers or VLSI Engineers. With the rise of Industry 4.0, new opportunities are available in Renewable Energy, Smart Grids, and Robotics. Further studies (M.Tech/MS) can lead to specialized research or government jobs.`,
     [allStarterQuestions[12]]: `A Paramedical Specialist provides essential healthcare services that support medical professionals. Their roles are diverse and include B.Sc. Nursing, B.Sc. Radiology (X-ray, MRI techs), BPT (Physiotherapy), and BMLT (Medical Lab Technologists). They perform diagnostics, administer treatments, and provide patient care in hospitals, clinics, and labs.`,
     [allStarterQuestions[13]]: `Data Science is a broad field focused on extracting insights from data using statistical methods and machine learning. AI (Artificial Intelligence) is more focused on building systems that can perform tasks that typically require human intelligence, like understanding language or recognizing images. While a Data Scientist uses AI tools to analyze data, an AI Specialist builds those tools and models. Data Science is about analysis and prediction; AI is about automation and intelligent behavior.`,
-    [allStarterQuestions[14]]: `After a BBA degree, the first steps are typically to gain practical experience. You can apply for entry-level roles like Business Analyst, Marketing Executive, or HR Assistant. Building skills with certifications in Digital Marketing, Business Analytics, or finance tools like Tally is also recommended. For long-term growth into management, many BBA graduates plan to pursue an MBA after gaining 2-3 years of work experience.`
+    [allStarterQuestions[14]]: `For any support, you can reach out to us via email at careerguidecustomercare@gmail.com or call us at 6302243214.`
 };
+
+// This is kept for backward compatibility with the ChatAssistant component, 
+// which still references the old starter question text.
+// The actual answer is now handled by the last item in the starterAnswers object.
+export const contactQuestionText = "Contact Customer Support";

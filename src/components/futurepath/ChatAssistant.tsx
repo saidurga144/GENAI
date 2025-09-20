@@ -5,13 +5,12 @@ import { useState, useRef, useEffect } from 'react';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from '@/components/ui/card';
 import { Input } from '@/components/ui/input';
-import { Bot, User, X, Send, ChevronDown, ChevronUp, Mail } from 'lucide-react';
+import { Bot, User, X, Send, ChevronDown, ChevronUp } from 'lucide-react';
 import { ScrollArea } from '../ui/scroll-area';
 import { Avatar, AvatarFallback } from '../ui/avatar';
 import { cn } from '@/lib/utils';
 import { chat as runChat } from '@/app/actions';
 import { starterAnswers, allStarterQuestions } from '@/lib/starter-answers';
-import Link from 'next/link';
 
 type ChatMessage = {
     role: 'user' | 'model';
@@ -25,9 +24,6 @@ export function ChatAssistant() {
     const [isLoading, setIsLoading] = useState(false);
     const [showMore, setShowMore] = useState(false);
     const scrollAreaRef = useRef<HTMLDivElement>(null);
-    const adminEmail = "careerguidecustomercare@gmail.com";
-    const mailtoLink = `mailto:${adminEmail}?subject=Customer Support Inquiry`;
-    const contactQuestion = "Contact Customer Support";
 
     useEffect(() => {
         if (isOpen && messages.length === 0) {
@@ -152,30 +148,18 @@ export function ChatAssistant() {
                                     <div className="pt-4 space-y-2 animate-in fade-in-50">
                                         <p className="text-sm text-muted-foreground text-center mb-2">Or try one of these questions:</p>
                                         <div className="grid grid-cols-1 gap-2">
-                                            {questionsToShow.map(q => {
-                                                if (q === contactQuestion) {
-                                                    return (
-                                                         <Button key={q} asChild variant="outline" size="sm" className="w-full justify-start h-auto py-2 text-left">
-                                                            <Link href={mailtoLink}>
-                                                                <Mail className="w-4 h-4 mr-2" />
-                                                                {q}
-                                                            </Link>
-                                                        </Button>
-                                                    )
-                                                }
-                                                return (
-                                                    <Button 
-                                                        key={q} 
-                                                        variant="outline" 
-                                                        size="sm"
-                                                        className="w-full justify-start h-auto py-2 text-left"
-                                                        onClick={() => handleSendMessage(q)}
-                                                        disabled={isLoading}
-                                                    >
-                                                        {q}
-                                                    </Button>
-                                                )
-                                            })}
+                                            {questionsToShow.map(q => (
+                                                <Button 
+                                                    key={q} 
+                                                    variant="outline" 
+                                                    size="sm"
+                                                    className="w-full justify-start h-auto py-2 text-left"
+                                                    onClick={() => handleSendMessage(q)}
+                                                    disabled={isLoading}
+                                                >
+                                                    {q}
+                                                </Button>
+                                            ))}
                                             {allStarterQuestions.length > 4 && (
                                                 <Button
                                                     variant="ghost"
