@@ -49,12 +49,13 @@ const chatFlow = ai.defineFlow(
       content: h.content,
     }));
 
+    const systemInstruction =
+        'You are a helpful and friendly AI assistant specializing in career guidance. Your goal is to provide accurate, detailed, and safe information to the user. You should be encouraging and provide actionable advice when possible. Do not be overly cautious and answer the user\'s questions comprehensively.';
+
     const {output} = await ai.generate({
       model: 'googleai/gemini-1.5-flash',
-      system:
-        'You are a helpful and friendly AI assistant specializing in career guidance. Your goal is to provide accurate, detailed, and safe information to the user. You should be encouraging and provide actionable advice when possible. Do not be overly cautious and answer the user\'s questions comprehensively.',
       history: mappedHistory,
-      prompt: message,
+      prompt: `${systemInstruction}\n\nUser Question: ${message}`,
       config: {
         safetySettings: [
           {
