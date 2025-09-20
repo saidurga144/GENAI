@@ -195,7 +195,7 @@ export function ChatAssistant() {
                                 
                                 {!isLoading && (
                                     <div className="pt-4 space-y-2 animate-in fade-in-50">
-                                        <p className="text-sm text-muted-foreground text-center mb-2">Or try one of these questions:</p>
+                                        
                                         <div className="grid grid-cols-1 gap-2">
                                             {questionsToShow.map(renderQuestionButton)}
                                             {allStarterQuestions.length > 4 && (
