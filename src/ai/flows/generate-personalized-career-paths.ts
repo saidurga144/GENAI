@@ -50,6 +50,7 @@ const prompt = ai.definePrompt({
   name: 'generatePersonalizedCareerPathsPrompt',
   input: {schema: GeneratePersonalizedCareerPathsInputSchema},
   output: {schema: GeneratePersonalizedCareerPathsOutputSchema},
+  model: 'googleai/gemini-1.5-flash',
   prompt: `You are a career path recommendation expert. Given the following information about a student, generate personalized career path recommendations. For each recommendation, include:
 1. The job title and industry.
 2. A confidence score between 0 and 1 for suitability.
