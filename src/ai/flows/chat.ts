@@ -76,10 +76,10 @@ const chatFlow = ai.defineFlow(
       },
     });
 
-    if (!output) {
+    if (!output || !output.text) {
       return {
         message:
-          'Sorry, I could not process your request. The response may have been blocked.',
+          'Sorry, I could not process your request. The response may have been blocked due to safety settings or another issue.',
       };
     }
 
