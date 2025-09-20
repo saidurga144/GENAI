@@ -58,7 +58,6 @@ export function ChatAssistant() {
         setInput('');
 
         try {
-            // The AI flow expects history in a specific format for Genkit.
             const historyForApi = newMessages.map(m => ({ role: m.role, content: m.content }));
             
             const response = await runChat({ history: historyForApi.slice(-10) }); // Send last 10 messages
@@ -136,7 +135,7 @@ export function ChatAssistant() {
                                 {messages.length === 1 && !isLoading && (
                                     <div className="pt-4 space-y-2 animate-in fade-in-50">
                                         <p className="text-sm text-muted-foreground text-center mb-2">Or try one of these questions:</p>
-                                        <div className="grid grid-cols-1 sm:grid-cols-2 gap-2">
+                                        <div className="grid grid-cols-1 gap-2">
                                             {starterQuestions.map(q => (
                                                 <Button 
                                                     key={q} 
