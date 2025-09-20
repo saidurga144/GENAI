@@ -16,8 +16,8 @@ export async function getCareerRecommendations(
 ): Promise<CareerPath[]> {
   const { skills, academicBackground, interests } = data;
 
-  if (!isResumeUpload && !skills && !academicBackground) {
-    throw new Error("Either Skills or Academic Background are required when not uploading a resume.");
+  if (!isResumeUpload && (!skills || !academicBackground)) {
+    throw new Error("Skills and Academic Background are required when not uploading a resume.");
   }
   if (!interests) {
     throw new Error("Interests are required.");

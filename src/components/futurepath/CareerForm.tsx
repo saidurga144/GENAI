@@ -20,24 +20,32 @@ import { Textarea } from "@/components/ui/textarea";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import type { FormInput } from "@/lib/types";
 import { FileText, Lightbulb, User, Briefcase, Rocket, Upload } from "lucide-react";
-import Image from "next/image";
+
+// This state is managed outside of the form schema
+let isResumeUploaded = false;
 
 const formSchema = z.object({
   email: z.string().email({ message: "Please enter a valid email address." }),
   academicBackground: z.string().max(500, { message: "Please keep your background under 500 characters." }).optional(),
   skills: z.string().max(500, { message: "Please keep your skills under 500 characters." }).optional(),
   interests: z.string().min(10, { message: "Please describe your interests in at least 10 characters." }).max(500, { message: "Please keep your interests under 500 characters." }),
-}).refine(data => {
-    // If resume is not uploaded, then either skills or academicBackground must be filled.
-    // This client-side validation logic relies on how resumeText is handled in the component.
-    // If we assume resume upload will fill these fields, this refine works.
-    if (data.skills === 'Extracted from resume.' && data.academicBackground === 'Extracted from resume.') {
-        return true;
+}).superRefine((data, ctx) => {
+    if (!isResumeUploaded) {
+        if (!data.skills || data.skills.trim().length === 0) {
+            ctx.addIssue({
+                code: z.ZodIssueCode.custom,
+                message: "Skills are required when not uploading a resume.",
+                path: ["skills"],
+            });
+        }
+        if (!data.academicBackground || data.academicBackground.trim().length === 0) {
+            ctx.addIssue({
+                code: z.ZodIssueCode.custom,
+                message: "Academic background is required when not uploading a resume.",
+                path: ["academicBackground"],
+            });
+        }
     }
-    return !!data.skills || !!data.academicBackground;
-}, {
-  message: "Either Skills or Academic Background must be filled in if not uploading a resume.",
-  path: ["skills"], // Where to show the error
 });
 
 type CareerFormProps = {
@@ -57,22 +65,24 @@ export function CareerForm({ onSubmit }: CareerFormProps) {
       interests: "",
     },
   });
-
+  
   const handleFileChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     const file = event.target.files?.[0];
     if (file) {
+      isResumeUploaded = true;
       setFileName(file.name);
       const reader = new FileReader();
       reader.onload = (e) => {
         const text = e.target?.result as string;
         setResumeText(text);
-        // Set placeholder values to satisfy validation
-        form.setValue('skills', 'Extracted from resume.');
-        form.setValue('academicBackground', 'Extracted from resume.');
-        // Clear errors as the condition is now met
-        form.clearErrors('skills');
+        // Clear manual fields and errors as resume takes precedence
+        form.setValue('skills', '');
+        form.setValue('academicBackground', '');
+        form.clearErrors(['skills', 'academicBackground']);
       };
       reader.readAsText(file);
+    } else {
+        isResumeUploaded = false;
     }
   };
 
@@ -89,10 +99,10 @@ export function CareerForm({ onSubmit }: CareerFormProps) {
             <CardHeader>
               <CardTitle className="flex items-center gap-2 text-lg">
                 <FileText className="w-5 h-5" />
-                Upload Your Resume
+                Upload Your Resume (Optional)
               </CardTitle>
                 <CardDescription>
-                For the best results, upload a .txt or .md file. This automatically fills in your skills and background.
+                For the best results, upload a .txt file. This automatically fills in your skills and background.
               </CardDescription>
             </CardHeader>
             <CardContent>
@@ -103,7 +113,7 @@ export function CareerForm({ onSubmit }: CareerFormProps) {
                     Choose File
                   </label>
                 </Button>
-                <Input id="resume-upload" type="file" className="hidden" onChange={handleFileChange} accept=".txt,.md" />
+                <Input id="resume-upload" type="file" className="hidden" onChange={handleFileChange} accept=".txt" />
                 {fileName && <p className="text-sm text-muted-foreground">{fileName}</p>}
               </div>
             </CardContent>
