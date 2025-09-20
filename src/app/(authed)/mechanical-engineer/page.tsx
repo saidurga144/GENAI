@@ -4,7 +4,7 @@
 import { useEffect } from 'react';
 import { PageHeader } from "@/components/futurepath/PageHeader";
 import { Card, CardHeader, CardTitle, CardDescription, CardContent } from "@/components/ui/card";
-import { Button } from "@/componentsui/button";
+import { Button } from "@/components/ui/button";
 import { ArrowLeft, CheckCircle } from "lucide-react";
 import Link from "next/link";
 import { useAuth } from '@/hooks/use-auth';
