@@ -29,9 +29,9 @@ const compassLogoSvg = `
 const compassLogoDataUri = `data:image/svg+xml;base64,${typeof window !== 'undefined' ? window.btoa(compassLogoSvg) : ''}`;
 
 const AuthHeader = () => (
-    <header className="absolute top-0 left-0 right-0 p-6 z-20">
+    <header className="absolute top-0 left-0 right-0 p-4 md:p-6 z-20">
         <div className="container mx-auto px-4 flex justify-between items-center">
-            <Link href="/" className="text-2xl font-bold text-white tracking-widest uppercase flex items-center gap-2">
+            <Link href="/" className="text-xl md:text-2xl font-bold text-white tracking-widest uppercase flex items-center gap-2">
                 CareerGuide
             </Link>
             <nav className="hidden md:flex items-center gap-8 text-sm">
@@ -92,7 +92,7 @@ export default function SignupPage() {
                         />
                         <div className="absolute inset-0 bg-gradient-to-t from-slate-900/50 to-transparent"></div>
                         <div className="relative z-10 text-center">
-                            <h1 className="text-5xl font-extrabold text-white tracking-tight">Create Account.</h1>
+                            <h1 className="text-4xl lg:text-5xl font-extrabold text-white tracking-tight">Create Account.</h1>
                              <p className="mt-4 text-white/80">
                                 Join us and start building your future. A world of opportunity awaits.
                             </p>

@@ -5,12 +5,13 @@ import { useState, useRef, useEffect } from 'react';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from '@/components/ui/card';
 import { Input } from '@/components/ui/input';
-import { Bot, User, X, Send, ChevronDown, ChevronUp } from 'lucide-react';
+import { Bot, User, X, Send, ChevronDown, ChevronUp, Mail } from 'lucide-react';
 import { ScrollArea } from '../ui/scroll-area';
 import { Avatar, AvatarFallback } from '../ui/avatar';
 import { cn } from '@/lib/utils';
 import { chat as runChat } from '@/app/actions';
-import { starterAnswers, allStarterQuestions } from '@/lib/starter-answers';
+import { starterAnswers, allStarterQuestions, contactQuestionText } from '@/lib/starter-answers';
+import Link from 'next/link';
 
 type ChatMessage = {
     role: 'user' | 'model';
@@ -24,6 +25,9 @@ export function ChatAssistant() {
     const [isLoading, setIsLoading] = useState(false);
     const [showMore, setShowMore] = useState(false);
     const scrollAreaRef = useRef<HTMLDivElement>(null);
+    const adminEmail = "careerguidecustomercare@gmail.com";
+    const mailtoLink = `mailto:${adminEmail}?subject=Customer Support Inquiry`;
+
 
     useEffect(() => {
         if (isOpen && messages.length === 0) {
@@ -91,6 +95,37 @@ export function ChatAssistant() {
     
     const questionsToShow = showMore ? allStarterQuestions : allStarterQuestions.slice(0, 4);
 
+    const renderQuestionButton = (question: string) => {
+        if (question === contactQuestionText) {
+             return (
+                <Button 
+                    key={question} 
+                    variant="outline" 
+                    size="sm"
+                    className="w-full justify-start h-auto py-2 text-left"
+                    asChild
+                >
+                    <Link href={mailtoLink}>
+                        <Mail className="mr-2 h-4 w-4" />
+                        {question}
+                    </Link>
+                </Button>
+            );
+        }
+        return (
+            <Button 
+                key={question} 
+                variant="outline" 
+                size="sm"
+                className="w-full justify-start h-auto py-2 text-left"
+                onClick={() => handleSendMessage(question)}
+                disabled={isLoading}
+            >
+                {question}
+            </Button>
+        );
+    }
+
     return (
         <>
             <div className={cn("fixed bottom-6 right-6 z-50 transition-transform duration-300 ease-in-out no-print", {
@@ -148,18 +183,7 @@ export function ChatAssistant() {
                                     <div className="pt-4 space-y-2 animate-in fade-in-50">
                                         <p className="text-sm text-muted-foreground text-center mb-2">Or try one of these questions:</p>
                                         <div className="grid grid-cols-1 gap-2">
-                                            {questionsToShow.map(q => (
-                                                <Button 
-                                                    key={q} 
-                                                    variant="outline" 
-                                                    size="sm"
-                                                    className="w-full justify-start h-auto py-2 text-left"
-                                                    onClick={() => handleSendMessage(q)}
-                                                    disabled={isLoading}
-                                                >
-                                                    {q}
-                                                </Button>
-                                            ))}
+                                            {questionsToShow.map(renderQuestionButton)}
                                             {allStarterQuestions.length > 4 && (
                                                 <Button
                                                     variant="ghost"

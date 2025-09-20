@@ -67,7 +67,7 @@ export default function DashboardPage() {
   const view = searchParams.get('view');
 
   return (
-    <div className="flex flex-col items-center justify-center min-h-full h-full">
+    <div className="flex flex-col items-center justify-center min-h-full h-full p-4 md:p-0">
       {view === 'profile' ? (
         <ProfileDashboard />
       ) : (
@@ -85,7 +85,7 @@ export default function DashboardPage() {
                     />
                 </div>
             </div>
-          <h1 className="text-4xl font-bold tracking-tight">Welcome to Your Dashboard</h1>
+          <h1 className="text-3xl md:text-4xl font-bold tracking-tight">Welcome to Your Dashboard</h1>
           <p className="text-muted-foreground mt-2">Select an option from the sidebar to get started.</p>
            <Button asChild className="mt-6">
                 <Link href="/dashboard/generator">

@@ -45,11 +45,11 @@ export default function Home() {
       <div className="flex flex-col min-h-screen bg-background text-foreground">
         <header className="absolute top-0 left-0 right-0 p-4 z-20">
              <div className="container mx-auto px-4 flex justify-between items-center">
-                <h2 className="text-3xl font-bold text-foreground tracking-widest uppercase">CareerGuide</h2>
-                <Button asChild variant="outline" className="text-primary text-lg font-semibold border-2 border-primary bg-transparent rounded-lg px-6 py-3 hover:bg-primary hover:text-white hover:shadow-lg hover:-translate-y-0.5 transition-all duration-300">
+                <h2 className="text-2xl md:text-3xl font-bold text-foreground tracking-widest uppercase">CareerGuide</h2>
+                <Button asChild variant="outline" className="text-primary text-base md:text-lg font-semibold border-2 border-primary bg-transparent rounded-lg px-4 py-2 md:px-6 md:py-3 hover:bg-primary hover:text-white hover:shadow-lg hover:-translate-y-0.5 transition-all duration-300">
                     <Link href="/login">
                         Log In
-                        <LogIn className="ml-2" />
+                        <LogIn className="ml-2 h-4 w-4 md:h-5 md:w-5" />
                     </Link>
                 </Button>
             </div>
