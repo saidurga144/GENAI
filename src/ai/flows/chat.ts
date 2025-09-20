@@ -40,8 +40,8 @@ const chatFlow = ai.defineFlow(
     outputSchema: ChatOutputSchema,
   },
   async input => {
-    // Definitive fix: Prevent calling the AI if history is empty.
-    if (!input.history || input.history.length === 0) {
+    // Definitive fix: Prevent calling the AI if history is empty or last message is empty.
+    if (!input.history || input.history.length === 0 || !input.history[input.history.length - 1].content) {
       return {
         message: 'I apologize, but I received an empty query. Please provide a question or select one from the menu.',
       };
