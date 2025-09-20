@@ -12,6 +12,7 @@ import {
 } from '@/components/ui/sidebar';
 import { Header } from '@/components/dashboard/Header';
 import { SidebarNav } from '@/components/dashboard/SidebarNav';
+import { ChatAssistant } from '@/components/futurepath/ChatAssistant';
 
 export default function AuthedLayout({
   children,
@@ -50,6 +51,7 @@ export default function AuthedLayout({
             <p>CareerGuide &copy; {new Date().getFullYear()}</p>
           </footer>
         </div>
+        <ChatAssistant />
       </SidebarInset>
     </SidebarProvider>
   );
