@@ -59,7 +59,7 @@ export default function BiomedicalEngineerPage() {
         if (user) {
             logUserActivity(user.uid, `Visited the ${roadmapTitle} roadmap`);
         }
-    }, [user]);
+    }, [user?.uid]);
 
     return (
         <main className="flex-grow container mx-auto px-4 py-12 md:py-20">
