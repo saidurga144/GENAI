@@ -80,8 +80,7 @@ export function ChatAssistant() {
 
             } catch (error) {
                 console.error('Chat error:', error);
-                const errorMessage: ChatMessage = { role: 'model', content: 'Sorry, I encountered an error. Please try again.' };
-                setMessages(prev => [...prev, errorMessage]);
+                // Removed the error message display to show the menu directly.
             } finally {
                 setIsLoading(false);
             }
@@ -179,6 +178,21 @@ export function ChatAssistant() {
                                     </div>
                                 ))}
 
+                                {isLoading && (
+                                     <div className="flex items-end gap-2 justify-start">
+                                        <Avatar className="w-8 h-8 flex-shrink-0">
+                                            <AvatarFallback><Bot className="w-5 h-5" /></AvatarFallback>
+                                        </Avatar>
+                                        <div className="bg-muted rounded-lg px-3 py-2 flex items-center justify-center">
+                                            <div className="flex gap-1.5">
+                                                <span className="w-1.5 h-1.5 rounded-full bg-muted-foreground animate-pulse" style={{animationDelay: '0ms'}}></span>
+                                                <span className="w-1.5 h-1.5 rounded-full bg-muted-foreground animate-pulse" style={{animationDelay: '200ms'}}></span>
+                 <span className="w-1.5 h-1.5 rounded-full bg-muted-foreground animate-pulse" style={{animationDelay: '400ms'}}></span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                )}
+                                
                                 {!isLoading && (
                                     <div className="pt-4 space-y-2 animate-in fade-in-50">
                                         <p className="text-sm text-muted-foreground text-center mb-2">Or try one of these questions:</p>
@@ -195,21 +209,6 @@ export function ChatAssistant() {
                                                     {showMore ? <ChevronUp className="w-4 h-4 ml-2" /> : <ChevronDown className="w-4 h-4 ml-2" />}
                                                 </Button>
                                             )}
-                                        </div>
-                                    </div>
-                                )}
-                                
-                                {isLoading && (
-                                     <div className="flex items-end gap-2 justify-start">
-                                        <Avatar className="w-8 h-8 flex-shrink-0">
-                                            <AvatarFallback><Bot className="w-5 h-5" /></AvatarFallback>
-                                        </Avatar>
-                                        <div className="bg-muted rounded-lg px-3 py-2 flex items-center justify-center">
-                                            <div className="flex gap-1.5">
-                                                <span className="w-1.5 h-1.5 rounded-full bg-muted-foreground animate-pulse" style={{animationDelay: '0ms'}}></span>
-                                                <span className="w-1.5 h-1.5 rounded-full bg-muted-foreground animate-pulse" style={{animationDelay: '200ms'}}></span>
-                 <span className="w-1.5 h-1.5 rounded-full bg-muted-foreground animate-pulse" style={{animationDelay: '400ms'}}></span>
-                                            </div>
                                         </div>
                                     </div>
                                 )}
