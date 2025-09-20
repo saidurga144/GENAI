@@ -27,8 +27,8 @@ let isResumeUploaded = false;
 
 const formSchema = z.object({
   email: z.string().email({ message: "Please enter a valid email address." }),
-  academicBackground: z.string().max(500, { message: "Please keep your background under 500 characters." }).optional(),
-  skills: z.string().max(500, { message: "Please keep your skills under 500 characters." }).optional(),
+  academicBackground: z.string().min(1, { message: "Academic background is required when not uploading a resume." }).max(500, { message: "Please keep your background under 500 characters." }).optional(),
+  skills: z.string().min(1, { message: "Skills are required when not uploading a resume." }).max(500, { message: "Please keep your skills under 500 characters." }).optional(),
   interests: z.string().min(10, { message: "Please describe your interests in at least 10 characters." }).max(500, { message: "Please keep your interests under 500 characters." }),
 }).superRefine((data, ctx) => {
     if (!isResumeUploaded) {
@@ -82,7 +82,7 @@ export function CareerForm({ onSubmit }: CareerFormProps) {
       };
       reader.readAsText(file);
     } else {
-        alert('Please upload a valid .txt file.');
+        alert('Invalid file type. Please upload a .txt file. PDF and Word document support is coming soon!');
         isResumeUploaded = false;
         setFileName(undefined);
     }
@@ -143,7 +143,7 @@ export function CareerForm({ onSubmit }: CareerFormProps) {
                 Upload Your Resume (Optional)
               </CardTitle>
                 <CardDescription>
-                For the best results, upload a .txt file. Drag and drop a file here or click to select one.
+                For the best results, upload a .txt file. Support for PDF and Word documents is coming soon. Drag and drop a file here or click to select one.
               </CardDescription>
             </CardHeader>
             <CardContent>
@@ -154,7 +154,7 @@ export function CareerForm({ onSubmit }: CareerFormProps) {
                     Choose File
                   </label>
                 </Button>
-                <Input id="resume-upload" type="file" className="hidden" onChange={handleFileChange} accept=".txt" />
+                <Input id="resume-upload" type="file" className="hidden" onChange={handleFileChange} accept=".txt,.pdf,.doc,.docx" />
                 {fileName && <p className="text-sm text-muted-foreground">{fileName}</p>}
               </div>
             </CardContent>
