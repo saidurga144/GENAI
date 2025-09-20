@@ -4,7 +4,7 @@
 import { useState, useEffect, useMemo, useCallback } from 'react';
 import type { CareerPath, DetailedCareerPath, FormInput, RoadmapStage } from "@/lib/types";
 import { Button } from "@/components/ui/button";
-import { ArrowLeft, Printer, Map, BookOpen, CheckCircle, GraduationCap } from "lucide-react";
+import { ArrowLeft, Printer, Map as MapIcon, BookOpen, CheckCircle, GraduationCap } from "lucide-react";
 import { getCareerPathDetails } from '@/app/actions';
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from '../ui/card';
 import { Badge } from '../ui/badge';
@@ -144,7 +144,7 @@ export function ResultsDashboard({ results, onReset, formInput }: ResultsDashboa
                     </div>
 
                     <div>
-                      <h4 className="font-semibold mb-4 flex items-center gap-2"><Map className="w-5 h-5 text-primary" />Your Career Roadmap</h4>
+                      <h4 className="font-semibold mb-4 flex items-center gap-2"><MapIcon className="w-5 h-5 text-primary" />Your Career Roadmap</h4>
                       <RoadmapTimeline roadmap={detailedPath.roadmap} />
                     </div>
 
@@ -200,7 +200,7 @@ export function ResultsDashboard({ results, onReset, formInput }: ResultsDashboa
                     </div>
 
                     <div>
-                      <h4 className="font-semibold mb-4 flex items-center gap-2"><Map className="w-5 h-5 text-primary" />Your Career Roadmap</h4>
+                      <h4 className="font-semibold mb-4 flex items-center gap-2"><MapIcon className="w-5 h-5 text-primary" />Your Career Roadmap</h4>
                       <RoadmapTimeline roadmap={detailedPath.roadmap} />
                     </div>
 
