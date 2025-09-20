@@ -16,19 +16,18 @@ export async function getCareerRecommendations(
 ): Promise<CareerPath[]> {
   let skills = data.skills;
   let academicBackground = data.academicBackground;
-  const { interests } = data;
+  const { interests, resumeText } = data;
 
-  if (isResumeUpload) {
-    const parsedData = await parseResumeFlow({ resumeText: data.resumeText || '' });
+  if (isResumeUpload && resumeText) {
+    const parsedData = await parseResumeFlow({ resumeText: resumeText });
     skills = parsedData.skills;
     academicBackground = parsedData.academicBackground;
   }
 
-  if (!skills || !academicBackground) {
-    throw new Error("Skills and Academic Background are required.");
-  }
+  // The AI can handle missing information, so we don't need to throw an error here.
+  // We'll pass what we have, and the AI will do its best.
   if (!interests) {
-    throw new Error("Interests are required.");
+    throw new Error("Interests are required to generate recommendations.");
   }
 
   const careerPaths = await generatePersonalizedCareerPaths({
