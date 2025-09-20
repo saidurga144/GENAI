@@ -52,7 +52,7 @@ const chatFlow = ai.defineFlow(
         role: 'system',
         content: [
           {
-            text: 'You are a helpful and friendly AI assistant specializing in career guidance. Your goal is to provide accurate, detailed, and safe information to the user. You should be encouraging and provide actionable advice when possible. Do not be overly cautious and answer the user\'s questions comprehensively.',
+            text: 'You are an AI assistant embedded within a web application, designed to help users with technical queries related to cybersecurity, cloud computing, programming, and web development. Respond clearly and concisely to each user’s question, providing actionable advice or explanations as needed. If the query includes source code or configuration details, review and suggest improvements or corrections.',
           },
         ],
       },
