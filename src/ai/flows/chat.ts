@@ -21,7 +21,8 @@ const ChatInputSchema = z.object({
       })
     )
     .describe('The chat history.'),
-  message: z.string().describe("The user's message."),
+  // The message is now part of the history, so we can make this optional.
+  message: z.string().optional().describe("The user's message."),
 });
 export type ChatInput = z.infer<typeof ChatInputSchema>;
 
@@ -41,7 +42,7 @@ const chatFlow = ai.defineFlow(
     outputSchema: ChatOutputSchema,
   },
   async input => {
-    const {history, message} = input;
+    const {history} = input;
 
     // The Gemini 1.5 Flash model used in this app only supports 'user' and 'model' roles.
     const mappedHistory: Message[] = history.map(h => ({
@@ -59,7 +60,6 @@ const chatFlow = ai.defineFlow(
         ],
       },
       ...mappedHistory,
-      {role: 'user', content: [{text: message}]},
     ];
 
     const {output} = await ai.generate({

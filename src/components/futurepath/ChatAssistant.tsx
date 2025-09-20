@@ -47,17 +47,20 @@ export function ChatAssistant() {
         if (!input.trim() || isLoading) return;
 
         const userMessage: ChatMessage = { role: 'user', content: input };
-        setMessages(prev => [...prev, userMessage]);
+        const newMessages = [...messages, userMessage];
+        setMessages(newMessages);
         setInput('');
         setIsLoading(true);
 
         try {
-            const genkitHistory: Message[] = messages.map(m => ({
-                role: m.role,
+            // Now, we map the `newMessages` array which includes the latest user message.
+            const genkitHistory: Message[] = newMessages.map(m => ({
+                role: m.role === 'user' ? 'user' : 'model',
                 content: [{ text: m.content }]
             }));
             
-            const response = await runChat({ history: genkitHistory, message: input });
+            // We pass the *full* history and don't need the separate message.
+            const response = await runChat({ history: genkitHistory, message: '' });
 
             const modelMessage: ChatMessage = { role: 'model', content: response.message };
             setMessages(prev => [...prev, modelMessage]);
