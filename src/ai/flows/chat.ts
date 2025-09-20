@@ -40,6 +40,13 @@ const chatFlow = ai.defineFlow(
     outputSchema: ChatOutputSchema,
   },
   async input => {
+    // Definitive fix: Prevent calling the AI if history is empty.
+    if (!input.history || input.history.length === 0) {
+      return {
+        message: 'I apologize, but I received an empty query. Please provide a question or select one from the menu.',
+      };
+    }
+
     // The Gemini 1.5 Flash model used in this app only supports 'user' and 'model' roles.
     // This mapping correctly transforms the chat history into the format Genkit expects.
     const mappedHistory: Message[] = input.history.map(h => ({
@@ -66,13 +73,6 @@ Format: Provide direct answers, step-by-step guides, sample code, or command-lin
       },
       ...mappedHistory,
     ];
-
-    if (conversation.length === 1) { // Only system prompt
-       return {
-        message:
-          'I apologize, but I received an empty query. Please provide a question.',
-      };
-    }
 
     const {output} = await ai.generate({
       model: 'googleai/gemini-1.5-flash',
