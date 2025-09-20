@@ -103,6 +103,12 @@ const nextConfig: NextConfig = {
         hostname: 'www.swarnprastha.com',
         port: '',
         pathname: '/**',
+      },
+      {
+        protocol: 'https',
+        hostname: 'www.finulent.com',
+        port: '',
+        pathname: '/**',
       }
     ],
   },
