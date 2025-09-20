@@ -48,7 +48,7 @@ export function ChatAssistant() {
         }
     }, [messages]);
 
-    const sendMessage = async (messageContent: string) => {
+    const handleSendMessage = async (messageContent: string) => {
         if (!messageContent.trim() || isLoading) return;
 
         const userMessage: ChatMessage = { role: 'user', content: messageContent };
@@ -57,7 +57,7 @@ export function ChatAssistant() {
         setIsLoading(true);
 
         try {
-            const response = await runChat({ history: newMessages });
+            const response = await runChat({ history: newMessages.slice(-10) }); // Send last 10 messages
             const modelMessage: ChatMessage = { role: 'model', content: response.message };
             setMessages(prev => [...prev, modelMessage]);
 
@@ -72,12 +72,12 @@ export function ChatAssistant() {
 
     const handleFormSubmit = async (e: React.FormEvent) => {
         e.preventDefault();
-        await sendMessage(input);
+        await handleSendMessage(input);
         setInput('');
     };
 
     const handleSuggestionClick = async (question: string) => {
-        await sendMessage(question);
+        await handleSendMessage(question);
     };
 
     return (
