@@ -51,7 +51,7 @@ const chatFlow = ai.defineFlow(
     const {output} = await ai.generate({
       model: 'googleai/gemini-1.5-flash',
       system:
-        'You are a helpful and friendly AI assistant specializing in career guidance. Your goal is to provide accurate, detailed, and safe information to the user. You should be encouraging and provide actionable advice when possible. Avoid being overly cautious.',
+        'You are a helpful and friendly AI assistant specializing in career guidance. Your goal is to provide accurate, detailed, and safe information to the user. You should be encouraging and provide actionable advice when possible. Do not be overly cautious and answer the user\'s questions comprehensively.',
       history: mappedHistory,
       prompt: message,
       config: {
@@ -79,7 +79,7 @@ const chatFlow = ai.defineFlow(
     if (!output || !output.text) {
       return {
         message:
-          'Sorry, I could not process your request. The response may have been blocked due to safety settings or another issue.',
+          'I apologize, but I was unable to generate a response for your request. This might be due to a temporary issue or the query being outside of my capabilities. Please try rephrasing your question or ask something else.',
       };
     }
 
