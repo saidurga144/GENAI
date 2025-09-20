@@ -79,7 +79,7 @@ export default function Home() {
                         alt="A woman holding a laptop and thinking about career guidelines."
                         width={600}
                         height={400}
-                        className="rounded-md max-w-lg w-full h-auto object-cover"
+                        className="rounded-md w-full h-auto object-cover aspect-[3/2]"
                         quality={100}
                         data-ai-hint="woman laptop guidelines"
                       />
