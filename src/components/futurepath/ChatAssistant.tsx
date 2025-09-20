@@ -58,7 +58,7 @@ export function ChatAssistant() {
                 behavior: 'smooth',
             });
         }
-    }, [messages, isLoading]);
+    }, [messages, isLoading, showMore]);
 
     const handleSendMessage = async (messageContent: string) => {
         if (!messageContent.trim() || isLoading) return;
@@ -71,9 +71,10 @@ export function ChatAssistant() {
         setInput('');
 
         try {
+            // The history sent to the API should have the correct structure
             const historyForApi = newMessages.map(m => ({ 
                 role: m.role, 
-                content: [{text: m.content}]
+                content: m.content
             }));
             
             const response = await runChat({ history: historyForApi.slice(-10) });
@@ -126,7 +127,7 @@ export function ChatAssistant() {
                             <X className="w-5 h-5" />
                         </Button>
                     </CardHeader>
-                    <CardContent className="flex-grow p-0">
+                    <CardContent className="flex-grow p-0 overflow-hidden">
                         <ScrollArea className="h-full p-4" ref={scrollAreaRef}>
                             <div className="space-y-4">
                                 {messages.map((message, index) => (
