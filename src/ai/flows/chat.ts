@@ -3,7 +3,7 @@
 /**
  * @fileOverview A simple AI chat flow.
  *
- * - chat - A function that handles the chat conversation.
+ * - runChat - A function that handles the chat conversation.
  * - ChatInput - The input type for the chat function.
  * - ChatOutput - The return type for the chat function.
  */
@@ -16,8 +16,8 @@ const ChatInputSchema = z.object({
   history: z
     .array(
       z.object({
-        role: z.string(),
-        content: z.string(), // This was the source of the error. It expected an array of objects.
+        role: z.enum(['user', 'model']),
+        content: z.string(),
       })
     )
     .describe('The chat history.'),
@@ -43,7 +43,7 @@ const chatFlow = ai.defineFlow(
     // The Gemini 1.5 Flash model used in this app only supports 'user' and 'model' roles.
     // This mapping correctly transforms the chat history into the format Genkit expects.
     const mappedHistory: Message[] = input.history.map(h => ({
-      role: h.role === 'user' ? 'user' : 'model',
+      role: h.role, // role is already 'user' or 'model'
       content: [{text: h.content}],
     }));
 

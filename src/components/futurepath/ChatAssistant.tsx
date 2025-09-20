@@ -25,12 +25,12 @@ export function ChatAssistant() {
     const scrollAreaRef = useRef<HTMLDivElement>(null);
 
     useEffect(() => {
-        if (isOpen) {
+        if (isOpen && messages.length === 0) {
             setMessages([
                 { role: 'model', content: 'Hello! I am your career assistant. How can I help you today?' }
             ]);
         }
-    }, [isOpen]);
+    }, [isOpen, messages.length]);
 
     useEffect(() => {
         if (scrollAreaRef.current) {
@@ -52,7 +52,7 @@ export function ChatAssistant() {
         setIsLoading(true);
 
         try {
-            const response = await runChat({ history: newMessages.slice(0, -1) });
+            const response = await runChat({ history: newMessages });
             const modelMessage: ChatMessage = { role: 'model', content: response.message };
             setMessages(prev => [...prev, modelMessage]);
 
@@ -141,7 +141,7 @@ export function ChatAssistant() {
                                 onChange={(e) => setInput(e.target.value)}
                                 disabled={isLoading}
                             />
-                            <Button type="submit" size="icon" disabled={isLoading}>
+                            <Button type="submit" size="icon" disabled={isLoading || !input.trim()}>
                                 <Send className="h-4 w-4" />
                                 <span className="sr-only">Send</span>
                             </Button>
