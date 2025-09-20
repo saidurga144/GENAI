@@ -84,7 +84,7 @@ export default function CybersecuritySpecialistPage() {
                  <Button asChild variant="outline">
                     <Link href="/roadmaps">
                         <ArrowLeft />
-                        Back to Roadmaps
+                        Back
                     </Link>
                 </Button>
             </div>

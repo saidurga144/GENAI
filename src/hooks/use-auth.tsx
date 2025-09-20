@@ -14,6 +14,7 @@ import {
     signInWithEmailAndPassword, 
     createUserWithEmailAndPassword, 
     signOut as firebaseSignOut,
+    sendPasswordResetEmail,
     User,
     AuthErrorCodes
 } from 'firebase/auth';
@@ -27,6 +28,7 @@ interface AuthContextType {
     signIn: (email: string, pass: string) => Promise<any>;
     signUp: (email: string, pass: string) => Promise<any>;
     signOut: () => Promise<any>;
+    sendPasswordReset: (email: string) => Promise<void>;
 }
 
 const AuthContext = createContext<AuthContextType | undefined>(undefined);
@@ -74,11 +76,27 @@ export function AuthProvider({ children }: { children: ReactNode }) {
         }
     };
 
-    const signOut = () => {
-        return firebaseSignOut(auth)
+    const signOut = async () => {
+        await firebaseSignOut(auth);
+        // Force a redirect to the login page after sign-out.
+        router.push('/login');
+    };
+    
+    const sendPasswordReset = async (email: string) => {
+        try {
+            await sendPasswordResetEmail(auth, email);
+        } catch (error: any) {
+             if (error.code === 'auth/user-not-found') {
+                // To avoid user enumeration, you might want to show a generic message.
+                // However, for better UX, we'll inform them the email was not found.
+                throw new Error("No account found with this email address.");
+            } else {
+                throw new Error(error.message || "An unexpected error occurred while sending the reset email.");
+            }
+        }
     };
 
-    const value = { user, loading, signIn, signUp, signOut };
+    const value = { user, loading, signIn, signUp, signOut, sendPasswordReset };
 
     return <AuthContext.Provider value={value}>{children}</AuthContext.Provider>;
 }

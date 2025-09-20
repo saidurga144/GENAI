@@ -93,7 +93,7 @@ export default function GeneratorPage() {
             <Button asChild variant="outline">
                 <Link href="/dashboard">
                     <ArrowLeft />
-                    Back to Dashboard
+                    Back
                 </Link>
             </Button>
         </div>

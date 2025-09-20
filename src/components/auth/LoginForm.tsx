@@ -19,16 +19,12 @@ import { Checkbox } from "@/components/ui/checkbox";
 import { useAuth } from "@/hooks/use-auth";
 import Image from "next/image";
 import Link from "next/link";
-import { User, Lock, Eye, EyeOff } from 'lucide-react';
-import { useRouter } from "next/navigation";
+import { Eye, EyeOff } from 'lucide-react';
 
 const emailFormSchema = z.object({
   email: z.string().email({ message: "Please enter a valid email address." }),
   password: z.string().min(1, { message: "Password is required." }),
   rememberMe: z.boolean().optional(),
-  terms: z.literal(true, {
-    errorMap: () => ({ message: "You must accept the terms and conditions." }),
-  }),
 });
 
 export function LoginForm() {
@@ -36,11 +32,10 @@ export function LoginForm() {
   const [loading, setLoading] = useState(false);
   const [showPassword, setShowPassword] = useState(false);
   const { signIn } = useAuth();
-  const router = useRouter();
   
-  const form = useForm<z.infer<typeof emailFormSchema>>({
+  const loginForm = useForm<z.infer<typeof emailFormSchema>>({
     resolver: zodResolver(emailFormSchema),
-    defaultValues: { email: "", password: "", rememberMe: false, terms: false },
+    defaultValues: { email: "", password: "", rememberMe: false },
   });
 
   const handleEmailSubmit = async (data: z.infer<typeof emailFormSchema>) => {
@@ -57,10 +52,10 @@ export function LoginForm() {
   
   return (
     <div className="w-full max-w-sm text-gray-300 mx-auto">
-      <Form {...form}>
-        <form onSubmit={form.handleSubmit(handleEmailSubmit)} className="space-y-6">
+      <Form {...loginForm}>
+        <form onSubmit={loginForm.handleSubmit(handleEmailSubmit)} className="space-y-6">
           <FormField
-            control={form.control}
+            control={loginForm.control}
             name="email"
             render={({ field }) => (
               <FormItem>
@@ -76,7 +71,7 @@ export function LoginForm() {
             )}
           />
           <FormField
-            control={form.control}
+            control={loginForm.control}
             name="password"
             render={({ field }) => (
               <FormItem>
@@ -105,7 +100,7 @@ export function LoginForm() {
           />
            <div className="flex items-center justify-between text-xs px-2">
             <FormField
-              control={form.control}
+              control={loginForm.control}
               name="rememberMe"
               render={({ field }) => (
                 <FormItem className="flex flex-row items-center space-x-2 space-y-0">
@@ -122,31 +117,18 @@ export function LoginForm() {
                 </FormItem>
               )}
             />
-            <Link href="#" className="text-gray-400 hover:text-white hover:underline">
-                Forgot Password?
-            </Link>
+            <Button
+                type="button"
+                variant="link"
+                className="p-0 h-auto text-gray-400 hover:text-white hover:underline text-xs"
+                asChild
+            >
+                <Link href="/forgot-password">
+                    Forgot Password?
+                </Link>
+            </Button>
           </div>
-          <FormField
-            control={form.control}
-            name="terms"
-            render={({ field }) => (
-              <FormItem className="flex flex-row items-start space-x-3 space-y-0 rounded-md p-4">
-                <FormControl>
-                  <Checkbox
-                    checked={field.value}
-                    onCheckedChange={field.onChange}
-                    className="data-[state=checked]:bg-primary data-[state=checked]:border-primary border-slate-600"
-                  />
-                </FormControl>
-                <div className="space-y-1 leading-none">
-                  <FormLabel className="text-sm font-normal text-gray-400">
-                     I accept the <Link href="#" className="underline hover:text-white">Terms and Conditions</Link>
-                  </FormLabel>
-                   <FormMessage className="text-red-400" />
-                </div>
-              </FormItem>
-            )}
-          />
+          
           {error && <p className="text-sm text-red-400 text-center">{error}</p>}
           <Button 
             type="submit" 

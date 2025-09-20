@@ -4,20 +4,28 @@
 import { Menu, LogOut, FileText, Home, Map, BookOpen } from "lucide-react";
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
-import { useSidebar } from "@/components/ui/sidebar";
+import { SidebarTrigger, useSidebar } from "@/components/ui/sidebar";
 import { useAuth } from "@/hooks/use-auth";
 
 export function Header() {
-  const { toggleSidebar } = useSidebar();
+  const { toggleSidebar, isMobile } = useSidebar();
   const { signOut } = useAuth();
 
   return (
     <header className="sticky top-0 z-10 flex h-16 items-center justify-between gap-4 border-b bg-primary px-4 md:px-6 text-primary-foreground no-print">
       <div className="flex items-center gap-2 md:gap-4">
-        <Button variant="ghost" size="icon" onClick={toggleSidebar} className="text-primary-foreground hover:bg-primary/80 hover:text-primary-foreground">
+        <Button 
+            variant="ghost" 
+            size="icon" 
+            onClick={toggleSidebar} 
+            className="text-primary-foreground hover:bg-primary/80 hover:text-primary-foreground md:hidden"
+        >
             <Menu className="h-6 w-6" />
             <span className="sr-only">Toggle sidebar</span>
         </Button>
+        <div className="hidden md:block">
+            <SidebarTrigger />
+        </div>
         <h1 className="text-lg font-bold">CareerGuide</h1>
       </div>
 

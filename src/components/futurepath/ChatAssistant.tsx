@@ -26,7 +26,7 @@ export function ChatAssistant() {
     const [showMore, setShowMore] = useState(false);
     const scrollAreaRef = useRef<HTMLDivElement>(null);
     const adminEmail = "careerguidecustomercare@gmail.com";
-    const mailtoLink = `mailto:${adminEmail}?subject=Customer Support Inquiry&body=For customer support, you can email us at careerguidecustomercare@gmail.com or call us at 9885871775 for any queries.`;
+    const mailtoLink = `mailto:${adminEmail}?subject=Customer%20Support%20Inquiry`;
 
 
     useEffect(() => {
@@ -97,16 +97,18 @@ export function ChatAssistant() {
     const renderQuestionButton = (question: string) => {
         if (question === contactQuestionText) {
              return (
-                <Button 
+                 <Button 
                     key={question} 
                     variant="outline" 
                     size="sm"
                     className="w-full justify-start h-auto py-2 text-left"
-                    onClick={() => handleSendMessage(question)}
+                    asChild
                     disabled={isLoading}
                 >
-                    <Mail className="mr-2 h-4 w-4" />
-                    {question}
+                    <Link href={mailtoLink} target="_blank">
+                        <Mail className="mr-2 h-4 w-4" />
+                        {question}
+                    </Link>
                 </Button>
             );
         }

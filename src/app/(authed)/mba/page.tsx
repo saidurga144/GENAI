@@ -67,7 +67,7 @@ export default function MBAPage() {
                  <Button asChild variant="outline">
                     <Link href="/roadmaps">
                         <ArrowLeft />
-                        Back to Roadmaps
+                        Back
                     </Link>
                 </Button>
             </div>

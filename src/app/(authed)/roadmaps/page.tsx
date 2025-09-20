@@ -52,7 +52,7 @@ const roadmapsList = [
         description: "A guide to a career in Biotechnology, from BiPC foundations to genetic engineering and bioinformatics.",
         url: "/biotechnology-specialist",
         icon: <Dna className="w-8 h-8 text-primary" />,
-        imageUrl: "https://4-hontario.ca/wp-content/uploads/2020/09/Intro-to-Agricultural-Biotechnology_Main-Image-2048x1364.jpeg",
+        imageUrl: "https://www.finulent.com/wp-content/uploads/2023/02/What-is-biotechnology.png",
     },
     {
         title: "Civil Engineer",
@@ -133,7 +133,7 @@ export default function RoadmapsPage() {
                      <Button asChild variant="outline">
                         <Link href="/dashboard">
                             <ArrowLeft />
-                            Back to Dashboard
+                            Back
                         </Link>
                     </Button>
                 </div>
