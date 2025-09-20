@@ -14,10 +14,18 @@ export async function getCareerRecommendations(
   data: FormInput,
   isResumeUpload: boolean,
 ): Promise<CareerPath[]> {
-  const { skills, academicBackground, interests } = data;
+  let skills = data.skills;
+  let academicBackground = data.academicBackground;
+  const { interests } = data;
 
-  if (!isResumeUpload && (!skills || !academicBackground)) {
-    throw new Error("Skills and Academic Background are required when not uploading a resume.");
+  if (isResumeUpload) {
+    const parsedData = await parseResumeFlow({ resumeText: data.resumeText || '' });
+    skills = parsedData.skills;
+    academicBackground = parsedData.academicBackground;
+  }
+
+  if (!skills || !academicBackground) {
+    throw new Error("Skills and Academic Background are required.");
   }
   if (!interests) {
     throw new Error("Interests are required.");

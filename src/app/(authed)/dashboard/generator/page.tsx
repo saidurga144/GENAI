@@ -3,7 +3,7 @@
 
 import { useState } from 'react';
 import Image from 'next/image';
-import { getCareerRecommendations, parseResume } from '@/app/actions';
+import { getCareerRecommendations } from '@/app/actions';
 import { CareerForm } from '@/components/futurepath/CareerForm';
 import { ResultsDashboard } from '@/components/futurepath/ResultsDashboard';
 import type { CareerPath, FormInput } from '@/lib/types';
@@ -20,26 +20,14 @@ export default function GeneratorPage() {
   const [formInput, setFormInput] = useState<FormInput | null>(null);
   const { toast } = useToast();
 
-  const handleFormSubmit = async (data: FormInput, resumeText?: string) => {
+  const handleFormSubmit = async (data: FormInput, isResumeUpload: boolean) => {
     setIsLoading(true);
     setError(null);
     setResults(null);
-    let submissionData = data;
-    const isResumeUpload = !!resumeText;
+    setFormInput(data);
 
     try {
-      if (isResumeUpload) {
-        const parsedData = await parseResume({ resumeText: resumeText! });
-        submissionData = {
-          ...data,
-          skills: parsedData.skills,
-          academicBackground: parsedData.academicBackground,
-        };
-      }
-
-      setFormInput(submissionData);
-      
-      const recommendations = await getCareerRecommendations(submissionData, isResumeUpload);
+      const recommendations = await getCareerRecommendations(data, isResumeUpload);
       if (recommendations.length === 0) {
         setError("We couldn't find any career paths that match your profile. Please try adjusting your inputs.");
       } else {

@@ -22,16 +22,14 @@ import type { FormInput } from "@/lib/types";
 import { FileText, Lightbulb, User, Briefcase, Rocket, Upload } from "lucide-react";
 import { cn } from "@/lib/utils";
 
-// This state is managed outside of the form schema
-let isResumeUploaded = false;
-
 const formSchema = z.object({
   email: z.string().email({ message: "Please enter a valid email address." }),
-  academicBackground: z.string().min(1, { message: "Academic background is required when not uploading a resume." }).max(500, { message: "Please keep your background under 500 characters." }).optional(),
-  skills: z.string().min(1, { message: "Skills are required when not uploading a resume." }).max(500, { message: "Please keep your skills under 500 characters." }).optional(),
+  academicBackground: z.string().max(500, { message: "Please keep your background under 500 characters." }).optional(),
+  skills: z.string().max(500, { message: "Please keep your skills under 500 characters." }).optional(),
   interests: z.string().min(10, { message: "Please describe your interests in at least 10 characters." }).max(500, { message: "Please keep your interests under 500 characters." }),
+  resumeText: z.string().optional(),
 }).superRefine((data, ctx) => {
-    if (!isResumeUploaded) {
+    if (!data.resumeText) {
         if (!data.skills || data.skills.trim().length === 0) {
             ctx.addIssue({
                 code: z.ZodIssueCode.custom,
@@ -50,13 +48,13 @@ const formSchema = z.object({
 });
 
 type CareerFormProps = {
-  onSubmit: (data: FormInput, resumeText?: string) => void;
+  onSubmit: (data: FormInput, isResumeUpload: boolean) => void;
 };
 
 export function CareerForm({ onSubmit }: CareerFormProps) {
-  const [resumeText, setResumeText] = useState<string | undefined>();
   const [fileName, setFileName] = useState<string | undefined>();
   const [isDragOver, setIsDragOver] = useState(false);
+  const [isResumeUploaded, setIsResumeUploaded] = useState(false);
 
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
@@ -65,35 +63,33 @@ export function CareerForm({ onSubmit }: CareerFormProps) {
       academicBackground: "",
       skills: "",
       interests: "",
+      resumeText: "",
     },
   });
 
   const processFile = (file: File) => {
     if (file) {
-      isResumeUploaded = true;
       setFileName(file.name);
       const reader = new FileReader();
       reader.onload = (e) => {
         const text = e.target?.result as string;
-        setResumeText(text);
+        form.setValue('resumeText', text);
         form.setValue('skills', '');
         form.setValue('academicBackground', '');
         form.clearErrors(['skills', 'academicBackground']);
+        setIsResumeUploaded(true);
       };
       reader.readAsText(file);
     } else {
-        isResumeUploaded = false;
         setFileName(undefined);
+        form.setValue('resumeText', '');
+        setIsResumeUploaded(false);
     }
   }
   
   const handleFileChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     const file = event.target.files?.[0];
-    if (file) {
-      processFile(file);
-    } else {
-      isResumeUploaded = false;
-    }
+    processFile(file || null!);
   };
 
   const handleDrop = (event: React.DragEvent<HTMLDivElement>) => {
@@ -101,9 +97,7 @@ export function CareerForm({ onSubmit }: CareerFormProps) {
     event.stopPropagation();
     setIsDragOver(false);
     const file = event.dataTransfer.files?.[0];
-    if (file) {
-      processFile(file);
-    }
+    processFile(file || null!);
   };
 
   const handleDragOver = (event: React.DragEvent<HTMLDivElement>) => {
@@ -119,7 +113,7 @@ export function CareerForm({ onSubmit }: CareerFormProps) {
   };
 
   const handleFormSubmit = (data: FormInput) => {
-    onSubmit(data, resumeText);
+    onSubmit(data, !!data.resumeText);
   };
   
   return (
@@ -167,7 +161,7 @@ export function CareerForm({ onSubmit }: CareerFormProps) {
                 <FormItem>
                   <FormLabel className="flex items-center gap-2"><Briefcase className="w-4 h-4" />Academic Background</FormLabel>
                   <FormControl>
-                    <Textarea placeholder="e.g., Bachelor's in Computer Science, focusing on AI and machine learning." {...field} disabled={!!resumeText} rows={5}/>
+                    <Textarea placeholder="e.g., Bachelor's in Computer Science, focusing on AI and machine learning." {...field} disabled={isResumeUploaded} rows={5}/>
                   </FormControl>
                   <FormMessage />
                 </FormItem>
@@ -180,7 +174,7 @@ export function CareerForm({ onSubmit }: CareerFormProps) {
                 <FormItem>
                   <FormLabel className="flex items-center gap-2"><Lightbulb className="w-4 h-4" />Skills</FormLabel>
                   <FormControl>
-                    <Textarea placeholder="e.g., Python, React, data analysis, project management." {...field} disabled={!!resumeText} rows={5} />
+                    <Textarea placeholder="e.g., Python, React, data analysis, project management." {...field} disabled={isResumeUploaded} rows={5} />
                   </FormControl>
                   <FormMessage />
                 </FormItem>

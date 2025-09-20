@@ -1,3 +1,4 @@
+
 export type RoadmapStage = {
   title: string;
   duration: string;
@@ -23,4 +24,5 @@ export type FormInput = {
   skills: string;
   academicBackground: string;
   interests: string;
+  resumeText?: string;
 };
