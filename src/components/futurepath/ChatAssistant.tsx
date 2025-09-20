@@ -5,7 +5,7 @@ import { useState, useRef, useEffect } from 'react';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from '@/components/ui/card';
 import { Input } from '@/components/ui/input';
-import { Bot, User, X, Send } from 'lucide-react';
+import { Bot, User, X, Send, ChevronDown, ChevronUp } from 'lucide-react';
 import { ScrollArea } from '../ui/scroll-area';
 import { Avatar, AvatarFallback } from '../ui/avatar';
 import { cn } from '@/lib/utils';
@@ -16,18 +16,31 @@ type ChatMessage = {
     content: string;
 };
 
-const starterQuestions = [
-    "What skills do I need for a career in Software Engineering?",
-    "Compare the roles of an AI Specialist and a Data Scientist.",
-    "How can I start a career in Cybersecurity?",
-    "What is the career path for a Mechanical Engineer?",
+const allStarterQuestions = [
+    "What skills are needed for Software Engineering?",
+    "How do I start a career in Cybersecurity?",
+    "What's the career path for a Mechanical Engineer?",
+    "Compare AI Specialist vs. Data Scientist roles.",
+    "What subjects are important for an Architect?",
+    "What are the steps to become an Aeronautical Engineer?",
+    "What does a Biomedical Engineer do?",
+    "Explain the career path for a Civil Engineer.",
+    "What is the difference between a BBA and an MBA?",
+    "How to become a Machine Learning Engineer?",
+    "What's the future of Biotechnology?",
+    "What are the main roles for an EEE graduate?",
+    "What does a Paramedical Specialist do?",
+    "How is Data Science different from AI?",
+    "What are the first steps after a BBA degree?"
 ];
+
 
 export function ChatAssistant() {
     const [isOpen, setIsOpen] = useState(false);
     const [messages, setMessages] = useState<ChatMessage[]>([]);
     const [input, setInput] = useState('');
     const [isLoading, setIsLoading] = useState(false);
+    const [showMore, setShowMore] = useState(false);
     const scrollAreaRef = useRef<HTMLDivElement>(null);
 
     useEffect(() => {
@@ -58,9 +71,12 @@ export function ChatAssistant() {
         setInput('');
 
         try {
-            const historyForApi = newMessages.map(m => ({ role: m.role, content: m.content }));
+            const historyForApi = newMessages.map(m => ({ 
+                role: m.role, 
+                content: [{text: m.content}]
+            }));
             
-            const response = await runChat({ history: historyForApi.slice(-10) }); // Send last 10 messages
+            const response = await runChat({ history: historyForApi.slice(-10) });
             
             const modelMessage: ChatMessage = { role: 'model', content: response.message };
             setMessages(prev => [...prev, modelMessage]);
@@ -79,6 +95,8 @@ export function ChatAssistant() {
         await handleSendMessage(input);
     };
     
+    const questionsToShow = showMore ? allStarterQuestions : allStarterQuestions.slice(0, 4);
+
     return (
         <>
             <div className={cn("fixed bottom-6 right-6 z-50 transition-transform duration-300 ease-in-out no-print", {
@@ -136,7 +154,7 @@ export function ChatAssistant() {
                                     <div className="pt-4 space-y-2 animate-in fade-in-50">
                                         <p className="text-sm text-muted-foreground text-center mb-2">Or try one of these questions:</p>
                                         <div className="grid grid-cols-1 gap-2">
-                                            {starterQuestions.map(q => (
+                                            {questionsToShow.map(q => (
                                                 <Button 
                                                     key={q} 
                                                     variant="outline" 
@@ -148,6 +166,15 @@ export function ChatAssistant() {
                                                     {q}
                                                 </Button>
                                             ))}
+                                            <Button
+                                                variant="ghost"
+                                                size="sm"
+                                                className="w-full justify-center text-primary"
+                                                onClick={() => setShowMore(!showMore)}
+                                            >
+                                                {showMore ? "Show Less" : "Show More"}
+                                                {showMore ? <ChevronUp className="w-4 h-4 ml-2" /> : <ChevronDown className="w-4 h-4 ml-2" />}
+                                            </Button>
                                         </div>
                                     </div>
                                 )}
