@@ -39,6 +39,7 @@ const prompt = ai.definePrompt({
     name: 'generateRoadmapPrompt',
     input: {schema: GenerateRoadmapInputSchema},
     output: {schema: GenerateRoadmapOutputSchema},
+    model: 'googleai/gemini-1.5-flash',
     prompt: `You are a career development expert. Based on the user's profile and their target job title, create a detailed, actionable roadmap to help them achieve their career goal.
 
 The roadmap should be broken down into logical stages (e.g., Foundation, Specialization, Gaining Experience). For each stage, provide a title, an estimated duration, a brief description, and a list of 2-4 specific, actionable tasks.

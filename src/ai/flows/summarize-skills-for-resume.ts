@@ -30,6 +30,7 @@ const prompt = ai.definePrompt({
   name: 'summarizeSkillsForResumePrompt',
   input: {schema: SummarizeSkillsForResumeInputSchema},
   output: {schema: SummarizeSkillsForResumeOutputSchema},
+  model: 'googleai/gemini-1.5-flash',
   prompt: `You are a career counselor who specializes in helping students write resumes.
 
 You will receive a list of skills and experiences, and a career path the student is applying for.
