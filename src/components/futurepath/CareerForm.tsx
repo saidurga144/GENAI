@@ -20,6 +20,7 @@ import { Textarea } from "@/components/ui/textarea";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import type { FormInput } from "@/lib/types";
 import { FileText, Lightbulb, User, Briefcase, Rocket, Upload } from "lucide-react";
+import { cn } from "@/lib/utils";
 
 // This state is managed outside of the form schema
 let isResumeUploaded = false;
@@ -55,6 +56,7 @@ type CareerFormProps = {
 export function CareerForm({ onSubmit }: CareerFormProps) {
   const [resumeText, setResumeText] = useState<string | undefined>();
   const [fileName, setFileName] = useState<string | undefined>();
+  const [isDragOver, setIsDragOver] = useState(false);
 
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
@@ -65,25 +67,56 @@ export function CareerForm({ onSubmit }: CareerFormProps) {
       interests: "",
     },
   });
-  
-  const handleFileChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    const file = event.target.files?.[0];
-    if (file) {
+
+  const processFile = (file: File) => {
+    if (file && file.type === 'text/plain') {
       isResumeUploaded = true;
       setFileName(file.name);
       const reader = new FileReader();
       reader.onload = (e) => {
         const text = e.target?.result as string;
         setResumeText(text);
-        // Clear manual fields and errors as resume takes precedence
         form.setValue('skills', '');
         form.setValue('academicBackground', '');
         form.clearErrors(['skills', 'academicBackground']);
       };
       reader.readAsText(file);
     } else {
+        alert('Please upload a valid .txt file.');
         isResumeUploaded = false;
+        setFileName(undefined);
     }
+  }
+  
+  const handleFileChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    const file = event.target.files?.[0];
+    if (file) {
+      processFile(file);
+    } else {
+      isResumeUploaded = false;
+    }
+  };
+
+  const handleDrop = (event: React.DragEvent<HTMLDivElement>) => {
+    event.preventDefault();
+    event.stopPropagation();
+    setIsDragOver(false);
+    const file = event.dataTransfer.files?.[0];
+    if (file) {
+      processFile(file);
+    }
+  };
+
+  const handleDragOver = (event: React.DragEvent<HTMLDivElement>) => {
+    event.preventDefault();
+    event.stopPropagation();
+    setIsDragOver(true);
+  };
+  
+  const handleDragLeave = (event: React.DragEvent<HTMLDivElement>) => {
+    event.preventDefault();
+    event.stopPropagation();
+    setIsDragOver(false);
   };
 
   const handleFormSubmit = (data: FormInput) => {
@@ -95,14 +128,22 @@ export function CareerForm({ onSubmit }: CareerFormProps) {
       <Form {...form}>
         <form onSubmit={form.handleSubmit(handleFormSubmit)} className="space-y-8">
           
-          <Card className="bg-secondary/50 border-dashed">
+          <Card 
+            className={cn(
+                "bg-secondary/50 border-dashed transition-all duration-300",
+                isDragOver ? 'border-primary ring-2 ring-primary' : 'border'
+            )}
+            onDrop={handleDrop}
+            onDragOver={handleDragOver}
+            onDragLeave={handleDragLeave}
+          >
             <CardHeader>
               <CardTitle className="flex items-center gap-2 text-lg">
                 <FileText className="w-5 h-5" />
                 Upload Your Resume (Optional)
               </CardTitle>
                 <CardDescription>
-                For the best results, upload a .txt file. This automatically fills in your skills and background.
+                For the best results, upload a .txt file. Drag and drop a file here or click to select one.
               </CardDescription>
             </CardHeader>
             <CardContent>
