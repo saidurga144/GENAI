@@ -1,7 +1,7 @@
 
 "use-client";
 
-import { Menu, LogOut, Bot, FileText, Home, Map, BookOpen } from "lucide-react";
+import { Menu, LogOut, FileText, Home, Map, BookOpen } from "lucide-react";
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
 import { useSidebar } from "@/components/ui/sidebar";
@@ -49,13 +49,6 @@ export function Header() {
         >
           <BookOpen className="w-4 h-4" />
           Resources
-        </Link>
-        <Link
-          href="/chatbot"
-          className="transition-colors hover:text-primary-foreground/80 flex items-center gap-2"
-        >
-          <Bot className="w-4 h-4" />
-          AI ChatBot
         </Link>
       </nav>
 
