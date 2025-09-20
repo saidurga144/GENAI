@@ -26,9 +26,6 @@ const emailFormSchema = z.object({
   email: z.string().email({ message: "Please enter a valid email address." }),
   password: z.string().min(1, { message: "Password is required." }),
   rememberMe: z.boolean().optional(),
-  terms: z.literal(true, {
-    errorMap: () => ({ message: "You must accept the terms and conditions." }),
-  }),
 });
 
 export function LoginForm() {
@@ -40,7 +37,7 @@ export function LoginForm() {
   
   const form = useForm<z.infer<typeof emailFormSchema>>({
     resolver: zodResolver(emailFormSchema),
-    defaultValues: { email: "", password: "", rememberMe: false, terms: false },
+    defaultValues: { email: "", password: "", rememberMe: false },
   });
 
   const handleEmailSubmit = async (data: z.infer<typeof emailFormSchema>) => {
@@ -126,27 +123,7 @@ export function LoginForm() {
                 Forgot Password?
             </Link>
           </div>
-          <FormField
-            control={form.control}
-            name="terms"
-            render={({ field }) => (
-              <FormItem className="flex flex-row items-start space-x-3 space-y-0 rounded-md p-4">
-                <FormControl>
-                  <Checkbox
-                    checked={field.value}
-                    onCheckedChange={field.onChange}
-                    className="data-[state=checked]:bg-primary data-[state=checked]:border-primary border-slate-600"
-                  />
-                </FormControl>
-                <div className="space-y-1 leading-none">
-                  <FormLabel className="text-sm font-normal text-gray-400">
-                     I accept the <Link href="#" className="underline hover:text-white">Terms and Conditions</Link>
-                  </FormLabel>
-                   <FormMessage className="text-red-400" />
-                </div>
-              </FormItem>
-            )}
-          />
+          
           {error && <p className="text-sm text-red-400 text-center">{error}</p>}
           <Button 
             type="submit" 

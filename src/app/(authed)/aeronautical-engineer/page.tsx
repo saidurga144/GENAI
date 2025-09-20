@@ -66,7 +66,7 @@ export default function AeronauticalEngineerPage() {
                  <Button asChild variant="outline">
                     <Link href="/roadmaps">
                         <ArrowLeft />
-                        Back to Roadmaps
+                        Back
                     </Link>
                 </Button>
             </div>

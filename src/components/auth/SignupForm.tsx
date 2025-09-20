@@ -12,6 +12,7 @@ import {
   FormField,
   FormItem,
   FormMessage,
+  FormLabel,
 } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
 import { useAuth } from "@/hooks/use-auth";
@@ -19,6 +20,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { Eye, EyeOff } from "lucide-react";
+import { Checkbox } from "../ui/checkbox";
 
 const emailFormSchema = z.object({
   email: z.string().email({ message: "Please enter a valid email address." }),
@@ -28,6 +30,9 @@ const emailFormSchema = z.object({
     .regex(/[a-z]/, { message: "Password must contain at least one lowercase letter." })
     .regex(/[0-9]/, { message: "Password must contain at least one number." })
     .regex(/[^A-Za-z0-9]/, { message: "Password must contain at least one special character." }),
+  terms: z.literal(true, {
+    errorMap: () => ({ message: "You must accept the terms and conditions." }),
+  }),
 });
 
 export function SignupForm() {
@@ -40,7 +45,7 @@ export function SignupForm() {
 
   const form = useForm<z.infer<typeof emailFormSchema>>({
     resolver: zodResolver(emailFormSchema),
-    defaultValues: { email: "", password: "" },
+    defaultValues: { email: "", password: "", terms: false },
   });
 
   const handleEmailSubmit = async (data: z.infer<typeof emailFormSchema>) => {
@@ -106,6 +111,27 @@ export function SignupForm() {
                   <FormMessage className="text-red-400 text-center" />
                 </FormItem>
               )}
+            />
+             <FormField
+                control={form.control}
+                name="terms"
+                render={({ field }) => (
+                <FormItem className="flex flex-row items-start space-x-3 space-y-0 rounded-md p-4">
+                    <FormControl>
+                    <Checkbox
+                        checked={field.value}
+                        onCheckedChange={field.onChange}
+                        className="data-[state=checked]:bg-primary data-[state=checked]:border-primary border-slate-600"
+                    />
+                    </FormControl>
+                    <div className="space-y-1 leading-none">
+                    <FormLabel className="text-sm font-normal text-gray-400">
+                        I accept the <Link href="/terms" target="_blank" className="underline hover:text-white">Terms and Conditions</Link>
+                    </FormLabel>
+                    <FormMessage className="text-red-400" />
+                    </div>
+                </FormItem>
+                )}
             />
             {error && <p className="text-sm text-red-400 text-center">{error}</p>}
             {message && <p className="text-sm text-green-400 text-center">{message}</p>}
