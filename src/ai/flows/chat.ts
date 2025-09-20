@@ -48,14 +48,12 @@ const chatFlow = ai.defineFlow(
       content: h.content,
     }));
 
-    const contextualPrompt = `You are a helpful and friendly career counseling assistant. Your goal is to provide accurate and safe information to the user. Please answer the following user query, ensuring your response is helpful and not overly cautious: "${message}"`;
-
     const {output} = await ai.generate({
       model: 'googleai/gemini-1.5-flash',
       system:
-        'You are a helpful and friendly AI assistant. Your goal is to provide accurate and safe information to the user.',
+        'You are a helpful and friendly AI assistant specializing in career guidance. Your goal is to provide accurate, detailed, and safe information to the user. You should be encouraging and provide actionable advice when possible. Avoid being overly cautious.',
       history: mappedHistory,
-      prompt: contextualPrompt,
+      prompt: message,
       config: {
         safetySettings: [
           {
