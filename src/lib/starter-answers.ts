@@ -14,7 +14,8 @@ export const allStarterQuestions = [
     "What are the main roles for an EEE graduate?",
     "What does a Paramedical Specialist do?",
     "How is Data Science different from AI?",
-    "What are the first steps after a BBA degree?"
+    "What are the first steps after a BBA degree?",
+    "Contact Customer Support"
 ];
 
 export const starterAnswers: Record<string, string> = {
