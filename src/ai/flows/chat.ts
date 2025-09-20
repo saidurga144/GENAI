@@ -9,7 +9,7 @@
  */
 
 import {ai} from '@/ai/genkit';
-import {Message, Part} from 'genkit';
+import {Message} from 'genkit';
 import {z} from 'genkit';
 
 const ChatInputSchema = z.object({
