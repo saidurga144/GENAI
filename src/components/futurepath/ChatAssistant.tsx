@@ -26,7 +26,7 @@ export function ChatAssistant() {
     const [showMore, setShowMore] = useState(false);
     const scrollAreaRef = useRef<HTMLDivElement>(null);
     const adminEmail = "careerguidecustomercare@gmail.com";
-    const mailtoLink = `mailto:${adminEmail}?subject=Customer Support Inquiry`;
+    const mailtoLink = `mailto:${adminEmail}?subject=Customer Support Inquiry&body=For customer support, you can email us at careerguidecustomercare@gmail.com or call us at 9885871775 for any queries.`;
 
 
     useEffect(() => {
@@ -102,12 +102,11 @@ export function ChatAssistant() {
                     variant="outline" 
                     size="sm"
                     className="w-full justify-start h-auto py-2 text-left"
-                    asChild
+                    onClick={() => handleSendMessage(question)}
+                    disabled={isLoading}
                 >
-                    <Link href={mailtoLink}>
-                        <Mail className="mr-2 h-4 w-4" />
-                        {question}
-                    </Link>
+                    <Mail className="mr-2 h-4 w-4" />
+                    {question}
                 </Button>
             );
         }
@@ -177,23 +176,8 @@ export function ChatAssistant() {
                                         )}
                                     </div>
                                 ))}
-
-                                {isLoading && (
-                                     <div className="flex items-end gap-2 justify-start">
-                                        <Avatar className="w-8 h-8 flex-shrink-0">
-                                            <AvatarFallback><Bot className="w-5 h-5" /></AvatarFallback>
-                                        </Avatar>
-                                        <div className="bg-muted rounded-lg px-3 py-2 flex items-center justify-center">
-                                            <div className="flex gap-1.5">
-                                                <span className="w-1.5 h-1.5 rounded-full bg-muted-foreground animate-pulse" style={{animationDelay: '0ms'}}></span>
-                                                <span className="w-1.5 h-1.5 rounded-full bg-muted-foreground animate-pulse" style={{animationDelay: '200ms'}}></span>
-                 <span className="w-1.5 h-1.5 rounded-full bg-muted-foreground animate-pulse" style={{animationDelay: '400ms'}}></span>
-                                            </div>
-                                        </div>
-                                    </div>
-                                )}
                                 
-                                {!isLoading && (
+                                {!isLoading && messages.length > 0 && (
                                     <div className="pt-4 space-y-2 animate-in fade-in-50">
                                         
                                         <div className="grid grid-cols-1 gap-2">
@@ -215,23 +199,6 @@ export function ChatAssistant() {
                             </div>
                         </ScrollArea>
                     </CardContent>
-                    <CardFooter className="border-t pt-4">
-                        <form onSubmit={handleFormSubmit} className="flex w-full items-center space-x-2">
-                            <Input
-                                id="message"
-                                placeholder="Type a message..."
-                                className="flex-1"
-                                autoComplete="off"
-                                value={input}
-                                onChange={(e) => setInput(e.target.value)}
-                                disabled={isLoading}
-                            />
-                            <Button type="submit" size="icon" disabled={isLoading || !input.trim()}>
-                                <Send className="h-4 w-4" />
-                                <span className="sr-only">Send</span>
-                            </Button>
-                        </form>
-                    </CardFooter>
                 </Card>
             </div>
         </>
