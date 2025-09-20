@@ -10,30 +10,12 @@ import { ScrollArea } from '../ui/scroll-area';
 import { Avatar, AvatarFallback } from '../ui/avatar';
 import { cn } from '@/lib/utils';
 import { chat as runChat } from '@/app/actions';
+import { starterAnswers, allStarterQuestions } from '@/lib/starter-answers';
 
 type ChatMessage = {
     role: 'user' | 'model';
     content: string;
 };
-
-const allStarterQuestions = [
-    "What skills are needed for Software Engineering?",
-    "How do I start a career in Cybersecurity?",
-    "What's the career path for a Mechanical Engineer?",
-    "Compare AI Specialist vs. Data Scientist roles.",
-    "What subjects are important for an Architect?",
-    "What are the steps to become an Aeronautical Engineer?",
-    "What does a Biomedical Engineer do?",
-    "Explain the career path for a Civil Engineer.",
-    "What is the difference between a BBA and an MBA?",
-    "How to become a Machine Learning Engineer?",
-    "What's the future of Biotechnology?",
-    "What are the main roles for an EEE graduate?",
-    "What does a Paramedical Specialist do?",
-    "How is Data Science different from AI?",
-    "What are the first steps after a BBA degree?"
-];
-
 
 export function ChatAssistant() {
     const [isOpen, setIsOpen] = useState(false);
@@ -70,24 +52,35 @@ export function ChatAssistant() {
         setIsLoading(true);
         setInput('');
 
-        try {
-            // The history sent to the API should have the correct structure
-            const historyForApi = newMessages.map(m => ({ 
-                role: m.role, 
-                content: m.content
-            }));
-            
-            const response = await runChat({ history: historyForApi.slice(-10) });
-            
-            const modelMessage: ChatMessage = { role: 'model', content: response.message };
-            setMessages(prev => [...prev, modelMessage]);
+        // Check for a predefined answer
+        const predefinedAnswer = starterAnswers[messageContent];
 
-        } catch (error) {
-            console.error('Chat error:', error);
-            const errorMessage: ChatMessage = { role: 'model', content: 'Sorry, I encountered an error. Please try again.' };
-            setMessages(prev => [...prev, errorMessage]);
-        } finally {
-            setIsLoading(false);
+        if (predefinedAnswer) {
+            setTimeout(() => {
+                const modelMessage: ChatMessage = { role: 'model', content: predefinedAnswer };
+                setMessages(prev => [...prev, modelMessage]);
+                setIsLoading(false);
+            }, 500); // Simulate a slight delay
+        } else {
+            // If no predefined answer, call the AI
+            try {
+                const historyForApi = newMessages.map(m => ({ 
+                    role: m.role, 
+                    content: m.content
+                }));
+                
+                const response = await runChat({ history: historyForApi.slice(-10) });
+                
+                const modelMessage: ChatMessage = { role: 'model', content: response.message };
+                setMessages(prev => [...prev, modelMessage]);
+
+            } catch (error) {
+                console.error('Chat error:', error);
+                const errorMessage: ChatMessage = { role: 'model', content: 'Sorry, I encountered an error. Please try again.' };
+                setMessages(prev => [...prev, errorMessage]);
+            } finally {
+                setIsLoading(false);
+            }
         }
     };
 
