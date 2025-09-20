@@ -1,3 +1,4 @@
+
 'use server';
 /**
  * @fileOverview This file defines a Genkit flow for parsing a user's resume text to extract skills and academic background.
@@ -29,6 +30,7 @@ const prompt = ai.definePrompt({
   name: 'parseResumePrompt',
   input: {schema: ParseResumeInputSchema},
   output: {schema: ParseResumeOutputSchema},
+  model: 'googleai/gemini-1.5-flash',
   prompt: `You are an expert resume parser. Analyze the following resume text and extract the user's skills and academic background.
 
 Provide the skills as a comma-separated list.
