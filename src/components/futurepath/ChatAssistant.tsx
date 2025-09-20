@@ -17,6 +17,13 @@ type ChatMessage = {
     content: string;
 };
 
+const starterQuestions = [
+    "What is cybersecurity?",
+    "How do I start with AWS?",
+    "Suggest a project for web development.",
+    "Explain machine learning in simple terms.",
+];
+
 export function ChatAssistant() {
     const [isOpen, setIsOpen] = useState(false);
     const [messages, setMessages] = useState<ChatMessage[]>([]);
@@ -41,14 +48,12 @@ export function ChatAssistant() {
         }
     }, [messages]);
 
-    const handleSendMessage = async (e: React.FormEvent) => {
-        e.preventDefault();
-        if (!input.trim() || isLoading) return;
+    const sendMessage = async (messageContent: string) => {
+        if (!messageContent.trim() || isLoading) return;
 
-        const userMessage: ChatMessage = { role: 'user', content: input };
+        const userMessage: ChatMessage = { role: 'user', content: messageContent };
         const newMessages = [...messages, userMessage];
         setMessages(newMessages);
-        setInput('');
         setIsLoading(true);
 
         try {
@@ -63,6 +68,16 @@ export function ChatAssistant() {
         } finally {
             setIsLoading(false);
         }
+    };
+
+    const handleFormSubmit = async (e: React.FormEvent) => {
+        e.preventDefault();
+        await sendMessage(input);
+        setInput('');
+    };
+
+    const handleSuggestionClick = async (question: string) => {
+        await sendMessage(question);
     };
 
     return (
@@ -117,6 +132,24 @@ export function ChatAssistant() {
                                         )}
                                     </div>
                                 ))}
+
+                                {messages.length === 1 && (
+                                    <div className="pt-4 space-y-2 animate-in fade-in-50">
+                                        <p className="text-sm text-muted-foreground text-center mb-2">Or try one of these questions:</p>
+                                        {starterQuestions.map(q => (
+                                            <Button 
+                                                key={q} 
+                                                variant="outline" 
+                                                className="w-full justify-start h-auto py-2 text-left"
+                                                onClick={() => handleSuggestionClick(q)}
+                                                disabled={isLoading}
+                                            >
+                                                {q}
+                                            </Button>
+                                        ))}
+                                    </div>
+                                )}
+                                
                                 {isLoading && (
                                      <div className="flex items-end gap-2">
                                         <Avatar className="w-8 h-8">
@@ -131,7 +164,7 @@ export function ChatAssistant() {
                         </ScrollArea>
                     </CardContent>
                     <CardFooter className="border-t pt-4">
-                        <form onSubmit={handleSendMessage} className="flex w-full items-center space-x-2">
+                        <form onSubmit={handleFormSubmit} className="flex w-full items-center space-x-2">
                             <Input
                                 id="message"
                                 placeholder="Type your message..."
