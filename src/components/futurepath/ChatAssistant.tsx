@@ -144,7 +144,7 @@ export function ChatAssistant() {
                                     </div>
                                 ))}
 
-                                {messages.length === 1 && !isLoading && (
+                                {!isLoading && (
                                     <div className="pt-4 space-y-2 animate-in fade-in-50">
                                         <p className="text-sm text-muted-foreground text-center mb-2">Or try one of these questions:</p>
                                         <div className="grid grid-cols-1 gap-2">
@@ -160,15 +160,17 @@ export function ChatAssistant() {
                                                     {q}
                                                 </Button>
                                             ))}
-                                            <Button
-                                                variant="ghost"
-                                                size="sm"
-                                                className="w-full justify-center text-primary"
-                                                onClick={() => setShowMore(!showMore)}
-                                            >
-                                                {showMore ? "Show Less" : "Show More"}
-                                                {showMore ? <ChevronUp className="w-4 h-4 ml-2" /> : <ChevronDown className="w-4 h-4 ml-2" />}
-                                            </Button>
+                                            {allStarterQuestions.length > 4 && (
+                                                <Button
+                                                    variant="ghost"
+                                                    size="sm"
+                                                    className="w-full justify-center text-primary"
+                                                    onClick={() => setShowMore(!showMore)}
+                                                >
+                                                    {showMore ? "Show Less" : "Show More"}
+                                                    {showMore ? <ChevronUp className="w-4 h-4 ml-2" /> : <ChevronDown className="w-4 h-4 ml-2" />}
+                                                </Button>
+                                            )}
                                         </div>
                                     </div>
                                 )}
