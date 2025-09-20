@@ -43,18 +43,17 @@ const chatFlow = ai.defineFlow(
   async input => {
     const {history, message} = input;
 
+    const systemInstruction =
+        'You are a helpful and friendly AI assistant specializing in career guidance. Your goal is to provide accurate, detailed, and safe information to the user. You should be encouraging and provide actionable advice when possible. Do not be overly cautious and answer the user\'s questions comprehensively.';
+
     // The Gemini 1.5 Flash model used in this app only supports 'user' and 'model' roles.
     const mappedHistory: Message[] = history.map(h => ({
       role: h.role === 'user' ? 'user' : 'model',
       content: h.content,
     }));
 
-    const systemInstruction =
-        'You are a helpful and friendly AI assistant specializing in career guidance. Your goal is to provide accurate, detailed, and safe information to the user. You should be encouraging and provide actionable advice when possible. Do not be overly cautious and answer the user\'s questions comprehensively.';
-
     const conversation: Message[] = [
-        { role: 'user', content: [{ text: systemInstruction }] },
-        { role: 'model', content: [{ text: "Understood. I am a helpful and friendly AI career guide. I will provide accurate, detailed, and encouraging advice." }] },
+        { role: 'system', content: [{ text: systemInstruction }] },
         ...mappedHistory,
         { role: 'user', content: [{ text: message }] },
     ];
