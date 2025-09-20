@@ -69,7 +69,7 @@ export function CareerForm({ onSubmit }: CareerFormProps) {
   });
 
   const processFile = (file: File) => {
-    if (file && file.type === 'text/plain') {
+    if (file) {
       isResumeUploaded = true;
       setFileName(file.name);
       const reader = new FileReader();
@@ -82,7 +82,6 @@ export function CareerForm({ onSubmit }: CareerFormProps) {
       };
       reader.readAsText(file);
     } else {
-        alert('Invalid file type. Please upload a .txt file. PDF and Word document support is coming soon!');
         isResumeUploaded = false;
         setFileName(undefined);
     }
