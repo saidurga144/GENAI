@@ -27,9 +27,17 @@ const formSchema = z.object({
   academicBackground: z.string().max(500, { message: "Please keep your background under 500 characters." }).optional(),
   skills: z.string().max(500, { message: "Please keep your skills under 500 characters." }).optional(),
   interests: z.string().min(10, { message: "Please describe your interests in at least 10 characters." }).max(500, { message: "Please keep your interests under 500 characters." }),
-}).refine(data => !!data.skills || !!data.academicBackground, {
+}).refine(data => {
+    // If resume is not uploaded, then either skills or academicBackground must be filled.
+    // This client-side validation logic relies on how resumeText is handled in the component.
+    // If we assume resume upload will fill these fields, this refine works.
+    if (data.skills === 'Extracted from resume.' && data.academicBackground === 'Extracted from resume.') {
+        return true;
+    }
+    return !!data.skills || !!data.academicBackground;
+}, {
   message: "Either Skills or Academic Background must be filled in if not uploading a resume.",
-  path: ["skills"], 
+  path: ["skills"], // Where to show the error
 });
 
 type CareerFormProps = {
@@ -58,10 +66,11 @@ export function CareerForm({ onSubmit }: CareerFormProps) {
       reader.onload = (e) => {
         const text = e.target?.result as string;
         setResumeText(text);
+        // Set placeholder values to satisfy validation
         form.setValue('skills', 'Extracted from resume.');
         form.setValue('academicBackground', 'Extracted from resume.');
+        // Clear errors as the condition is now met
         form.clearErrors('skills');
-        form.clearErrors('academicBackground');
       };
       reader.readAsText(file);
     }

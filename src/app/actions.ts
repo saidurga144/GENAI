@@ -16,16 +16,16 @@ export async function getCareerRecommendations(
 ): Promise<CareerPath[]> {
   const { skills, academicBackground, interests } = data;
 
-  if (!isResumeUpload && (!skills || !academicBackground)) {
-    throw new Error("Skills and Academic Background are required when not uploading a resume.");
+  if (!isResumeUpload && !skills && !academicBackground) {
+    throw new Error("Either Skills or Academic Background are required when not uploading a resume.");
   }
   if (!interests) {
     throw new Error("Interests are required.");
   }
 
   const careerPaths = await generatePersonalizedCareerPaths({
-    skills,
-    academicBackground,
+    skills: skills || 'Not provided',
+    academicBackground: academicBackground || 'Not provided',
     interests,
   });
 
@@ -49,9 +49,9 @@ export async function getCareerPathDetails(
         backgroundDetails: `The user has the following academic background: ${academicBackground}. They are also interested in ${interests}.`,
       }),
       generateRoadmap({
-        skills,
-        academicBackground,
-        interests,
+        skills: skills || 'Not provided',
+        academicBackground: academicBackground || 'Not provided',
+        interests: interests || 'Not provided',
         jobTitle: careerPath.jobTitle,
       })
     ]);
